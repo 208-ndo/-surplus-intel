@@ -1,4 +1,4 @@
-# Surplus Funds Intelligence System
+# Surplus GA
 
 Automated Georgia surplus funds lead scraper and dashboard for GitHub Actions + GitHub Pages.
 
