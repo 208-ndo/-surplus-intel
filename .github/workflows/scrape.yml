@@ -27,6 +27,12 @@ jobs:
       - name: Run surplus scraper
         run: python -m scraper.main
 
+      - name: Enrich lead status checks
+        env:
+          BATCH_API_KEY: ${{ secrets.BATCH_API_KEY }}
+          SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
+        run: python scraper/enrich.py
+
       - name: Push eligible leads to GoHighLevel
         if: ${{ secrets.GHL_API_KEY != '' }}
         env:
@@ -47,7 +53,7 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/surplus_leads.json index.html
+          git add data/surplus_leads.json data/previous_leads.json data/removed_leads.json index.html
           if git diff --cached --quiet; then
             echo "No surplus data changes to commit."
           else
