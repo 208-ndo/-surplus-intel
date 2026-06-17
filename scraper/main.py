@@ -111,10 +111,40 @@ def dedupe_leads(leads: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return deduped
 
 
+def lead_identity_key(lead: dict[str, Any]) -> str:
+    return "|".join(
+        [
+            str(lead.get("county_name", "")).upper().strip(),
+            str(lead.get("parcel_id", "")).upper().strip(),
+            str(lead.get("owner_name", "")).upper().strip(),
+            str(float(lead.get("surplus_amount") or 0)),
+        ]
+    )
+
+
+def existing_first_seen(output_path: Path = OUTPUT_PATH) -> dict[str, str]:
+    if not output_path.exists():
+        return {}
+    try:
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    existing: dict[str, str] = {}
+    for lead in payload.get("leads") or []:
+        first_seen = str(lead.get("first_seen_date") or "").strip()
+        if first_seen:
+            existing[lead_identity_key(lead)] = first_seen
+    return existing
+
+
 def build_payload(leads: list[dict[str, Any]]) -> dict[str, Any]:
     scored = score_leads(dedupe_leads([clean_lead_identity(lead) for lead in leads]))
     total_amount = sum(float(lead.get("surplus_amount") or 0) for lead in scored)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    today = now[:10]
+    seen_dates = existing_first_seen()
+    for lead in scored:
+        lead["first_seen_date"] = seen_dates.get(lead_identity_key(lead), today)
     return {
         "generated_at": now,
         "source": "Georgia surplus funds public records",

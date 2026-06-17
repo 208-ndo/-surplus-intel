@@ -2,7 +2,7 @@ name: Surplus Funds Scraper
 
 on:
   schedule:
-    - cron: "0 11 * * 1,3,5"
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 permissions:

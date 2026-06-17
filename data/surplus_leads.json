@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T13:46:27+00:00",
+  "generated_at": "2026-06-17T22:05:45+00:00",
   "source": "Georgia surplus funds public records",
   "counties": [
     "Clayton GA",
@@ -39,7 +39,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-06-07",
       "days_to_claim": 355,
-      "claim_status": "Under 1 year"
+      "claim_status": "Under 1 year",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -70,7 +71,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -102,7 +104,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-06-01",
       "days_to_claim": -16,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -132,7 +135,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-05-04",
       "days_to_claim": -44,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -163,7 +167,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-07-02",
       "days_to_claim": 1111,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -193,7 +198,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-07-05",
       "days_to_claim": 749,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -223,7 +229,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -254,7 +261,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -284,7 +292,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -314,7 +323,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-09-05",
       "days_to_claim": 811,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -345,7 +355,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-05-07",
       "days_to_claim": 1055,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -376,7 +387,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -407,7 +419,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -438,7 +451,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-05-07",
       "days_to_claim": 1055,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -469,7 +483,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -499,7 +514,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -529,7 +545,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -560,7 +577,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-06-07",
       "days_to_claim": 355,
-      "claim_status": "Under 1 year"
+      "claim_status": "Under 1 year",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -591,7 +609,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -623,7 +642,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-06-01",
       "days_to_claim": -16,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -655,7 +675,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -687,7 +708,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-09-05",
       "days_to_claim": 811,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -719,7 +741,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -751,7 +774,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-07-05",
       "days_to_claim": 383,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -781,7 +805,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -811,7 +836,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -841,7 +867,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-09-09",
       "days_to_claim": 1180,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -871,7 +898,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-06-06",
       "days_to_claim": 720,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -901,7 +929,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -931,7 +960,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -961,7 +991,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-10-06",
       "days_to_claim": -254,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -991,7 +1022,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1021,7 +1053,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-06-07",
       "days_to_claim": 355,
-      "claim_status": "Under 1 year"
+      "claim_status": "Under 1 year",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1051,7 +1084,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-08-01",
       "days_to_claim": 776,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1081,7 +1115,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1112,7 +1147,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1143,7 +1179,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1172,7 +1209,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1201,7 +1239,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1230,7 +1269,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1259,7 +1299,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1288,7 +1329,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1317,7 +1359,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1346,7 +1389,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1376,7 +1420,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-09-09",
       "days_to_claim": 1180,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1406,7 +1451,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1436,7 +1482,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1467,7 +1514,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1498,7 +1546,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-07-06",
       "days_to_claim": 19,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1529,7 +1578,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-09-05",
       "days_to_claim": 811,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1560,7 +1610,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-06-01",
       "days_to_claim": -16,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1591,7 +1642,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1622,7 +1674,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1653,7 +1706,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-05-02",
       "days_to_claim": 685,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1684,7 +1738,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1715,7 +1770,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1743,7 +1799,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1771,7 +1828,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1799,7 +1857,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1827,7 +1886,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-07-01",
       "days_to_claim": 1475,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1855,7 +1915,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1883,7 +1944,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-08-05",
       "days_to_claim": 1510,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1912,7 +1974,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1941,7 +2004,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -1970,7 +2034,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-11-05",
       "days_to_claim": 1237,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -1999,7 +2064,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2028,7 +2094,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2058,7 +2125,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2088,7 +2156,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2118,7 +2187,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2148,7 +2218,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-05-02",
       "days_to_claim": 685,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2178,7 +2249,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2208,7 +2280,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2238,7 +2311,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2268,7 +2342,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-03-07",
       "days_to_claim": 629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2298,7 +2373,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2328,7 +2404,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2358,7 +2435,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2388,7 +2466,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2418,7 +2497,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2448,7 +2528,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-09-01",
       "days_to_claim": -289,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2478,7 +2559,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2508,7 +2590,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2538,7 +2621,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2568,7 +2652,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2598,7 +2683,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2022-11-07",
       "days_to_claim": -1318,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2628,7 +2714,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-02-07",
       "days_to_claim": 600,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2658,7 +2745,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2688,7 +2776,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2718,7 +2807,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2748,7 +2838,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-12-01",
       "days_to_claim": -198,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2778,7 +2869,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-06-01",
       "days_to_claim": -16,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2808,7 +2900,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-08-06",
       "days_to_claim": -680,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2838,7 +2931,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-11-02",
       "days_to_claim": 138,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2868,7 +2962,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-02-02",
       "days_to_claim": -135,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -2898,7 +2993,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-05-02",
       "days_to_claim": 685,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2928,7 +3024,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-02-02",
       "days_to_claim": -135,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2958,7 +3055,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-11-02",
       "days_to_claim": 138,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -2988,7 +3086,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-09-05",
       "days_to_claim": 811,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3018,7 +3117,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3048,7 +3148,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3078,7 +3179,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-09-01",
       "days_to_claim": -289,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3108,7 +3210,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-11-02",
       "days_to_claim": 138,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3138,7 +3241,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3168,7 +3272,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-12-01",
       "days_to_claim": -198,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3198,7 +3303,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3228,7 +3334,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3258,7 +3365,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3288,7 +3396,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3318,7 +3427,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-10-03",
       "days_to_claim": 839,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3348,7 +3458,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-05-03",
       "days_to_claim": 320,
-      "claim_status": "Under 1 year"
+      "claim_status": "Under 1 year",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3378,7 +3489,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3408,7 +3520,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-12-06",
       "days_to_claim": 537,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3436,7 +3549,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3465,7 +3579,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-11-05",
       "days_to_claim": 1237,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3494,7 +3609,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3523,7 +3639,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3552,7 +3669,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3581,7 +3699,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3610,7 +3729,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3639,7 +3759,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -3668,7 +3789,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3698,7 +3820,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-07-06",
       "days_to_claim": 19,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3728,7 +3851,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3758,7 +3882,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3788,7 +3913,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3818,7 +3944,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3848,7 +3975,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3878,7 +4006,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3908,7 +4037,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3938,7 +4068,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3968,7 +4099,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -3998,7 +4130,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4028,7 +4161,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4058,7 +4192,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4088,7 +4223,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4118,7 +4254,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4148,7 +4285,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4178,7 +4316,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4206,7 +4345,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -4234,7 +4374,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -4262,7 +4403,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4290,7 +4432,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4318,7 +4461,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4346,7 +4490,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4374,7 +4519,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4402,7 +4548,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -4430,7 +4577,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4460,7 +4608,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4489,7 +4638,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-05-07",
       "days_to_claim": 1055,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4518,7 +4668,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4548,7 +4699,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4577,7 +4729,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4606,7 +4759,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4635,7 +4789,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4664,7 +4819,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4693,7 +4849,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4722,7 +4879,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4751,7 +4909,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4780,7 +4939,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4809,7 +4969,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4838,7 +4999,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4867,7 +5029,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4896,7 +5059,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4925,7 +5089,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4954,7 +5119,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -4983,7 +5149,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5012,7 +5179,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5041,7 +5209,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5070,7 +5239,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5099,7 +5269,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-03-04",
       "days_to_claim": 1356,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5128,7 +5299,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5157,7 +5329,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5186,7 +5359,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5215,7 +5389,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5244,7 +5419,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5273,7 +5449,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5302,7 +5479,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5331,7 +5509,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5360,7 +5539,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-10-01",
       "days_to_claim": 1202,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5389,7 +5569,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5418,7 +5599,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5447,7 +5629,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5476,7 +5659,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5505,7 +5689,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-03-04",
       "days_to_claim": 1356,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5534,7 +5719,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5563,7 +5749,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5592,7 +5779,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2029-11-05",
       "days_to_claim": 1237,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5621,7 +5809,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5650,7 +5839,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5679,7 +5869,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5708,7 +5899,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5737,7 +5929,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5766,7 +5959,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-03-04",
       "days_to_claim": 1356,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5795,7 +5989,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5824,7 +6019,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5853,7 +6049,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5882,7 +6079,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -5911,7 +6109,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5940,7 +6139,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5969,7 +6169,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -5998,7 +6199,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -6027,7 +6229,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-03-04",
       "days_to_claim": 1356,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6056,7 +6259,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6085,7 +6289,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6114,7 +6319,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6143,7 +6349,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6172,7 +6379,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -6201,7 +6409,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6230,7 +6439,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6259,7 +6469,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6288,7 +6499,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6317,7 +6529,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6346,7 +6559,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6375,7 +6589,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6404,7 +6619,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6433,7 +6649,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6462,7 +6679,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6491,7 +6709,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6520,7 +6739,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6549,7 +6769,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6578,7 +6799,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -6607,7 +6829,8 @@
       "is_national_creditor": true,
       "claim_deadline": "2030-02-04",
       "days_to_claim": 1328,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6637,7 +6860,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6667,7 +6891,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-05-04",
       "days_to_claim": -44,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6697,7 +6922,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6727,7 +6953,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-05-04",
       "days_to_claim": -44,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6757,7 +6984,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6787,7 +7015,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6817,7 +7046,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-07-05",
       "days_to_claim": 749,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6847,7 +7077,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -6875,7 +7106,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-08-05",
       "days_to_claim": 1510,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6904,7 +7136,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6933,7 +7166,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6961,7 +7195,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -6989,7 +7224,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7017,7 +7253,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-09-02",
       "days_to_claim": 1538,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7045,7 +7282,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-02-03",
       "days_to_claim": 1692,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7073,7 +7311,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7101,7 +7340,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7129,7 +7369,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7157,7 +7398,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7185,7 +7427,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7213,7 +7456,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7241,7 +7485,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7269,7 +7514,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7297,7 +7543,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7325,7 +7572,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7353,7 +7601,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7381,7 +7630,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7409,7 +7659,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7437,7 +7688,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7465,7 +7717,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7493,7 +7746,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7521,7 +7775,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7549,7 +7804,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7577,7 +7833,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7605,7 +7862,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7633,7 +7891,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7661,7 +7920,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7689,7 +7949,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-10-07",
       "days_to_claim": 1573,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7717,7 +7978,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-12-02",
       "days_to_claim": 1629,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7746,7 +8008,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7775,7 +8038,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-11-02",
       "days_to_claim": 138,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7805,7 +8069,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7834,7 +8099,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-09-06",
       "days_to_claim": 446,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7863,7 +8129,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-12-01",
       "days_to_claim": -198,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7892,7 +8159,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7922,7 +8190,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -7951,7 +8220,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-06-01",
       "days_to_claim": -16,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -7981,7 +8251,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8011,7 +8282,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8040,7 +8312,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-10-05",
       "days_to_claim": 110,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8069,7 +8342,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8098,7 +8372,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8127,7 +8402,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8156,7 +8432,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8185,7 +8462,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-07-02",
       "days_to_claim": -715,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8214,7 +8492,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8243,7 +8522,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8272,7 +8552,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8301,7 +8582,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8331,7 +8613,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8360,7 +8643,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8389,7 +8673,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-07-02",
       "days_to_claim": -715,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8418,7 +8703,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-07-02",
       "days_to_claim": -715,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8447,7 +8733,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-07-02",
       "days_to_claim": -715,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8477,7 +8764,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8506,7 +8794,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-12-01",
       "days_to_claim": -198,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8535,7 +8824,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-07-05",
       "days_to_claim": 383,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8564,7 +8854,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-11-03",
       "days_to_claim": -226,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8593,7 +8884,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2026-09-07",
       "days_to_claim": 82,
-      "claim_status": "Urgent"
+      "claim_status": "Urgent",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8622,7 +8914,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2024-07-02",
       "days_to_claim": -715,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8651,7 +8944,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-10-04",
       "days_to_claim": 474,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8681,7 +8975,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8710,7 +9005,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2028-11-07",
       "days_to_claim": 874,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8739,7 +9035,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8768,7 +9065,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-11-01",
       "days_to_claim": 502,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8797,7 +9095,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2025-12-01",
       "days_to_claim": -198,
-      "claim_status": "Deadline review"
+      "claim_status": "Deadline review",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8827,7 +9126,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8857,7 +9157,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8886,7 +9187,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2027-06-07",
       "days_to_claim": 355,
-      "claim_status": "Under 1 year"
+      "claim_status": "Under 1 year",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -8914,7 +9216,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8942,7 +9245,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-07-01",
       "days_to_claim": 1475,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -8971,7 +9275,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9000,7 +9305,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9029,7 +9335,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9058,7 +9365,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9087,7 +9395,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9116,7 +9425,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9145,7 +9455,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9174,7 +9485,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9203,7 +9515,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9232,7 +9545,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9261,7 +9575,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9290,7 +9605,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-06-03",
       "days_to_claim": 1447,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9319,7 +9635,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9348,7 +9665,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9377,7 +9695,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9406,7 +9725,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9435,7 +9755,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9464,7 +9785,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9493,7 +9815,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-04-01",
       "days_to_claim": 1384,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9522,7 +9845,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9551,7 +9875,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9580,7 +9905,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9609,7 +9935,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-05-06",
       "days_to_claim": 1419,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9638,7 +9965,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9666,7 +9994,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-05-05",
       "days_to_claim": 1783,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "DeKalb GA",
@@ -9694,7 +10023,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-04-07",
       "days_to_claim": 1755,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9722,7 +10052,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9750,7 +10081,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9778,7 +10110,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9806,7 +10139,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2030-11-04",
       "days_to_claim": 1601,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     },
     {
       "county_name": "Clayton GA",
@@ -9834,7 +10168,8 @@
       "is_national_creditor": false,
       "claim_deadline": "2031-02-03",
       "days_to_claim": 1692,
-      "claim_status": "Open"
+      "claim_status": "Open",
+      "first_seen_date": "2026-06-17"
     }
   ]
 }
