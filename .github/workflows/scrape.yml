@@ -1,0 +1,56 @@
+name: Surplus Funds Scraper
+
+on:
+  schedule:
+    - cron: "0 11 * * 1,3,5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run surplus scraper
+        run: python -m scraper.main
+
+      - name: Push eligible leads to GoHighLevel
+        if: ${{ secrets.GHL_API_KEY != '' }}
+        env:
+          GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
+        run: python -m scraper.ghl_push
+
+      - name: Commit updated surplus data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path("data/surplus_leads.json").read_text())
+          n = payload.get("lead_count", 0)
+          total = payload.get("total_surplus_amount", 0)
+          timestamp = payload.get("generated_at", "")
+          message = f"🏠 Surplus update: {n} leads | ${total:,.0f} total | {timestamp}"
+          Path("commit_message.txt").write_text(message, encoding="utf-8")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/surplus_leads.json index.html
+          if git diff --cached --quiet; then
+            echo "No surplus data changes to commit."
+          else
+            git commit -F commit_message.txt
+            git push
+          fi

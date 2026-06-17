@@ -1,0 +1,4 @@
+aiohttp
+pdfplumber
+pandas
+requests
