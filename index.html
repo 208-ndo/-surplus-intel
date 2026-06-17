@@ -277,7 +277,8 @@
 
     function leadState(lead){
       const key = leadKey(lead);
-      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "" };
+      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", attorney: "", contactLog: [] };
+      state.pipeline[key].contactLog = Array.isArray(state.pipeline[key].contactLog) ? state.pipeline[key].contactLog : [];
       return state.pipeline[key];
     }
 
@@ -295,13 +296,35 @@
       const notes = document.getElementById("lead-notes")?.value || "";
       const phone = document.getElementById("lead-phone")?.value || "";
       const status = document.getElementById("lead-status")?.value || "New";
+      const attorney = document.getElementById("lead-attorney")?.value || "";
       const saved = leadState(lead);
       saved.notes = notes;
       saved.phone = phone;
       saved.status = status;
+      saved.attorney = attorney;
       savePipeline();
       renderTable();
       alert("Lead notes saved.");
+    }
+
+    function logContactAttempt(index){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      const text = (document.getElementById("contact-attempt-note")?.value || "").trim();
+      if(!text){
+        alert("Add a short contact note first.");
+        return;
+      }
+      const saved = leadState(lead);
+      const stamp = new Date().toLocaleString([], { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" });
+      saved.notes = document.getElementById("lead-notes")?.value || saved.notes || "";
+      saved.phone = document.getElementById("lead-phone")?.value || saved.phone || "";
+      saved.status = document.getElementById("lead-status")?.value || saved.status || "New";
+      saved.attorney = document.getElementById("lead-attorney")?.value || saved.attorney || "";
+      saved.contactLog.unshift(`[${stamp}] - ${text}`);
+      document.getElementById("contact-attempt-note").value = "";
+      savePipeline();
+      openLead(index);
     }
 
     function phoneForLead(lead){
@@ -323,6 +346,28 @@
       if(days <= 180) return "fire";
       if(days <= 365) return "hot";
       return "blue";
+    }
+
+    function qpublicUrl(lead){
+      return "https://qpublic.net/ga/clayton/";
+    }
+
+    function addressText(lead){
+      const address = [lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ");
+      if(address) return address;
+      if(lead.county_name === "Clayton GA" && lead.parcel_id){
+        return `Clayton Co. - address not in public PDF. Look up parcel ${lead.parcel_id} at qpublic.net`;
+      }
+      return "Address pending";
+    }
+
+    function addressHTML(lead){
+      const address = [lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ");
+      if(address) return address;
+      if(lead.county_name === "Clayton GA" && lead.parcel_id){
+        return `Clayton Co. - address not in public PDF. Look up parcel ${lead.parcel_id} at <a href="${qpublicUrl(lead)}" target="_blank" onclick="event.stopPropagation()">qpublic.net</a>`;
+      }
+      return "Address pending";
     }
 
     function tabMatch(lead){
@@ -357,9 +402,11 @@
         `Claim deadline: ${lead.claim_deadline || ""}`,
         `Attorney required: ${lead.attorney_required ? "Yes" : "Review"}`,
         `Parcel: ${lead.parcel_id || ""}`,
-        `Address: ${[lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ")}`,
+        `Address: ${addressText(lead)}`,
         `Status: ${saved.status || "New"}`,
-        `Notes: ${saved.notes || ""}`
+        `Assigned attorney: ${saved.attorney || ""}`,
+        `Notes: ${saved.notes || ""}`,
+        `Contact log: ${(saved.contactLog || []).join(" | ")}`
       ].join("\\n");
     }
 
@@ -378,11 +425,12 @@
       const lead = state.filtered[index];
       if(!lead) return;
       const cls = tierClass(lead.tier);
-      const address = [lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ") || "Address pending";
+      const address = addressHTML(lead);
       const saved = leadState(lead);
       const phone = phoneForLead(lead);
       const callButton = phone ? `<a class="btn primary" href="tel:${phone.replace(/[^0-9+]/g, "")}">Call</a>` : `<button class="btn disabled" disabled>Call</button>`;
       const statusOptions = STATUS_OPTIONS.map(status => `<option value="${status}" ${saved.status === status ? "selected" : ""}>${status}</option>`).join("");
+      const contactLog = (saved.contactLog || []).map(entry => `<div class="field-value">${entry}</div>`).join("") || `<div class="field-value">No contact attempts logged yet.</div>`;
       document.getElementById("lead-card").innerHTML = `
         <div class="card-head">
           <div>
@@ -407,7 +455,13 @@
           <div class="section">Pipeline</div>
           <div><div class="field-label">Status</div><select id="lead-status">${statusOptions}</select></div>
           <div><div class="field-label">Phone After Trace</div><input id="lead-phone" type="text" value="${saved.phone || phone || ""}" placeholder="Add phone after skip trace"></div>
+          <div><div class="field-label">Assigned Attorney</div><input id="lead-attorney" type="text" value="${saved.attorney || ""}" placeholder="Attorney partner"></div>
           <div class="full"><div class="field-label">Notes</div><textarea id="lead-notes" placeholder="Left VM 6/17, signed contract, filed...">${saved.notes || ""}</textarea></div>
+          <div class="full"><div class="field-label">Contact Attempt</div><input id="contact-attempt-note" type="text" placeholder="VM left, no answer, spoke with owner..."></div>
+          <div class="card-actions">
+            <button class="btn" onclick="logContactAttempt(${index})">Log Contact Attempt</button>
+          </div>
+          <div class="full"><div class="field-label">Contact Log</div>${contactLog}</div>
           <div class="section">Score Reasons</div>
           <div class="full"><div class="field-value">${(lead.score_reasons || []).join(" - ") || "No score reasons available"}</div></div>
           <div class="card-actions">
@@ -512,12 +566,12 @@
         alert("Select at least one lead first.");
         return;
       }
-      const headers = ["owner_name","property_address","city","zip","county","parcel_id","surplus_amount","your_cut_30pct","sale_date","claim_deadline","score","tier","status","notes"];
+      const headers = ["owner_name","property_address","city","zip","county","parcel_id","surplus_amount","your_cut_30pct","sale_date","claim_deadline","score","tier","status","assigned_attorney","notes","contact_log"];
       const rows = leads.map(lead => {
         const saved = leadState(lead);
         const row = {
           owner_name: lead.owner_name || "",
-          property_address: lead.property_address || "",
+          property_address: addressText(lead),
           city: lead.city || "",
           zip: lead.zip || "",
           county: lead.county_name || "",
@@ -529,7 +583,9 @@
           score: lead.score || "",
           tier: lead.tier || "",
           status: saved.status || "New",
-          notes: saved.notes || ""
+          assigned_attorney: saved.attorney || "",
+          notes: saved.notes || "",
+          contact_log: (saved.contactLog || []).join(" | ")
         };
         return headers.map(header => csvEscape(row[header])).join(",");
       });
@@ -553,7 +609,7 @@
       body.innerHTML = state.filtered.map((lead, index) => {
         const tier = lead.tier || "LOW";
         const cls = tierClass(tier);
-        const address = [lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ");
+        const address = addressHTML(lead);
         const saved = leadState(lead);
         const key = leadKey(lead);
         const phone = phoneForLead(lead);
@@ -562,7 +618,7 @@
         return `<tr onclick="openLead(${index})">
           <td><input class="row-check" type="checkbox" ${state.selected.has(key) ? "checked" : ""} onclick="event.stopPropagation();toggleSelected(${index}, this.checked)"></td>
           <td><div class="score ${cls}">${lead.score || 0}</div></td>
-          <td style="min-width:260px"><div class="owner-name">${lead.owner_name || "Unknown"}</div><div class="owner-sub">${address || "Address pending"}${lead.parcel_id ? " - " + lead.parcel_id : ""}</div></td>
+          <td style="min-width:260px"><div class="owner-name">${lead.owner_name || "Unknown"}</div><div class="owner-sub">${address}${lead.parcel_id ? " - " + lead.parcel_id : ""}</div></td>
           <td class="date-cell">${lead.county_name || "--"}</td>
           <td class="date-cell">${lead.sale_date || "--"}<div class="owner-sub">${yearsLabel(lead.years_unclaimed)}</div><div class="owner-sub">${claimCountdownLabel(lead)}</div></td>
           <td><div class="amount ${cls}">${fmtMoney(lead.surplus_amount)}</div></td>
