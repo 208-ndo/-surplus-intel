@@ -241,11 +241,79 @@ def build_precall_brief(lead: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def build_contract_text(lead: dict[str, Any]) -> str:
+    generated_date = datetime.now(timezone.utc).date().isoformat()
+    owner = str(lead.get("owner_name") or "Former Property Owner")
+    county = county_display(lead)
+    parcel = str(lead.get("parcel_id") or "Parcel to be verified")
+    address = lead_address_label(lead)
+    surplus = amount_label(lead.get("surplus_amount"))
+    fee = amount_label(float(lead.get("surplus_amount") or 0) * 0.30)
+    sale_date = str(lead.get("sale_date") or "Sale date to be verified")
+    deadline = str(lead.get("claim_deadline") or "Claim deadline to be verified")
+    return f"""ASSET RECOVERY AGREEMENT
+
+This Asset Recovery Agreement ("Agreement") is prepared on {generated_date} by and between:
+
+Claimant / Former Owner:
+{owner}
+
+Recovery Specialist:
+229 Holdings LLC
+
+Property / Claim Information:
+County: {county}
+Parcel ID: {parcel}
+Property Address: {address}
+Tax Sale Date: {sale_date}
+Estimated Excess Funds / Surplus Amount: {surplus}
+Expected Claim Deadline: {deadline}
+
+1. Purpose
+Claimant authorizes 229 Holdings LLC to assist with research, coordination, document preparation support, and recovery workflow related to potential excess funds, surplus funds, or excess proceeds connected to the property and parcel listed above.
+
+2. No Guarantee
+Claimant understands that the surplus amount, claim deadline, lien priority, redemption status, assignment status, and claim eligibility must be verified directly with the county, court, or appropriate government office. 229 Holdings LLC does not guarantee that funds are available or recoverable.
+
+3. Attorney Requirement
+Claimant understands that Georgia surplus fund claims may require review, preparation, or filing by a Georgia-licensed attorney. 229 Holdings LLC may coordinate with an attorney partner, but does not provide legal advice.
+
+4. Specialist Fee
+If funds are successfully recovered, Claimant agrees that 229 Holdings LLC may receive a success fee equal to 30% of recovered funds unless a different written fee is agreed by the parties and permitted by applicable law. Based on the current estimated surplus amount, the estimated 30% fee would be {fee}.
+
+5. Claimant Cooperation
+Claimant agrees to provide identification, ownership/heirship documents, probate documents if applicable, signatures, and other reasonable information needed to verify and pursue the claim.
+
+6. No Upfront Fee
+No upfront fee is charged by 229 Holdings LLC under this Agreement. Any attorney fees, filing costs, or third-party costs must be separately disclosed and approved.
+
+7. Limited Authorization
+Claimant authorizes 229 Holdings LLC to communicate with county offices, title researchers, and attorney partners for the limited purpose of verifying and assisting with this surplus funds claim.
+
+8. Signatures
+
+Claimant Signature: _______________________________ Date: _______________
+
+Printed Name: {owner}
+
+229 Holdings LLC Representative: __________________ Date: _______________
+
+Internal Verification Checklist:
+- County confirmed funds still available: Yes / No
+- No prior claim filed: Yes / No
+- No assignment of excess funds found: Yes / No
+- Redemption status verified: Yes / No
+- Georgia attorney reviewed filing path: Yes / No
+"""
+
+
 def apply_local_lead_prep(lead: dict[str, Any]) -> None:
     enrichment = lead["enrichment"]
     enrichment["personalized_sms"] = build_personalized_sms(lead)
     enrichment["precall_brief"] = build_precall_brief(lead)
+    enrichment["contract_text"] = build_contract_text(lead)
     add_check(enrichment, "lead_prep")
+    add_check(enrichment, "contract")
 
 
 def build_digest(payload: dict[str, Any], removed_count: int, enriched_at: str) -> dict[str, Any]:

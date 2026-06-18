@@ -1,0 +1,14 @@
+counties:
+  - id: clayton_ga
+    enabled: true
+    county_name: Clayton GA
+    state: GA
+    source_url: https://publicaccess.claytoncountyga.gov/content/PDF/DQ759GA.pdf
+    parser_module: clayton_ga
+
+  - id: dekalb_ga
+    enabled: true
+    county_name: DeKalb GA
+    state: GA
+    source_url: https://dekalbtax.org/wp-content/uploads/Excess-Funds-List.pdf
+    parser_module: dekalb_ga

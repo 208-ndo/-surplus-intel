@@ -10,10 +10,12 @@ from typing import Any
 
 try:
     from . import clayton_ga, dekalb_ga
+    from .generic_pdf import load_county_configs, scrape_configured_county
     from .score import score_leads
 except ImportError:
     import clayton_ga
     import dekalb_ga
+    from generic_pdf import load_county_configs, scrape_configured_county
     from score import score_leads
 
 
@@ -26,16 +28,19 @@ EMBED_END = "</script>"
 
 
 async def run_scrapers() -> list[dict[str, Any]]:
-    results = await asyncio.gather(
-        clayton_ga.scrape(),
-        dekalb_ga.scrape(),
-        return_exceptions=True,
-    )
+    configs = [config for config in load_county_configs() if config.get("enabled", True)]
+    if configs:
+        jobs = [scrape_configured_county(config) for config in configs]
+        county_names = [str(config.get("county_name") or config.get("id") or "county") for config in configs]
+    else:
+        jobs = [clayton_ga.scrape(), dekalb_ga.scrape()]
+        county_names = ["Clayton GA", "DeKalb GA"]
+    results = await asyncio.gather(*jobs, return_exceptions=True)
     leads: list[dict[str, Any]] = []
     errors: list[str] = []
-    for result in results:
+    for county_name, result in zip(county_names, results):
         if isinstance(result, Exception):
-            errors.append(str(result))
+            errors.append(f"{county_name}: {result}")
             continue
         leads.extend(result)
     if errors:
@@ -145,10 +150,11 @@ def build_payload(leads: list[dict[str, Any]]) -> dict[str, Any]:
     seen_dates = existing_first_seen()
     for lead in scored:
         lead["first_seen_date"] = seen_dates.get(lead_identity_key(lead), today)
+    county_names = sorted({str(lead.get("county_name") or "").strip() for lead in scored if lead.get("county_name")})
     return {
         "generated_at": now,
         "source": "Georgia surplus funds public records",
-        "counties": ["Clayton GA", "DeKalb GA"],
+        "counties": county_names,
         "lead_count": len(scored),
         "total_surplus_amount": round(total_amount, 2),
         "total_potential_fee_30pct": round(total_amount * 0.30, 2),
