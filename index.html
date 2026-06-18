@@ -237,7 +237,7 @@
 
     <div class="table-meta">
       <div id="result-count">0 records</div>
-      <div class="mini-actions"><button class="btn" onclick="exportSelectedCSV()">Export Selected CSV</button><span id="selected-count">0 selected</span><span>Fee estimate uses 30% of surplus amount. Verify claim rules before outreach.</span></div>
+      <div class="mini-actions"><button class="btn primary" onclick="markSelectedGHL()">GHL Selected</button><button class="btn" onclick="exportBatchSkipCSV()">Skip Trace Batch CSV</button><button class="btn" onclick="exportSelectedCSV()">Export Selected CSV</button><span id="selected-count">0 selected</span><span>Fee estimate uses 30% of surplus amount. Verify claim rules before outreach.</span></div>
     </div>
 
     <div class="table-wrap">
@@ -425,7 +425,7 @@
   <script>
     const state = { leads: [], filtered: [], generatedAt: "", tab: "all", selected: new Set(), pipeline: {} };
     const PIPELINE_KEY = "surplusIntelPipelineV1";
-    const STATUS_OPTIONS = ["New", "Contacted", "Contract Sent", "Signed", "Filed", "Closed"];
+    const STATUS_OPTIONS = ["New", "Traced", "GHL", "Contacted", "Agreement Sent", "Contract Sent", "Signed", "Contract Signed", "Filed", "Closed", "Dead"];
     const fmtMoney = value => "$" + Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 });
     const compactMoney = value => {
       const n = Number(value || 0);
@@ -496,13 +496,16 @@
     }
 
     function savePipeline(){
-      localStorage.setItem(PIPELINE_KEY, JSON.stringify(state.pipeline));
+      try{
+        localStorage.setItem(PIPELINE_KEY, JSON.stringify(state.pipeline));
+      }catch(error){}
     }
 
     function leadState(lead){
       const key = leadKey(lead);
-      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", attorney: "", priority: false, contactLog: [] };
+      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", attorney: "", priority: false, contactLog: [], ghlPushedAt: "", ghlTags: [] };
       state.pipeline[key].contactLog = Array.isArray(state.pipeline[key].contactLog) ? state.pipeline[key].contactLog : [];
+      state.pipeline[key].ghlTags = Array.isArray(state.pipeline[key].ghlTags) ? state.pipeline[key].ghlTags : [];
       return state.pipeline[key];
     }
 
@@ -538,6 +541,12 @@
       leadState(lead).status = status || "New";
       savePipeline();
       renderTable();
+    }
+
+    function addLeadLog(lead, message){
+      const saved = leadState(lead);
+      const stamp = new Date().toLocaleString([], { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" });
+      saved.contactLog.unshift(`[${stamp}] - ${message}`);
     }
 
     function togglePriority(index){
@@ -585,6 +594,28 @@
       document.getElementById("contact-attempt-note").value = "";
       savePipeline();
       openLead(index);
+    }
+
+    function attorneyPriority(lead){
+      const years = Number(lead.years_unclaimed || 0);
+      const days = Number(enrichment(lead).days_remaining ?? lead.days_to_claim);
+      return !!lead.is_estate_owner || years >= 4 || Number(lead.surplus_amount || 0) >= 50000 || (Number.isFinite(days) && days <= 180) || hasVerifyFlag(lead);
+    }
+
+    function ghlTagsForLead(lead){
+      const tags = ["surplus-ga"];
+      const county = String(lead.county_name || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      const tier = String(lead.tier || "").trim().toLowerCase();
+      if(county) tags.push(county);
+      if(tier) tags.push(`${tier}-lead`);
+      if(isGHLEligible(lead)) tags.push("ghl-eligible");
+      if(phoneForLead(lead)) tags.push("traced");
+      if(lead.is_estate_owner) tags.push("estate-heirs");
+      if(lead.is_entity_owner) tags.push("llc-corp");
+      if(lead.is_individual_owner) tags.push("individual-owner");
+      if(isUrgentLead(lead)) tags.push("urgent");
+      if(attorneyPriority(lead)) tags.push("attorney-priority");
+      return Array.from(new Set(tags));
     }
 
     function phoneForLead(lead){
@@ -688,12 +719,49 @@
     function pushToGHL(index){
       const lead = state.filtered[index];
       if(!lead) return;
-      alert("GHL push is handled securely by GitHub Actions using the GHL_API_KEY secret. This lead qualifies if score >= 60 and surplus >= $20k.");
+      if(!isGHLEligible(lead)){
+        alert("This lead is not GHL eligible yet. It needs score >= 60 and surplus >= $20k.");
+        return;
+      }
+      const saved = leadState(lead);
+      saved.status = "GHL";
+      saved.ghlPushedAt = new Date().toISOString();
+      saved.ghlTags = ghlTagsForLead(lead);
+      addLeadLog(lead, `Marked for GHL workflow with tags: ${saved.ghlTags.join(", ")}`);
+      savePipeline();
+      renderTable();
+      alert("Lead marked GHL and tagged locally. Secure API push still runs from GitHub Actions when GHL_API_KEY is configured.");
+    }
+
+    function selectedLeads(){
+      return state.leads.filter(lead => state.selected.has(leadKey(lead)));
+    }
+
+    function markSelectedGHL(){
+      const leads = selectedLeads();
+      if(!leads.length){
+        alert("Select at least one lead first.");
+        return;
+      }
+      let updated = 0;
+      leads.forEach(lead => {
+        if(!isGHLEligible(lead)) return;
+        const saved = leadState(lead);
+        saved.status = "GHL";
+        saved.ghlPushedAt = new Date().toISOString();
+        saved.ghlTags = ghlTagsForLead(lead);
+        addLeadLog(lead, `Marked for bulk GHL workflow with tags: ${saved.ghlTags.join(", ")}`);
+        updated += 1;
+      });
+      savePipeline();
+      renderTable();
+      alert(`${updated.toLocaleString()} selected GHL-eligible leads marked for GHL workflow.`);
     }
 
     function claimNote(lead){
       const saved = leadState(lead);
-      return `Lead: ${lead.owner_name || ""} | Surplus: ${fmtMoney(lead.surplus_amount)} | Status: ${saved.status || "New"} | Notes: ${saved.notes || ""}`;
+      const tags = (saved.ghlTags && saved.ghlTags.length ? saved.ghlTags : ghlTagsForLead(lead)).join(", ");
+      return `Lead: ${lead.owner_name || ""} | Surplus: ${fmtMoney(lead.surplus_amount)} | Status: ${saved.status || "New"} | County: ${lead.county_name || ""} | Parcel: ${lead.parcel_id || ""} | GHL Tags: ${tags} | Notes: ${saved.notes || ""}`;
     }
 
     async function copyClaimNote(index){
@@ -872,11 +940,13 @@
       tags.push({label:"Atty Required", cls:"fire"});
       if(lead.claim_deadline || lead.days_to_claim !== undefined) tags.push({label:claimCountdownLabel(lead), cls:claimCountdownClass(lead)});
       if(lead.is_estate_owner) tags.push({label:"Estate / Heirs", cls:"hot"});
+      if(attorneyPriority(lead)) tags.push({label:"Attorney Priority", cls:"fire"});
       if(lead.is_national_creditor) tags.push({label:"National Creditor", cls:"gray"});
       if(lead.is_individual_owner) tags.push({label:"Individual", cls:"warm"});
       if(lead.is_entity_owner) tags.push({label:"LLC / Corp", cls:"gray"});
       if(Number(lead.years_unclaimed || 0) >= 2) tags.push({label:"2+ yrs unclaimed", cls:"blue"});
       if(isGHLEligible(lead)) tags.push({label:"GHL Eligible", cls:"warm"});
+      if(leadState(lead).status === "GHL") tags.push({label:"GHL Pushed", cls:"warm"});
       (lead.tags || []).concat(enrich.tags || []).forEach(label => tags.push({label, cls:"gray"}));
       const seen = new Set();
       return tags.filter(tag => {
@@ -962,12 +1032,12 @@
     }
 
     function exportSelectedCSV(){
-      const leads = state.leads.filter(lead => state.selected.has(leadKey(lead)));
+      const leads = selectedLeads();
       if(!leads.length){
         alert("Select at least one lead first.");
         return;
       }
-      const headers = ["owner_name","property_address","city","zip","county","parcel_id","surplus_amount","your_cut_30pct","sale_date","claim_deadline","score","tier","status","assigned_attorney","notes","contact_log"];
+      const headers = ["owner_name","property_address","city","zip","county","parcel_id","surplus_amount","your_cut_30pct","sale_date","claim_deadline","score","tier","status","ghl_tags","attorney_priority","assigned_attorney","notes","contact_log"];
       const rows = leads.map(lead => {
         const saved = leadState(lead);
         const row = {
@@ -984,6 +1054,8 @@
           score: lead.score || "",
           tier: lead.tier || "",
           status: saved.status || "New",
+          ghl_tags: (saved.ghlTags && saved.ghlTags.length ? saved.ghlTags : ghlTagsForLead(lead)).join("|"),
+          attorney_priority: attorneyPriority(lead) ? "Yes" : "No",
           assigned_attorney: saved.attorney || "",
           notes: saved.notes || "",
           contact_log: (saved.contactLog || []).join(" | ")
@@ -1000,6 +1072,61 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(url);
+    }
+
+    function splitOwnerName(owner){
+      const cleaned = String(owner || "").replace(/^estate of\s+/i, "").trim();
+      const parts = cleaned.split(/\s+/).filter(Boolean);
+      if(!parts.length) return { first:"", last:"" };
+      if(parts.length === 1) return { first:parts[0], last:"" };
+      return { first:parts[0], last:parts.slice(1).join(" ") };
+    }
+
+    function downloadCSV(filename, headers, rows){
+      const csv = [headers.join(","), ...rows.map(row => headers.map(header => csvEscape(row[header])).join(","))].join("\n");
+      const blob = new Blob([csv], { type:"text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportBatchSkipCSV(){
+      const chosen = selectedLeads();
+      const leads = (chosen.length ? chosen : state.filtered).filter(isGHLEligible);
+      if(!leads.length){
+        alert("No GHL-eligible leads available to export.");
+        return;
+      }
+      const headers = ["First Name","Last Name","Full Name","Mailing Address","Mailing City","Mailing State","Mailing Zip","Property Address","Property City","Property State","Property Zip","Parcel ID","County","Surplus Amount","Lead Score","Tier","Notes"];
+      const rows = leads.map(lead => {
+        const name = splitOwnerName(lead.owner_name);
+        const address = addressText(lead);
+        return {
+          "First Name": name.first,
+          "Last Name": name.last,
+          "Full Name": lead.owner_name || "",
+          "Mailing Address": address,
+          "Mailing City": lead.city || "",
+          "Mailing State": "GA",
+          "Mailing Zip": lead.zip || "",
+          "Property Address": address,
+          "Property City": lead.city || "",
+          "Property State": "GA",
+          "Property Zip": lead.zip || "",
+          "Parcel ID": lead.parcel_id || "",
+          "County": lead.county_name || "",
+          "Surplus Amount": lead.surplus_amount || "",
+          "Lead Score": lead.score || "",
+          "Tier": lead.tier || "",
+          "Notes": `${lead.county_name || ""} surplus lead. Parcel ${lead.parcel_id || ""}. ${address}`
+        };
+      });
+      downloadCSV(`batchskip-surplus-ga-${todayISO()}.csv`, headers, rows);
     }
 
     function renderTable(){
