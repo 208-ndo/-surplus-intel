@@ -207,7 +207,7 @@
     </div>
 
     <section class="toolbar">
-      <div class="search-wrap"><span>âŒ•</span><input id="search" type="text" placeholder="Search owner, parcel, address..." oninput="applyFilters()"></div>
+      <div class="search-wrap"><span>&#128269;</span><input id="search" type="text" placeholder="Search owner, parcel, address..." oninput="applyFilters()"></div>
       <select id="county-filter" onchange="applyFilters()">
         <option value="">All Counties</option>
         <option value="Clayton GA">Clayton GA</option>
@@ -878,7 +878,7 @@
             <div class="card-title">${lead.owner_name || "Unknown Owner"}</div>
             <div class="card-sub">${lead.county_name || "--"} - Score ${lead.score || 0} - ${lead.tier || "LOW"} tier</div>
           </div>
-          <button class="close" onclick="closeLeadModal()">x</button>
+          <button class="close" onclick="closeLeadModal()">&times;</button>
         </div>
         <div class="card-grid">
           <div class="section">Surplus Claim</div>
