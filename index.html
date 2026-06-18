@@ -707,6 +707,63 @@
       }
     }
 
+    function callScriptText(lead){
+      const enrich = enrichment(lead);
+      const brief = enrich.precall_brief || {};
+      const owner = lead.owner_name || "the owner";
+      const county = lead.county_name || "the county";
+      const parcel = lead.parcel_id || "the parcel";
+      const amount = fmtMoney(lead.surplus_amount);
+      const opening = brief.opening_line || `Hi, this is Michael with 229 Holdings LLC. I'm calling about possible excess funds listed in ${county} public records for ${owner}.`;
+      const urgency = brief.urgency_angle || `The record shows about ${amount} connected to parcel ${parcel}. I need to verify if the funds are still available and whether a claim has already been filed.`;
+      return [
+        opening,
+        "",
+        urgency,
+        "",
+        "Quick questions:",
+        `1. Are you connected to ${owner}?`,
+        `2. Have you already spoken with ${county} about these funds?`,
+        "3. Has any claim already been filed?",
+        "4. Would you like me to help verify the next steps with the county and a Georgia attorney?",
+        "",
+        "Do not promise funds are available until the county confirms the balance and deadline."
+      ].join("\n");
+    }
+
+    function textScriptText(lead){
+      const enrich = enrichment(lead);
+      if(enrich.personalized_sms) return enrich.personalized_sms;
+      const owner = (lead.owner_name || "there").split(" ")[0];
+      const county = lead.county_name || "the county";
+      return `Hi ${owner}, this is Michael with 229 Holdings LLC. I found public ${county} records showing possible excess funds connected to you. If you are the former owner, I can help verify whether the funds are still available. Reply YES and I can send details.`;
+    }
+
+    async function copyLeadScript(index, type){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      const text = type === "sms" ? textScriptText(lead) : callScriptText(lead);
+      try{
+        await navigator.clipboard.writeText(text);
+        alert(type === "sms" ? "Text script copied." : "Call script copied.");
+      }catch(error){
+        alert(text);
+      }
+    }
+
+    function scriptPanelHTML(lead, index){
+      const callScript = callScriptText(lead).replace(/\n/g, "<br>");
+      const sms = textScriptText(lead);
+      return `
+          <div class="section">Call / Text Script</div>
+          <div class="full"><div class="field-label">Simple Call Script</div><div class="field-value">${callScript}</div></div>
+          <div class="full"><div class="field-label">Short Text Script</div><div class="field-value">${sms}</div></div>
+          <div class="card-actions">
+            <button class="btn primary" onclick="copyLeadScript(${index}, 'call')">Copy Call Script</button>
+            <button class="btn primary" onclick="copyLeadScript(${index}, 'sms')">Copy Text</button>
+          </div>`;
+    }
+
     function yesNo(value){
       return value ? "Yes" : "No";
     }
@@ -779,6 +836,7 @@
             <button class="btn" onclick="logContactAttempt(${index})">Log Contact Attempt</button>
           </div>
           <div class="full"><div class="field-label">Contact Log</div>${contactLog}</div>
+          ${scriptPanelHTML(lead, index)}
           ${enrichmentPanelHTML(lead)}
           <div class="section">Score Reasons</div>
           <div class="full"><div class="field-value">${(lead.score_reasons || []).join(" - ") || "No score reasons available"}</div></div>
@@ -789,6 +847,7 @@
             ${priorityButton}
             <a class="btn" href="${lienCheckUrl(lead)}" target="_blank">Lien Check</a>
             <button class="btn" onclick="copyEmailTemplate(${index})">Email Template</button>
+            <button class="btn" onclick="copyLeadScript(${index}, 'sms')">Copy Text</button>
             <button class="btn" onclick="updateLeadNotes(${index})">Save Card Fields</button>
             <button class="btn" onclick="copyClaimNote(${index})">Copy Notes</button>
             <a class="btn" href="${lead.source_url || "#"}" target="_blank">Source PDF</a>
