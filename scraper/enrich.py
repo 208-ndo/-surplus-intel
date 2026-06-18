@@ -18,6 +18,7 @@ DATA_DIR = ROOT / "data"
 LEADS_PATH = DATA_DIR / "surplus_leads.json"
 PREVIOUS_PATH = DATA_DIR / "previous_leads.json"
 REMOVED_PATH = DATA_DIR / "removed_leads.json"
+DIGEST_PATH = DATA_DIR / "daily_digest.json"
 INDEX_PATH = ROOT / "index.html"
 EMBED_START = '<script type="application/json" id="embedded-data">'
 EMBED_END = "</script>"
@@ -134,6 +135,153 @@ def add_tag(lead: dict[str, Any], tag: str) -> None:
     enrichment_tags = enrichment.setdefault("tags", [])
     if tag not in enrichment_tags:
         enrichment_tags.append(tag)
+
+
+def first_name(owner_name: str) -> str:
+    cleaned = re.sub(r"\b(estate|of|the|heirs|llc|inc|corp|corporation|company|co)\b", " ", owner_name, flags=re.IGNORECASE)
+    parts = [part.strip(" ,.&") for part in cleaned.split() if part.strip(" ,.&")]
+    return parts[0].title() if parts else "there"
+
+
+def county_display(lead: dict[str, Any]) -> str:
+    return str(lead.get("county_name") or lead.get("county") or "Georgia").replace(" GA", " County")
+
+
+def amount_label(value: Any) -> str:
+    return f"${float(value or 0):,.0f}"
+
+
+def lead_address_label(lead: dict[str, Any]) -> str:
+    address = ", ".join(str(lead.get(key) or "").strip() for key in ("property_address", "city", "zip") if lead.get(key))
+    if address:
+        return address
+    if lead.get("parcel_id") and lead.get("county_name") == "Clayton GA":
+        return f"Clayton County parcel {lead.get('parcel_id')} - address lookup needed in qPublic."
+    return "Address pending"
+
+
+def urgency_label(lead: dict[str, Any]) -> str:
+    days = lead.get("enrichment", {}).get("days_remaining", lead.get("days_to_claim"))
+    try:
+        days_int = int(days)
+    except (TypeError, ValueError):
+        return "deadline needs county verification"
+    if days_int < 0:
+        return f"{abs(days_int)} days past the expected 5-year window"
+    if days_int == 0:
+        return "deadline is today"
+    return f"{days_int} days before expected 5-year deadline"
+
+
+def build_personalized_sms(lead: dict[str, Any]) -> str:
+    owner = first_name(str(lead.get("owner_name") or ""))
+    county = county_display(lead)
+    surplus = amount_label(lead.get("surplus_amount"))
+    parcel = str(lead.get("parcel_id") or "").strip()
+    parcel_note = f" for parcel {parcel}" if parcel else ""
+    return (
+        f"Hi {owner}, this is Michael with 229 Holdings LLC. "
+        f"I found public {county} records showing possible excess funds of about {surplus}{parcel_note} "
+        "from a prior tax sale. If you are the former owner, I can help verify whether the funds are still available. "
+        "No obligation - reply YES and I can send the details."
+    )
+
+
+def build_precall_brief(lead: dict[str, Any]) -> dict[str, Any]:
+    owner = str(lead.get("owner_name") or "Unknown owner")
+    county = county_display(lead)
+    surplus = amount_label(lead.get("surplus_amount"))
+    fee = amount_label(lead.get("your_cut_30pct"))
+    parcel = str(lead.get("parcel_id") or "no parcel listed")
+    address = lead_address_label(lead)
+    urgency = urgency_label(lead)
+    talking_points = [
+        f"Public records show a possible {surplus} surplus tied to {county}.",
+        f"Parcel/reference: {parcel}. Property/address context: {address}.",
+        "First call goal is verification, not selling. Confirm they are the former owner or connected heir.",
+        "Ask whether they have already filed a claim or spoken with the county.",
+        "Explain that Georgia claims usually need a Georgia-licensed attorney before any filing."
+    ]
+    if lead.get("is_estate_owner"):
+        talking_points.append("Estate/heir angle: ask who is authorized to speak for the estate or whether probate has an executor.")
+    if lead.get("is_entity_owner"):
+        talking_points.append("Entity owner angle: ask for the managing member, registered agent, or person authorized to sign.")
+    objections = [
+        {
+            "objection": "I do not believe this is real.",
+            "response": f"That is fair. Tell them to call {county} directly and verify excess funds for parcel {parcel} before signing anything."
+        },
+        {
+            "objection": "I already have an attorney.",
+            "response": "Ask whether the attorney has confirmed the current balance and deadline. Offer to coordinate only if they want help moving it faster."
+        },
+        {
+            "objection": "How do you get paid?",
+            "response": f"Explain the fee is success-based and estimated at 30% only if funds are recovered. Potential fee pool on this lead is about {fee}."
+        },
+    ]
+    return {
+        "opening_line": (
+            f"Hi {first_name(owner)}, this is Michael with 229 Holdings LLC. "
+            f"I am calling about possible excess funds listed in {county} records under {owner}."
+        ),
+        "key_talking_points": talking_points,
+        "likely_objections": objections,
+        "urgency_angle": f"Timing note: {urgency}. Verify the exact claim deadline with the county before promising availability.",
+        "voicemail_script": (
+            f"Hi {first_name(owner)}, this is Michael with 229 Holdings LLC. "
+            f"I found a public record in {county} that may show excess funds connected to you. "
+            "I need to verify a few details before giving you exact numbers. Please call or text me back when you have a minute."
+        ),
+        "special_notes": [
+            "Do not promise funds are available until the county confirms no claim has been filed.",
+            "Verify open liens, assignments, redemption filings, and attorney requirements before signing an agreement.",
+            "If owner appears deceased, pivot to heir/executor research before outreach."
+        ],
+    }
+
+
+def apply_local_lead_prep(lead: dict[str, Any]) -> None:
+    enrichment = lead["enrichment"]
+    enrichment["personalized_sms"] = build_personalized_sms(lead)
+    enrichment["precall_brief"] = build_precall_brief(lead)
+    add_check(enrichment, "lead_prep")
+
+
+def build_digest(payload: dict[str, Any], removed_count: int, enriched_at: str) -> dict[str, Any]:
+    leads = payload.get("leads") or []
+    urgent = [lead for lead in leads if lead.get("enrichment", {}).get("urgent")]
+    critical = [
+        lead for lead in leads
+        if isinstance(lead.get("enrichment", {}).get("days_remaining"), int)
+        and lead["enrichment"]["days_remaining"] < 30
+    ]
+    top_leads = sorted(leads, key=lambda lead: (float(lead.get("score") or 0), float(lead.get("surplus_amount") or 0)), reverse=True)[:10]
+    return {
+        "generated_at": enriched_at,
+        "lead_count": len(leads),
+        "urgent_count": len(urgent),
+        "critical_count": len(critical),
+        "removed_leads_count": removed_count,
+        "total_surplus_amount": payload.get("total_surplus_amount", 0),
+        "total_potential_fee_30pct": payload.get("total_potential_fee_30pct", 0),
+        "summary": (
+            f"{len(leads)} active surplus leads. "
+            f"{len(urgent)} urgent, {len(critical)} critical, {removed_count} removed since previous run."
+        ),
+        "top_leads": [
+            {
+                "owner_name": lead.get("owner_name") or "",
+                "county": lead.get("county_name") or "",
+                "surplus_amount": lead.get("surplus_amount") or 0,
+                "your_cut_30pct": lead.get("your_cut_30pct") or 0,
+                "score": lead.get("score") or 0,
+                "days_remaining": lead.get("enrichment", {}).get("days_remaining"),
+                "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed.",
+            }
+            for lead in top_leads
+        ],
+    }
 
 
 def is_network_candidate(lead: dict[str, Any]) -> bool:
@@ -402,6 +550,7 @@ def enrich_payload(payload: dict[str, Any]) -> dict[str, Any]:
             run_gsccca_check(lead, session)
             run_obituary_check(lead, session, serp_key)
             run_probate_check(lead, session)
+            apply_local_lead_prep(lead)
         except Exception as error:
             print(f"Warning: enrichment failed for {lead.get('owner_name')}: {error}")
             continue
@@ -414,12 +563,16 @@ def enrich_payload(payload: dict[str, Any]) -> dict[str, Any]:
     payload["enriched_at"] = enriched_at
     payload["removed_leads_count"] = len(removed)
     payload["removed_leads"] = removed
+    digest = build_digest(payload, len(removed), enriched_at)
+    write_json(DIGEST_PATH, digest)
     payload["enrichment_meta"] = {
         "enriched_at": enriched_at,
         "removed_leads_count": len(removed),
         "batch_deceased_check": bool(batch_key),
         "serp_obituary_check": bool(serp_key),
         "network_score_minimum": MIN_NETWORK_SCORE,
+        "digest_path": str(DIGEST_PATH.relative_to(ROOT)).replace("\\", "/"),
+        "digest": digest,
     }
     return payload
 

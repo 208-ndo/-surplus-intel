@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-06-17T23:51:15+00:00",
+  "lead_count": 335,
+  "urgent_count": 49,
+  "critical_count": 38,
+  "removed_leads_count": 0,
+  "total_surplus_amount": 9202140.95,
+  "total_potential_fee_30pct": 2760642.28,
+  "summary": "335 active surplus leads. 49 urgent, 38 critical, 0 removed since previous run.",
+  "top_leads": [
+    {
+      "owner_name": "Subash R Kuchikulla",
+      "county": "DeKalb GA",
+      "surplus_amount": 266868.21,
+      "your_cut_30pct": 80060.46,
+      "score": 100,
+      "days_remaining": -44,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Estate Of James H Dempsey",
+      "county": "DeKalb GA",
+      "surplus_amount": 214722.28,
+      "your_cut_30pct": 64416.68,
+      "score": 100,
+      "days_remaining": 355,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Elizabeth Bizunch",
+      "county": "DeKalb GA",
+      "surplus_amount": 157583.17,
+      "your_cut_30pct": 47274.95,
+      "score": 100,
+      "days_remaining": 537,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Njoroge Damaris Wangare",
+      "county": "Clayton GA",
+      "surplus_amount": 117602.94,
+      "your_cut_30pct": 35280.88,
+      "score": 100,
+      "days_remaining": -226,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Nancy Jean Brewer",
+      "county": "DeKalb GA",
+      "surplus_amount": 103475.65,
+      "your_cut_30pct": 31042.69,
+      "score": 100,
+      "days_remaining": 82,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Estate Of Charles J Polvino",
+      "county": "DeKalb GA",
+      "surplus_amount": 96624.92,
+      "your_cut_30pct": 28987.48,
+      "score": 100,
+      "days_remaining": -16,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Hamid Brichi",
+      "county": "DeKalb GA",
+      "surplus_amount": 71482.13,
+      "your_cut_30pct": 21444.64,
+      "score": 100,
+      "days_remaining": 82,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Ohare Sean Thomas",
+      "county": "Clayton GA",
+      "surplus_amount": 58120.83,
+      "your_cut_30pct": 17436.25,
+      "score": 100,
+      "days_remaining": -226,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Dorothy Jane Withers",
+      "county": "DeKalb GA",
+      "surplus_amount": 48510.37,
+      "your_cut_30pct": 14553.11,
+      "score": 100,
+      "days_remaining": 82,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Dyson Propertiez",
+      "county": "Clayton GA",
+      "surplus_amount": 40901.68,
+      "your_cut_30pct": 12270.5,
+      "score": 100,
+      "days_remaining": -254,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    }
+  ]
+}

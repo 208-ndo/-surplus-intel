@@ -53,7 +53,7 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/surplus_leads.json data/previous_leads.json data/removed_leads.json index.html
+          git add data/surplus_leads.json data/previous_leads.json data/removed_leads.json data/daily_digest.json index.html
           if git diff --cached --quiet; then
             echo "No surplus data changes to commit."
           else
