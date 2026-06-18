@@ -143,6 +143,12 @@
     .field-value.warn{color:var(--amber)}
     .full{grid-column:1/-1}
     .card-actions{grid-column:1/-1;display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .skip-source-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+    .skip-source{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px;padding:8px 10px;border:1px solid var(--border2);border-radius:6px;background:var(--surface2);color:var(--text);font-family:Space Mono,monospace;font-size:11px;text-decoration:none;cursor:pointer}
+    .skip-source span:first-child{display:flex;align-items:center;gap:7px;min-width:0}
+    .skip-source em{font-style:normal;color:var(--green2);font-size:9px;text-transform:uppercase}
+    .skip-source.paid em{color:var(--amber)}
+    .skip-note{grid-column:1/-1;color:var(--muted);font-size:12px;line-height:1.45}
     @media(max-width:1100px){
       body{overflow:auto}
       .app{height:auto;min-height:100vh}
@@ -162,6 +168,7 @@
       .resource-meta{grid-template-columns:1fr}
       .stat{min-width:118px;padding:8px 16px}
       .action-tile{display:none}
+      .skip-source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .card-grid{grid-template-columns:1fr}
     }
   </style>
@@ -501,6 +508,15 @@
       }catch(error){}
     }
 
+    function showToast(message, type = "success"){
+      const toast = document.createElement("div");
+      const color = type === "error" ? "#E24B4A" : type === "warning" ? "#EF9F27" : "#1D9E75";
+      toast.textContent = message;
+      toast.style.cssText = `position:fixed;right:18px;bottom:18px;z-index:9999;max-width:360px;padding:12px 14px;border:1px solid ${color};border-radius:8px;background:#13161E;color:#E8EAF0;font:12px 'Space Mono',monospace;box-shadow:0 16px 50px rgba(0,0,0,.45)`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
     function leadState(lead){
       const key = leadKey(lead);
       state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", attorney: "", priority: false, contactLog: [], ghlPushedAt: "", ghlTags: [] };
@@ -716,6 +732,76 @@
       return `https://batchskiptracing.com/app/search?query=${q}`;
     }
 
+    function skipTraceSources(lead){
+      const enc = encodeURIComponent;
+      const name = String(lead.owner_name || "").trim();
+      const city = String(lead.city || "").trim();
+      const stateCode = String(lead.state || "GA").trim() || "GA";
+      const nameDash = name.replace(/\s+/g, "-");
+      const cityDash = [city, stateCode].filter(Boolean).join("-");
+      const googleQuery = `"${name}" ${city} ${stateCode}`.trim();
+      return [
+        { id:"truepeople", icon:"TP", name:"TruePeopleSearch", tag:"Free", free:true, url:`https://www.truepeoplesearch.com/results?name=${enc(name)}&citystatezip=${enc(`${city} ${stateCode}`.trim())}` },
+        { id:"fastpeople", icon:"FP", name:"FastPeopleSearch", tag:"Free", free:true, url:`https://www.fastpeoplesearch.com/name/${enc(nameDash)}_${enc(cityDash)}` },
+        { id:"zaba", icon:"ZA", name:"ZabaSearch", tag:"Free", free:true, url:`https://www.zabasearch.com/people/${enc(name.replace(/\s+/g, "+"))}/` },
+        { id:"whitepages", icon:"WP", name:"Whitepages", tag:"Freemium", free:false, url:`https://www.whitepages.com/name/${enc(nameDash)}/${enc(cityDash)}` },
+        { id:"google", icon:"GO", name:"Google Search", tag:"Free", free:true, url:`https://www.google.com/search?q=${enc(googleQuery)}` },
+        { id:"ssdi", icon:"SD", name:"SSDI Death Check", tag:"Free", free:true, url:`https://stevemorse.org/ssdi/ssdi.html?name=${enc(name)}` },
+        { id:"probate", icon:"PR", name:"GA Probate Records", tag:"Free", free:true, url:`https://www.georgiaprobaterecords.com/?search=${enc(name)}` },
+        { id:"batch", icon:"BT", name:"BatchSkipTracing", tag:"Paid", free:false, paid:true, url:"https://batchskiptracing.com" }
+      ];
+    }
+
+    function openSkipTraceSource(index, sourceId){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      const source = skipTraceSources(lead).find(item => item.id === sourceId);
+      if(source) window.open(source.url, "_blank", "noopener");
+    }
+
+    function openSkipTraceSources(index){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      const sources = skipTraceSources(lead).filter(source => source.free).slice(0, 6);
+      sources.forEach(source => window.open(source.url, "_blank", "noopener"));
+      showToast(`Opened ${sources.length} sources for ${lead.owner_name || "lead"}`, "success");
+    }
+
+    function saveSkipTracePhone(index){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      const input = document.getElementById("skip-trace-phone");
+      const phone = (input?.value || "").trim();
+      if(!phone){
+        showToast("Paste a phone number first.", "warning");
+        return;
+      }
+      const saved = leadState(lead);
+      saved.phone = phone;
+      saved.phone_source = "manual_skip_trace";
+      saved.phone_added = new Date().toISOString();
+      if(saved.status === "New") saved.status = "Traced";
+      addLeadLog(lead, "Phone saved from one-click skip trace panel.");
+      savePipeline();
+      renderTable();
+      openLead(index);
+      showToast("Phone saved - Call button activated", "success");
+    }
+
+    function skipTracePanelHTML(lead, index){
+      const sources = skipTraceSources(lead).map(source => `
+          <button class="skip-source ${source.paid ? "paid" : ""}" onclick="openSkipTraceSource(${index}, '${source.id}')">
+            <span><strong>${source.icon}</strong>${source.name}</span><em>${source.tag}</em>
+          </button>`).join("");
+      const phone = phoneForLead(lead);
+      return `
+          <div class="section">One-Click Skip Trace</div>
+          <div class="skip-source-grid">${sources}</div>
+          <div class="card-actions"><button class="btn primary" onclick="openSkipTraceSources(${index})">&#9889; Open All Free Sources</button></div>
+          <div class="full"><div class="field-label">Phone Found</div><div style="display:flex;gap:8px;align-items:center"><input id="skip-trace-phone" type="text" value="${phone || ""}" placeholder="Paste number after finding it..."><button class="btn primary" onclick="saveSkipTracePhone(${index})">Save + Enable Call</button></div></div>
+          <div class="skip-note">Check TruePeopleSearch first. If not found try FastPeopleSearch then ZabaSearch. Use BatchSkipTracing ($0.09) only if all free sources fail.</div>`;
+    }
+
     function pushToGHL(index){
       const lead = state.filtered[index];
       if(!lead) return;
@@ -893,6 +979,7 @@
           <div class="full"><div class="field-label">Property Address</div><div class="field-value">${address}</div></div>
           <div><div class="field-label">Parcel ID</div><div class="field-value">${lead.parcel_id || "--"}</div></div>
           <div><div class="field-label">Owner Type</div><div class="field-value">${lead.is_estate_owner ? "Estate / heirs" : lead.is_entity_owner ? "LLC / corporation" : "Individual owner"}</div></div>
+          ${skipTracePanelHTML(lead, index)}
           <div class="section">Pipeline</div>
           <div><div class="field-label">Status</div><select id="lead-status">${statusOptions}</select></div>
           <div><div class="field-label">Last Contact</div><div class="field-value">${lastContactLabel(lead)}</div></div>
