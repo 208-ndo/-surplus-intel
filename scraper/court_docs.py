@@ -72,6 +72,16 @@ class CourtSession:
         response.raise_for_status()
         return response
 
+    def post(self, url: str, **kwargs: Any) -> requests.Response:
+        elapsed = time.monotonic() - self.last_request
+        if self.last_request and elapsed < REQUEST_DELAY_SECONDS:
+            time.sleep(REQUEST_DELAY_SECONDS - elapsed)
+        kwargs.setdefault("timeout", REQUEST_TIMEOUT)
+        response = self.session.post(url, **kwargs)
+        self.last_request = time.monotonic()
+        response.raise_for_status()
+        return response
+
 
 def clean_text(value: Any) -> str:
     text = html.unescape(str(value or ""))
@@ -99,6 +109,50 @@ def qpublic_url(parcel_id: str, county: str) -> str:
     )
 
 
+def is_estate_lead(lead: dict[str, Any]) -> bool:
+    if lead.get("is_estate_owner") or lead.get("is_estate"):
+        return True
+    owner = str(lead.get("owner_name") or "")
+    return bool(re.search(r"\b(ESTATE OF|EST OF|EST PERS REP|HEIRS)\b", owner, flags=re.IGNORECASE))
+
+
+def estate_last_name(owner_name: str) -> str:
+    cleaned = re.sub(r"\b(ESTATE OF|EST OF|ESTATE|EST|PERS|REP|HEIRS|OF|THE)\b", " ", owner_name or "", flags=re.IGNORECASE)
+    parts = [part.strip(" ,.&") for part in cleaned.split() if part.strip(" ,.&")]
+    return parts[-1].title() if parts else ""
+
+
+def probate_search_url(lead: dict[str, Any]) -> str:
+    county = str(lead.get("county_name") or lead.get("county") or "").replace(" GA", "").lower().strip()
+    last = estate_last_name(str(lead.get("owner_name") or ""))
+    return f"https://georgiaprobaterecords.com/?county={quote_plus(county)}&search={quote_plus(last)}"
+
+
+def blocked_or_login(text: str, status_code: int) -> bool:
+    upper = text[:2000].upper()
+    return status_code in {401, 403, 429} or any(term in upper for term in ("CAPTCHA", "ACCESS DENIED", "LOGIN", "SIGN IN", "FORBIDDEN"))
+
+
+def preview_response(label: str, response: requests.Response, parsed_count: int) -> None:
+    if parsed_count:
+        return
+    preview = clean_text(response.text[:500])
+    print(f"{label}: status={response.status_code} url={response.url} first_500={preview}")
+
+
+def property_manual_fallback(parcel: str, county: str, reason: str, url: str) -> dict[str, Any]:
+    return {
+        "status": "manual_check_required",
+        "lookup_status": "manual_check_required",
+        "source": "qpublic",
+        "manual_check_required": True,
+        "manual_search_url": url,
+        "qpublic_url": url,
+        "last_checked": now_iso(),
+        "note": f"Automated property lookup unavailable - {reason}. Click qPublic and verify manually.",
+    }
+
+
 def extract_field(text: str, labels: list[str]) -> str:
     for label in labels:
         pattern = rf"{re.escape(label)}\s*:?\s+(.+?)(?=\s+[A-Z][A-Za-z /#()]+:|\s{{2,}}|$)"
@@ -118,6 +172,9 @@ def fetch_property_details(parcel_id: str, county: str, session: CourtSession | 
     try:
         response = session.get(url)
         text = clean_text(response.text)
+        if blocked_or_login(response.text, response.status_code):
+            preview_response(f"qPublic blocked/manual required for {parcel}", response, 0)
+            return property_manual_fallback(parcel, county, "site blocked, login, or anti-bot response", url)
         details: dict[str, Any] = {
             "property_address": extract_field(text, ["Property Address", "Situs Address", "Location Address", "Address"]),
             "owner_name_on_record": extract_field(text, ["Owner", "Owner Name", "Current Owner"]),
@@ -128,14 +185,22 @@ def fetch_property_details(parcel_id: str, county: str, session: CourtSession | 
             "neighborhood": extract_field(text, ["Neighborhood", "Subdivision", "Subdivision Name"]),
             "last_sale_date": extract_field(text, ["Last Sale Date", "Sale Date"]),
             "source": "qpublic",
+            "status": "checked",
+            "lookup_status": "checked",
+            "manual_check_required": False,
             "qpublic_url": url,
+            "manual_search_url": url,
             "last_checked": now_iso(),
         }
         assessed = extract_field(text, ["Assessed Value", "Total Value", "Fair Market Value"])
         sale_price = extract_field(text, ["Last Sale Price", "Sale Price", "Deed Amount"])
         details["assessed_value"] = parse_money(assessed)
         details["last_sale_price"] = parse_money(sale_price)
-        return {key: value for key, value in details.items() if value not in ("", None)}
+        cleaned = {key: value for key, value in details.items() if value not in ("", None)}
+        if not any(cleaned.get(key) for key in ("property_address", "owner_name_on_record", "assessed_value", "year_built", "last_sale_date")):
+            preview_response(f"qPublic no parseable property details for {parcel}", response, 0)
+            return property_manual_fallback(parcel, county, "no parseable fields returned", url)
+        return cleaned
     except Exception as exc:
         print(f"Warning: qPublic property details failed for {parcel}: {exc}")
 
@@ -143,21 +208,67 @@ def fetch_property_details(parcel_id: str, county: str, session: CourtSession | 
         fallback_url = f"https://www.propertyshark.com/mason/api/?parcel={quote_plus(parcel)}&county={quote_plus(county)}"
         response = session.get(fallback_url)
         text = clean_text(response.text)
-        return {
+        fallback = {
+            "status": "checked",
+            "lookup_status": "checked",
             "source": "propertyshark",
             "property_address": extract_field(text, ["Address", "Property Address"]),
             "owner_name_on_record": extract_field(text, ["Owner", "Owner Name"]),
+            "manual_search_url": url,
             "last_checked": now_iso(),
         }
+        cleaned = {key: value for key, value in fallback.items() if value not in ("", None)}
+        if cleaned.get("property_address") or cleaned.get("owner_name_on_record"):
+            return cleaned
     except Exception as exc:
         print(f"Warning: property details fallback failed for {parcel}: {exc}")
-        return {}
+    return property_manual_fallback(parcel, county, "automated sources failed", url)
 
 
 def gsccca_search_url(parcel_id: str, owner_name: str, county: str) -> str:
     query = quote_plus(f"{parcel_id} {owner_name}".strip())
     county_value = quote_plus(str(county or "").replace(" GA", ""))
-    return f"https://search.gsccca.org/RealEstateIndex/default.aspx?searchTerm={query}&county={county_value}"
+    return f"https://search.gsccca.org/RealEstateIndex/NameSearch.aspx?searchTerm={query}&county={county_value}"
+
+
+def gsccca_manual_search_url(owner_name: str, county: str) -> str:
+    query = quote_plus(str(owner_name or "").strip())
+    county_value = quote_plus(str(county or "").replace(" GA", ""))
+    return f"https://search.gsccca.org/RealEstateIndex/NameSearch.aspx?searchTerm={query}&county={county_value}"
+
+
+def manual_gsccca_result(parcel_id: str, owner_name: str, county: str, reason: str, status_code: int | None = None) -> dict[str, Any]:
+    url = gsccca_manual_search_url(owner_name, county)
+    return {
+        "tax_sale_deed_found": False,
+        "tax_sale_date": "",
+        "open_lien_found": False,
+        "open_lien_holder": "",
+        "open_lien_amount": "",
+        "assignment_filed": False,
+        "redemption_filed": False,
+        "lien_satisfied": False,
+        "quitclaim_after_sale": False,
+        "all_docs": [],
+        "doc_count": 0,
+        "status": "manual_check_required",
+        "lookup_status": "manual_check_required",
+        "manual_check_required": True,
+        "manual_check_reason": reason,
+        "http_status": status_code,
+        "last_checked": now_iso(),
+        "gsccca_search_url": url,
+        "manual_search_url": url,
+    }
+
+
+def extract_aspnet_fields(raw_html: str) -> dict[str, str]:
+    fields: dict[str, str] = {}
+    for name in ("__VIEWSTATE", "__VIEWSTATEGENERATOR", "__EVENTVALIDATION", "__EVENTTARGET", "__EVENTARGUMENT"):
+        match = re.search(rf'name="{re.escape(name)}"\s+value="([^"]*)"', raw_html, flags=re.IGNORECASE)
+        if match:
+            fields[name] = html.unescape(match.group(1))
+    return fields
 
 
 def classify_doc(doc: dict[str, str]) -> str:
@@ -215,15 +326,47 @@ def scan_gsccca_documents(parcel_id: str, owner_name: str, county: str, session:
         "quitclaim_after_sale": False,
         "all_docs": [],
         "doc_count": 0,
+        "status": "unknown",
+        "lookup_status": "unknown",
+        "manual_check_required": False,
+        "manual_check_reason": "",
         "last_checked": now_iso(),
         "gsccca_search_url": url,
+        "manual_search_url": url,
     }
     try:
         response = session.get(url)
+        if blocked_or_login(response.text, response.status_code):
+            preview_response(f"GSCCCA blocked/manual required for {parcel_id}", response, 0)
+            return manual_gsccca_result(parcel_id, owner_name, county, "site returned login, blocked, or anti-bot response", response.status_code)
         docs = parse_gsccca_rows(response.text)
+        if not docs:
+            preview_response(f"GSCCCA GET returned no parseable rows for {parcel_id}", response, 0)
+            fields = extract_aspnet_fields(response.text)
+            post_data = {
+                **fields,
+                "txtSearch": owner_name,
+                "SearchText": owner_name,
+                "txtName": owner_name,
+                "County": str(county or "").replace(" GA", ""),
+                "ddlCounty": str(county or "").replace(" GA", ""),
+                "btnSearch": "Search",
+            }
+            try:
+                post_response = session.post(response.url, data=post_data, headers={"Referer": response.url})
+                docs = parse_gsccca_rows(post_response.text)
+                if blocked_or_login(post_response.text, post_response.status_code):
+                    preview_response(f"GSCCCA POST blocked/manual required for {parcel_id}", post_response, 0)
+                    return manual_gsccca_result(parcel_id, owner_name, county, "post search returned login, blocked, or anti-bot response", post_response.status_code)
+                if not docs:
+                    preview_response(f"GSCCCA POST returned no parseable rows for {parcel_id}", post_response, 0)
+                    return manual_gsccca_result(parcel_id, owner_name, county, "automated search returned no parseable document rows", post_response.status_code)
+            except Exception as post_exc:
+                print(f"Warning: GSCCCA POST scan failed for {parcel_id}: {post_exc}")
+                return manual_gsccca_result(parcel_id, owner_name, county, f"post search failed: {post_exc}")
     except Exception as exc:
         print(f"Warning: GSCCCA document scan failed for {parcel_id}: {exc}")
-        return result
+        return manual_gsccca_result(parcel_id, owner_name, county, f"get search failed: {exc}")
 
     security_deeds: list[dict[str, str]] = []
     satisfactions = 0
@@ -255,6 +398,8 @@ def scan_gsccca_documents(parcel_id: str, owner_name: str, county: str, session:
     result["tax_sale_date"] = tax_sale_date
     result["all_docs"] = docs
     result["doc_count"] = len(docs)
+    result["status"] = "checked_found_items" if any(result.get(key) for key in ("assignment_filed", "redemption_filed", "open_lien_found", "quitclaim_after_sale")) else "checked_clean"
+    result["lookup_status"] = result["status"]
     return result
 
 
@@ -269,6 +414,10 @@ def tag_lead(lead: dict[str, Any], tag: str) -> None:
 
 def adjust_score_and_tags(lead: dict[str, Any], docs: dict[str, Any]) -> None:
     score = int(lead.get("score") or 0)
+    if docs.get("manual_check_required"):
+        tag_lead(lead, "Manual Title Check Needed")
+        lead["score"] = score
+        return
     if docs.get("assignment_filed"):
         score = 0
         tag_lead(lead, "Skip - Assignment Filed")
@@ -280,7 +429,7 @@ def adjust_score_and_tags(lead: dict[str, Any], docs: dict[str, Any]) -> None:
     if docs.get("tax_sale_deed_found"):
         score = min(100, score + 5)
         tag_lead(lead, "Tax Sale Deed Found")
-    if not docs.get("assignment_filed") and not docs.get("redemption_filed") and not docs.get("open_lien_found"):
+    if docs.get("status") == "checked_clean" and not docs.get("assignment_filed") and not docs.get("redemption_filed") and not docs.get("open_lien_found"):
         tag_lead(lead, "Clean Title Check")
     lead["score"] = score
 
@@ -292,36 +441,54 @@ def checklist_status(status: str, source: str, note: str) -> dict[str, str]:
 def build_document_checklist(lead: dict[str, Any]) -> dict[str, Any]:
     docs = lead.get("gsccca_docs") if isinstance(lead.get("gsccca_docs"), dict) else {}
     details = lead.get("property_details") if isinstance(lead.get("property_details"), dict) else {}
-    tax_note = "Tax sale deed not found in automated scan"
+    manual_docs = bool(docs.get("manual_check_required"))
+    manual_details = bool(details.get("manual_check_required"))
+    tax_note = "Automated title check unavailable - verify manually on GSCCCA"
     for doc in docs.get("all_docs") or []:
         if doc.get("classification") == "tax_sale":
             tax_note = f"Recorded {doc.get('recorded_date') or 'unknown date'} Book {doc.get('book') or '-'} Page {doc.get('page') or '-'}"
             break
     lien_note = "Lien status unknown - verify with county"
     lien_status = "unknown"
-    if docs.get("open_lien_found"):
+    if manual_docs:
+        lien_status = "manual_check_required"
+        lien_note = "Automated title search unavailable - click GSCCCA and verify liens, assignments, and redemptions manually"
+    elif docs.get("open_lien_found"):
         lien_status = "has_liens"
         lien_note = f"Open lien: {docs.get('open_lien_holder') or 'Unknown'} - verify amount with county"
-    elif docs.get("doc_count", 0) > 0:
+    elif docs.get("status") == "checked_clean":
         lien_status = "clear"
         lien_note = "No open security deeds found in automated scan"
 
-    detail_note = "Property details not pulled"
+    detail_note = "Property details need manual qPublic lookup"
     if details:
         address = details.get("property_address") or lead.get("property_address") or "address found"
         value = details.get("assessed_value")
         value_note = f" assessed at ${value:,.0f}" if isinstance(value, (int, float)) else ""
-        detail_note = f"{address}{value_note}"
+        detail_note = details.get("note") if manual_details else f"{address}{value_note}"
 
-    return {
-        "tax_sale_deed": checklist_status("found" if docs.get("tax_sale_deed_found") else "unknown", "gsccca", tax_note),
+    checklist = {
+        "tax_sale_deed": checklist_status("found" if docs.get("tax_sale_deed_found") else ("manual_check_required" if manual_docs else "unknown"), "gsccca", tax_note),
         "excess_funds_confirmation": checklist_status("found", "county_pdf", f"On county excess funds list as of {lead.get('first_seen_date') or now_iso()[:10]}"),
         "lien_check": checklist_status(lien_status, "gsccca", lien_note),
-        "property_details": checklist_status("found" if details else "not_found", details.get("source", "qpublic") if details else "qpublic", detail_note),
+        "property_details": checklist_status("manual_check_required" if manual_details else ("found" if details else "not_found"), details.get("source", "qpublic") if details else "qpublic", detail_note),
         "owner_id": checklist_status("needed", "owner", "Request from owner after contract signed"),
         "signed_contract": checklist_status("needed", "docusign", "Send via DocuSign after verbal agreement"),
         "attorney_petition": checklist_status("needed", "attorney", "Attorney files via eFileGA after all docs collected"),
     }
+    if is_estate_lead(lead):
+        enrichment = lead.get("enrichment") if isinstance(lead.get("enrichment"), dict) else {}
+        probate_found = bool(enrichment.get("probate_found"))
+        executor = str(enrichment.get("executor_name") or enrichment.get("probate_executor") or "TBD").strip()
+        checklist = {
+            "probate_status": checklist_status(
+                "found" if probate_found else "needed",
+                "georgiaprobaterecords.com",
+                f"Executor: {executor} - verified legal claimant" if probate_found else "No probate found - heir must open one. Connect with attorney to begin this process.",
+            ),
+            **checklist,
+        }
+    return checklist
 
 
 def eligible(lead: dict[str, Any]) -> bool:
@@ -359,7 +526,7 @@ def run() -> dict[str, int]:
             stats["assignments"] += 1
         if docs.get("open_lien_found"):
             stats["liens"] += 1
-        if docs.get("assignment_filed") or docs.get("redemption_filed") or docs.get("open_lien_found"):
+        if docs.get("assignment_filed") or docs.get("redemption_filed") or docs.get("open_lien_found") or docs.get("manual_check_required"):
             stats["flagged"] += 1
         else:
             stats["clean"] += 1

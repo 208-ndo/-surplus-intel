@@ -143,6 +143,19 @@ def first_name(owner_name: str) -> str:
     return parts[0].title() if parts else "there"
 
 
+def is_estate_lead(lead: dict[str, Any]) -> bool:
+    if lead.get("is_estate_owner") or lead.get("is_estate"):
+        return True
+    owner = str(lead.get("owner_name") or "")
+    return bool(re.search(r"\b(ESTATE OF|EST OF|EST PERS REP|HEIRS)\b", owner, flags=re.IGNORECASE))
+
+
+def estate_last_name(owner_name: str) -> str:
+    cleaned = re.sub(r"\b(ESTATE OF|EST OF|ESTATE|EST|PERS|REP|HEIRS|OF|THE)\b", " ", owner_name or "", flags=re.IGNORECASE)
+    parts = [part.strip(" ,.&") for part in cleaned.split() if part.strip(" ,.&")]
+    return parts[-1].title() if parts else ""
+
+
 def county_display(lead: dict[str, Any]) -> str:
     return str(lead.get("county_name") or lead.get("county") or "Georgia").replace(" GA", " County")
 
@@ -241,6 +254,41 @@ def build_precall_brief(lead: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def build_estate_call_script(lead: dict[str, Any]) -> dict[str, Any]:
+    owner = str(lead.get("owner_name") or "the estate")
+    county = county_display(lead)
+    parcel = str(lead.get("parcel_id") or "the parcel")
+    surplus = amount_label(lead.get("surplus_amount"))
+    last = estate_last_name(owner)
+    return {
+        "title": "Estate Call Script",
+        "probate_search_last_name": last,
+        "opening_line": (
+            f"Hi, this is Michael with 229 Holdings LLC. I am calling with respect and condolences about public {county} records connected to {owner}. "
+            "I am not assuming you are the legal claimant. I am trying to confirm who has authority for the estate."
+        ),
+        "script": "\n".join(
+            [
+                f"Hi, this is Michael with 229 Holdings LLC. I am calling with respect and condolences about public {county} records connected to {owner}.",
+                "",
+                "I am not assuming you are automatically entitled to anything. I am trying to find the correct legal person for the estate.",
+                f"Are you related to {owner}, and has probate or an estate case been opened?",
+                "",
+                "If probate is already open: who is the Executor or Administrator appointed by the court? That person is the legal contact I need to speak with.",
+                "",
+                "If probate is not open yet: before any surplus claim can be filed, the family usually needs probate opened first so the court appoints someone with authority. I can connect you with a Georgia attorney who can review this with no upfront cost.",
+                "",
+                f"Public records show possible surplus funds connected to parcel {parcel}, but I do not want to quote or promise the {surplus} amount until probate status, lien status, and county balance are confirmed.",
+            ]
+        ),
+        "sms": (
+            f"Hi, this is Michael with 229 Holdings LLC. I found public {county} records tied to {owner}. "
+            "If you are a relative, the first step is confirming whether probate is open and who the Executor/Administrator is. "
+            "I can help verify the county record and connect you with a GA attorney if needed."
+        ),
+    }
+
+
 def build_contract_text(lead: dict[str, Any]) -> str:
     generated_date = datetime.now(timezone.utc).date().isoformat()
     owner = str(lead.get("owner_name") or "Former Property Owner")
@@ -311,6 +359,9 @@ def apply_local_lead_prep(lead: dict[str, Any]) -> None:
     enrichment = lead["enrichment"]
     enrichment["personalized_sms"] = build_personalized_sms(lead)
     enrichment["precall_brief"] = build_precall_brief(lead)
+    if is_estate_lead(lead):
+        enrichment["estate_call_script"] = build_estate_call_script(lead)
+        add_tag(lead, "Probate Required - Verify Executor")
     enrichment["contract_text"] = build_contract_text(lead)
     add_check(enrichment, "lead_prep")
     add_check(enrichment, "contract")

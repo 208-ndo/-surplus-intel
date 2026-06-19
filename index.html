@@ -148,11 +148,13 @@
     .card-actions{grid-column:1/-1;display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
     .modal-banner{grid-column:1/-1;border:1px solid var(--red);background:rgba(226,75,74,.14);color:#FFB0AF;border-radius:8px;padding:12px;line-height:1.45}
     .modal-banner.warn{border-color:var(--amber);background:rgba(239,159,39,.12);color:#FFD18B}
+    .modal-banner.manual{border-color:var(--blue);background:rgba(55,138,221,.1);color:#9EC9FF}
     .progress-shell{grid-column:1/-1;background:#0B0D13;border:1px solid var(--border);border-radius:999px;height:24px;overflow:hidden;position:relative}
     .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green2));width:0}
     .progress-label{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;color:var(--text)}
     .doc-list,.doc-table,.timeline,.similar-grid{grid-column:1/-1;display:grid;gap:8px}
     .doc-row{display:grid;grid-template-columns:30px minmax(150px,1fr) minmax(120px,1.4fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--border);border-radius:7px;background:#0B0D13}
+    .doc-ref{width:100%;min-width:150px;margin-top:6px}
     .doc-name{font-family:Syne,sans-serif;font-weight:800}
     .doc-note{color:var(--muted);font-size:11px;line-height:1.35}
     .doc-table-row{display:grid;grid-template-columns:1.2fr .8fr 1fr 1fr .7fr auto;gap:8px;align-items:center;padding:8px;border-bottom:1px solid var(--border);font-size:11px}
@@ -170,6 +172,11 @@
     .similar-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     .similar-card{border:1px solid var(--border);border-radius:7px;background:#0B0D13;padding:10px;cursor:pointer}
     .saved-flash{color:var(--green2);font-size:11px;min-height:14px}
+    .probate-box{grid-column:1/-1;border-left:4px solid var(--amber);background:#10131B;border-radius:8px;padding:12px 14px;display:grid;gap:10px}
+    .probate-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .flow-card{border:1px solid var(--border2);border-radius:8px;background:#0B0D13;padding:10px}
+    .validation-error{grid-column:1/-1;color:var(--red);font-family:Space Mono,monospace;font-size:11px;display:none}
+    input.invalid{border-color:var(--red)!important;box-shadow:0 0 0 1px rgba(226,75,74,.35)}
     .confetti{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden}
     .confetti span{position:absolute;top:-20px;width:8px;height:12px;background:var(--green2);animation:fall 1.4s linear forwards}
     @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
@@ -563,10 +570,11 @@
 
     function leadState(lead){
       const key = leadKey(lead);
-      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", email: "", attorney: "", attorneyEmail: "", attorneyPhone: "", priority: false, contactLog: [], ghlPushedAt: "", ghlTags: [], docs: {}, dates: {}, actualSurplus: "", openLiens: "", attorneySplit: "50", feePercent: "30", taxPercent: "25", bestTime: "Unknown", preferredContact: "All", caseNumber: "", takeHomeAmount: "", updatedAt: "" };
+      state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", email: "", attorney: "", attorneyEmail: "", attorneyPhone: "", priority: false, contactLog: [], ghlPushedAt: "", ghlTags: [], docs: {}, docRefs: {}, dates: {}, actualSurplus: "", openLiens: "", attorneySplit: "50", feePercent: "30", taxPercent: "25", bestTime: "Unknown", preferredContact: "All", caseNumber: "", takeHomeAmount: "", updatedAt: "" };
       state.pipeline[key].contactLog = Array.isArray(state.pipeline[key].contactLog) ? state.pipeline[key].contactLog : [];
       state.pipeline[key].ghlTags = Array.isArray(state.pipeline[key].ghlTags) ? state.pipeline[key].ghlTags : [];
       state.pipeline[key].docs = typeof state.pipeline[key].docs === "object" && state.pipeline[key].docs ? state.pipeline[key].docs : {};
+      state.pipeline[key].docRefs = typeof state.pipeline[key].docRefs === "object" && state.pipeline[key].docRefs ? state.pipeline[key].docRefs : {};
       state.pipeline[key].dates = typeof state.pipeline[key].dates === "object" && state.pipeline[key].dates ? state.pipeline[key].dates : {};
       return state.pipeline[key];
     }
@@ -965,7 +973,7 @@
     function pctReady(lead){
       const checklist = lead.document_checklist || {};
       const saved = leadState(lead);
-      const names = ["tax_sale_deed","excess_funds_confirmation","lien_check","property_details","owner_id","signed_contract","attorney_petition"];
+      const names = checklistKeys(lead);
       return names.reduce((count, name) => {
         if(saved.docs && saved.docs[name]) return count + 1;
         const item = checklist[name] || {};
@@ -974,9 +982,35 @@
       }, 0);
     }
 
+    function isEstateLead(lead){
+      return !!(lead.is_estate_owner || lead.is_estate);
+    }
+
+    function estateLastName(lead){
+      const cleaned = String(lead.owner_name || "").replace(/\b(ESTATE OF|EST OF|ESTATE|EST|PERS|REP|HEIRS|OF|THE)\b/gi, " ");
+      const parts = cleaned.split(/\s+/).map(part => part.trim().replace(/[,.&]/g, "")).filter(Boolean);
+      return parts.length ? parts[parts.length - 1] : "";
+    }
+
+    function probateSearchUrl(lead){
+      const county = String(lead.county_name || "").replace(" GA", "").toLowerCase();
+      return `https://georgiaprobaterecords.com/?county=${encodeURIComponent(county)}&search=${encodeURIComponent(estateLastName(lead))}`;
+    }
+
+    function probateCourtUrl(lead){
+      return String(lead.county_name || "").toLowerCase().includes("clayton")
+        ? "https://www.claytoncountyga.gov/government/courts/probate-court/"
+        : "https://www.dekalbprobatecourt.com/";
+    }
+
+    function checklistKeys(lead){
+      const base = ["tax_sale_deed","excess_funds_confirmation","lien_check","property_details","owner_id","signed_contract","attorney_petition"];
+      return isEstateLead(lead) ? ["probate_status", ...base] : base;
+    }
+
     function checklistIcon(status){
       if(["found","clear"].includes(status)) return "OK";
-      if(["has_liens","unknown"].includes(status)) return "!";
+      if(["has_liens","unknown","manual_check_required","in_progress"].includes(status)) return "!";
       if(status === "blocked") return "X";
       return "...";
     }
@@ -996,8 +1030,11 @@
     }
 
     function checklistActionHTML(lead, key, item, index){
+      if(key === "probate_status") return `<a class="btn" href="${probateSearchUrl(lead)}" target="_blank" rel="noopener">Check Probate Status</a>`;
       if(key === "tax_sale_deed" && item.status === "found") return `<a class="btn" href="${gscccaUrl(lead)}" target="_blank" rel="noopener">View on GSCCCA</a>`;
+      if(["tax_sale_deed","lien_check"].includes(key) && item.status === "manual_check_required") return `<a class="btn" href="${gscccaUrl(lead)}" target="_blank" rel="noopener">Manual GSCCCA Check</a>`;
       if(key === "lien_check" && item.status === "has_liens") return `<button class="btn" onclick="openResourcesTab()">Verify with County</button>`;
+      if(key === "property_details" && item.status === "manual_check_required") return `<a class="btn" href="${qpublicLookupUrl(lead)}" target="_blank" rel="noopener">Manual qPublic Check</a>`;
       if(key === "owner_id") return `<button class="btn" onclick="copyTextToClipboard(requestOwnerIdText(state.filtered[${index}]), 'Owner ID request copied')">Request from Owner</button>`;
       if(key === "signed_contract") return `<a class="btn" href="https://www.docusign.com" target="_blank" rel="noopener">Send DocuSign</a>`;
       if(key === "attorney_petition") return `<button class="btn" onclick="showToast(leadState(state.filtered[${index}]).attorney || 'Set attorney in Pipeline section', 'info')">Assign to Attorney</button>`;
@@ -1007,6 +1044,7 @@
     function documentChecklistHTML(lead, index){
       const checklist = lead.document_checklist || {};
       const labels = {
+        probate_status:"Probate Opened & Executor Appointed",
         tax_sale_deed:"Tax Sale Deed",
         excess_funds_confirmation:"Excess Funds Confirmation",
         lien_check:"Lien Check",
@@ -1015,17 +1053,21 @@
         signed_contract:"Signed Contract",
         attorney_petition:"Attorney Petition"
       };
-      const keys = Object.keys(labels);
+      const keys = checklistKeys(lead);
       const ready = pctReady(lead);
       const width = Math.round((ready / keys.length) * 100);
       const rows = keys.map(key => {
-        const item = checklist[key] || { status:key === "excess_funds_confirmation" ? "found" : "needed", source:"manual", note:"Not checked yet" };
+        const fallback = key === "probate_status"
+          ? { status: enrichment(lead).probate_found ? "found" : "needed", source:"georgiaprobaterecords.com", note: enrichment(lead).probate_found ? "Probate found - verify executor details with court" : "No probate found - heir must open one. Connect with attorney to begin this process." }
+          : { status:key === "excess_funds_confirmation" ? "found" : "needed", source:"manual", note:"Not checked yet" };
+        const item = checklist[key] || fallback;
         const checked = leadState(lead).docs && leadState(lead).docs[key];
         const status = checked ? "found" : item.status;
+        const ref = leadState(lead).docRefs?.[key] || "";
         return `<div class="doc-row">
-          <div class="field-value ${status === "has_liens" ? "warn" : status === "found" || status === "clear" ? "green" : ""}">${checklistIcon(status)}</div>
+          <div class="field-value ${status === "has_liens" || status === "manual_check_required" ? "warn" : status === "found" || status === "clear" ? "green" : ""}">${checklistIcon(status)}</div>
           <div><div class="doc-name">${labels[key]}</div><div class="doc-note">${item.source || "--"}</div></div>
-          <div class="doc-note">${checked ? "Marked collected in dashboard" : item.note || "--"}</div>
+          <div class="doc-note">${checked ? "Marked collected in dashboard" : item.note || "--"}<input class="doc-ref" id="doc-ref-${key}" value="${ref}" placeholder="Saved in Drive / email / file note..." onBlur="saveAllDealFields(${index}, true)"></div>
           <div>${checklistActionHTML(lead, key, item, index)}</div>
         </div>`;
       }).join("");
@@ -1036,14 +1078,20 @@
 
     function propertyIntelligenceHTML(lead){
       const details = lead.property_details || {};
+      if(details.manual_check_required || details.lookup_status === "manual_check_required"){
+        return `<div class="section">Property Intelligence</div>
+          <div class="modal-banner manual">Manual check needed - automated qPublic lookup was unavailable. This is not a bad lead. Click below and verify the parcel manually.</div>
+          <div class="card-actions"><a class="btn" href="${qpublicLookupUrl(lead)}" target="_blank" rel="noopener">Look Up on qPublic</a></div>`;
+      }
       if(!Object.keys(details).length){
         return `<div class="section">Property Intelligence</div>
-          <div class="full"><div class="field-value">Property details not yet pulled.</div></div>
+          <div class="modal-banner manual">Manual check needed - property details have not been pulled yet.</div>
           <div class="card-actions"><a class="btn" href="${qpublicLookupUrl(lead)}" target="_blank" rel="noopener">Look Up on qPublic</a></div>`;
       }
       const assessed = Number(details.assessed_value || 0);
       const surplusPct = assessed ? ((Number(lead.surplus_amount || 0) / assessed) * 100).toFixed(1) : "--";
       return `<div class="section">Property Intelligence</div>
+        <div class="modal-banner warn">Checked - property details found. Verify assessed value and ownership before quoting numbers.</div>
         <div><div class="field-label">Property Address</div><div class="field-value">${details.property_address || addressText(lead)}</div></div>
         <div><div class="field-label">Neighborhood / Subdivision</div><div class="field-value">${details.neighborhood || "--"}</div></div>
         <div><div class="field-label">Year Built</div><div class="field-value">${details.year_built || "--"}</div></div>
@@ -1057,6 +1105,8 @@
 
     function recordedDocsHTML(lead){
       const docs = lead.gsccca_docs || {};
+      const manual = docs.manual_check_required || docs.lookup_status === "manual_check_required";
+      const foundItems = docs.assignment_filed || docs.redemption_filed || docs.open_lien_found || docs.quitclaim_after_sale;
       const rows = (docs.all_docs || []).slice(0, 12).map(doc => `<div class="doc-table-row">
         <div class="doc-type ${doc.classification || "other"}">${doc.doc_type || "--"}</div>
         <div>${doc.recorded_date || "--"}</div>
@@ -1064,12 +1114,35 @@
         <div>${doc.grantee || "--"}</div>
         <div>${[doc.book, doc.page].filter(Boolean).join("/") || "--"}</div>
         <a class="btn" href="${gscccaUrl(lead)}" target="_blank" rel="noopener">View</a>
-      </div>`).join("") || `<div class="field-value">No recorded documents returned by automated scan.</div>`;
+      </div>`).join("") || `<div class="field-value">${manual ? "Automated search unavailable - verify manually." : "No recorded document rows parsed."}</div>`;
       return `<div class="section">Recorded Documents (GSCCCA)</div>
+        ${manual ? `<div class="modal-banner manual">Manual check needed - automated search unavailable for this records site. Click below to search manually; this takes about 30 seconds.</div>` : foundItems ? `<div class="modal-banner warn">Checked - found items. Review liens, redemptions, assignments, and quitclaims before outreach.</div>` : `<div class="modal-banner warn" style="border-color:var(--green);background:rgba(29,158,117,.1);color:#B8FFE8">Checked - clean based on automated scan. Still verify before filing.</div>`}
         ${docs.assignment_filed ? `<div class="modal-banner">ASSIGNMENT OF EXCESS FUNDS FILED - Another recovery agent may have secured rights. Do not contact until verified.</div>` : ""}
         ${docs.open_lien_found ? `<div class="modal-banner warn">OPEN LIEN FOUND - ${docs.open_lien_holder || "Unknown holder"} may have a recorded security deed. Call county before quoting any amount.</div>` : ""}
         <div class="doc-table">${rows}</div>
         <div class="card-actions"><a class="btn" href="${gscccaUrl(lead)}" target="_blank" rel="noopener">View All on GSCCCA</a></div>`;
+    }
+
+    function probateStatusHTML(lead){
+      if(!isEstateLead(lead)) return "";
+      const enrich = enrichment(lead);
+      const found = !!enrich.probate_found;
+      const executor = enrich.executor_name || enrich.probate_executor || "Found - verify details with court";
+      const caseNumber = enrich.probate_case_number || enrich.case_number || "Found - verify details with court";
+      const filingDate = enrich.probate_filing_date || enrich.filing_date || "Found - verify details with court";
+      return `<div class="section">Probate & Heir Status</div>
+        <div class="probate-box">
+          ${found ? `<div class="modal-banner warn" style="border-color:var(--green);background:rgba(29,158,117,.1);color:#B8FFE8">OK Probate record found<br>Executor/Administrator: ${executor}<br>Case Number: ${caseNumber}<br>Filing Date: ${filingDate}<br>This person is your legal contact, not a random family member. They have court authority to claim.</div>` : `<div class="modal-banner warn">No probate record found yet. This means no one currently has legal authority to claim these funds. Verify before proceeding.</div>`}
+          <div class="card-actions">
+            <a class="btn" href="${probateSearchUrl(lead)}" target="_blank" rel="noopener">Check GA Probate Records</a>
+            <a class="btn" href="${probateCourtUrl(lead)}" target="_blank" rel="noopener">Check ${String(lead.county_name || "").includes("Clayton") ? "Clayton" : "DeKalb"} Probate Court Directly</a>
+          </div>
+          <div class="field-label">Decision Tree</div>
+          <div class="probate-flow">
+            <div class="flow-card"><div class="doc-name">Is probate already open?</div><div class="doc-note">YES - Contact the Executor/Administrator directly. They are your legal claimant. Proceed with normal contract flow.</div></div>
+            <div class="flow-card"><div class="doc-name">No probate yet?</div><div class="doc-note">You are talking to a potential heir, not a legal claimant yet. Probate needs to be opened first. This can take 4-8 weeks, but most competing agents skip these leads.</div></div>
+          </div>
+        </div>`;
     }
 
     function normalizeStatus(status){
@@ -1156,9 +1229,9 @@
     function dealNumbers(lead, saved){
       const confirmed = Number(saved.actualSurplus || lead.surplus_amount || 0);
       const liens = Number(saved.openLiens || 0);
-      const feePct = Number(saved.feePercent || 30);
-      const splitPct = Number(saved.attorneySplit || 50);
-      const taxPct = Number(saved.taxPercent || 25);
+      const feePct = Math.min(100, Math.max(0, Number(saved.feePercent || 30)));
+      const splitPct = Math.min(100, Math.max(0, Number(saved.attorneySplit || 50)));
+      const taxPct = Math.min(100, Math.max(0, Number(saved.taxPercent || 25)));
       const net = Math.max(0, confirmed - liens);
       const grossFee = net * (feePct / 100);
       const attorney = grossFee * (splitPct / 100);
@@ -1166,6 +1239,20 @@
       const tax = preTax * (taxPct / 100);
       const takeHome = Math.max(0, preTax - tax);
       return { confirmed, liens, feePct, splitPct, taxPct, net, grossFee, attorney, preTax, tax, takeHome };
+    }
+
+    function validatePercentInput(id, label){
+      const input = document.getElementById(id);
+      if(!input) return true;
+      const value = Number(input.value);
+      const valid = Number.isFinite(value) && value >= 0 && value <= 100;
+      input.classList.toggle("invalid", !valid);
+      const error = document.getElementById("calculator-error");
+      if(error && !valid){
+        error.style.display = "block";
+        error.textContent = `${label} must be between 0 and 100.`;
+      }
+      return valid;
     }
 
     function saveAllDealFields(index, quiet=false){
@@ -1193,9 +1280,12 @@
       saved.caseNumber = get("case-number") || saved.caseNumber || "";
       saved.notes = document.getElementById("lead-notes")?.value || saved.notes || "";
       saved.docs = saved.docs || {};
-      ["photo_id","proof_ownership","death_certificate","letters_testamentary","ssn","owner_id","signed_contract","attorney_petition"].forEach(key => {
+      saved.docRefs = saved.docRefs || {};
+      ["photo_id","proof_ownership","death_certificate","letters_testamentary","ssn","owner_id","signed_contract","attorney_petition","probate_status","tax_sale_deed","excess_funds_confirmation","lien_check","property_details"].forEach(key => {
         const el = document.getElementById(`doc-${key}`);
         if(el) saved.docs[key] = checked(`doc-${key}`);
+        const ref = document.getElementById(`doc-ref-${key}`);
+        if(ref) saved.docRefs[key] = ref.value || "";
       });
       const numbers = dealNumbers(lead, saved);
       saved.takeHomeAmount = Math.round(numbers.takeHome * 100) / 100;
@@ -1225,6 +1315,14 @@
       saved.feePercent = getNumber("fee-percent", saved.feePercent || 30);
       saved.attorneySplit = getNumber("attorney-split", saved.attorneySplit || 50);
       saved.taxPercent = getNumber("tax-percent", saved.taxPercent || 25);
+      const validFee = validatePercentInput("fee-percent", "Fee percent");
+      const validSplit = validatePercentInput("attorney-split", "Attorney split percent");
+      const validTax = validatePercentInput("tax-percent", "Tax percent");
+      const error = document.getElementById("calculator-error");
+      if(error && validFee && validSplit && validTax){
+        error.style.display = "none";
+        error.textContent = "";
+      }
       const numbers = dealNumbers(lead, saved);
       const set = (id, value) => {
         const el = document.getElementById(id);
@@ -1236,9 +1334,9 @@
       set("pretax-output", fmtMoney2(numbers.preTax));
       set("tax-output", fmtMoney2(numbers.tax));
       set("takehome-output", fmtMoney2(numbers.takeHome));
-      set("fee-25-output", fmtMoney2(numbers.net * 0.25 * (1 - numbers.splitPct / 100)));
-      set("fee-30-output", fmtMoney2(numbers.net * 0.30 * (1 - numbers.splitPct / 100)));
-      set("fee-35-output", fmtMoney2(numbers.net * 0.35 * (1 - numbers.splitPct / 100)));
+      set("fee-25-output", fmtMoney2((numbers.net * 0.25) - ((numbers.net * 0.25) * (numbers.splitPct / 100))));
+      set("fee-30-output", fmtMoney2((numbers.net * 0.30) - ((numbers.net * 0.30) * (numbers.splitPct / 100))));
+      set("fee-35-output", fmtMoney2((numbers.net * 0.35) - ((numbers.net * 0.35) * (numbers.splitPct / 100))));
     }
 
     function pipelineTrackingHTML(lead, index){
@@ -1247,7 +1345,7 @@
       const statusOptions = STATUS_OPTIONS.map(status => `<option value="${status}" ${saved.status === status ? "selected" : ""}>${status}</option>`).join("");
       const option = (value, current) => `<option value="${value}" ${current === value ? "selected" : ""}>${value}</option>`;
       const contactLog = (saved.contactLog || []).map(entry => `<div class="field-value">${entry}</div>`).join("") || `<div class="field-value">No contact attempts logged yet.</div>`;
-      const docCheck = (key, label) => `<label class="toggle"><input id="doc-${key}" type="checkbox" ${saved.docs?.[key] ? "checked" : ""} onChange="saveAllDealFields(${index}, true)"> ${label}</label>`;
+      const docCheck = (key, label) => `<div><label class="toggle"><input id="doc-${key}" type="checkbox" ${saved.docs?.[key] ? "checked" : ""} onChange="saveAllDealFields(${index}, true)"> ${label}</label><input class="doc-ref" id="doc-ref-${key}" value="${saved.docRefs?.[key] || ""}" placeholder="Saved in Drive / email / file note..." onBlur="saveAllDealFields(${index}, true)"></div>`;
       const notesLength = String(saved.notes || "").length;
       return `
           <div class="section">Pipeline & Deal Tracking <span id="saved-flash" class="saved-flash"></span></div>
@@ -1259,7 +1357,7 @@
           <div><div class="field-label">Preferred Contact</div><select id="preferred-contact" onChange="saveAllDealFields(${index}, true)">${["Phone","Text","Email","All"].map(x => option(x, saved.preferredContact || "Phone")).join("")}</select></div>
           <div><div class="field-label">Actual Surplus Confirmed</div><input id="actual-surplus" type="number" value="${saved.actualSurplus || lead.surplus_amount || 0}" onInput="updateDealCalculator(${index})" onBlur="saveAllDealFields(${index}, true)"></div>
           <div><div class="field-label">Open Liens Total</div><input id="open-liens" type="number" value="${saved.openLiens || 0}" onInput="updateDealCalculator(${index})" onBlur="saveAllDealFields(${index}, true)"></div>
-          <div class="full calc-output"><span>Net surplus: <strong id="net-surplus-output">${fmtMoney2(numbers.net)}</strong></span><span>Your fee: <strong id="gross-fee-output">${fmtMoney2(numbers.grossFee)}</strong></span><span>Take-home: <strong id="takehome-output">${fmtMoney2(numbers.takeHome)}</strong></span></div>
+          <div class="full calc-output"><span>Net surplus: <strong id="pipeline-net-surplus-output">${fmtMoney2(numbers.net)}</strong></span><span>Your fee: <strong id="pipeline-gross-fee-output">${fmtMoney2(numbers.grossFee)}</strong></span><span>Take-home: <strong id="pipeline-takehome-output">${fmtMoney2(numbers.takeHome)}</strong></span></div>
           <div><div class="field-label">Attorney Split %</div><input id="attorney-split" type="number" value="${saved.attorneySplit || 50}" onInput="updateDealCalculator(${index})" onBlur="saveAllDealFields(${index}, true)"></div>
           <div><div class="field-label">Assigned Attorney</div><input id="lead-attorney" type="text" value="${saved.attorney || ""}" placeholder="Attorney partner" onBlur="saveAllDealFields(${index}, true)"></div>
           <div><div class="field-label">Attorney Email</div><input id="attorney-email" type="text" value="${saved.attorneyEmail || ""}" onBlur="saveAllDealFields(${index}, true)"></div>
@@ -1271,7 +1369,7 @@
           <div class="card-actions"><button class="btn primary" onclick="emailAttorneyPackage(${index})">Email Attorney Package</button></div>
           <div class="full"><div class="field-label">Contact Attempt</div><div style="display:grid;grid-template-columns:130px 1fr auto;gap:8px"><select id="contact-attempt-type"><option>Call</option><option>Text</option><option>Email</option><option>Note</option></select><input id="contact-attempt-note" type="text" placeholder="Left VM, no answer, spoke with owner..."><button class="btn" onclick="logContactAttempt(${index})">Log Attempt</button></div></div>
           <div class="full"><div class="field-label">Contact Log</div>${contactLog}</div>
-          <div class="full"><div class="field-label">Documents Collected</div><div class="doc-list">${docCheck("photo_id","Government-issued photo ID")}${docCheck("proof_ownership","Proof of ownership")}${docCheck("death_certificate","Death certificate")}${docCheck("letters_testamentary","Letters testamentary")}${docCheck("ssn","Social Security number")}</div><div class="card-actions"><button class="btn" onclick="copyDocRequest(${index})">Copy Document Request Text</button></div></div>
+          <div class="full"><div class="field-label">Documents Collected</div><div class="doc-list">${docCheck("photo_id","Government-issued photo ID")}${docCheck("proof_ownership","Proof of ownership")}${docCheck("death_certificate","Death certificate")}${docCheck("letters_testamentary","Letters testamentary")}${docCheck("ssn","Social Security number")}</div><div class="card-actions"><button class="btn" onclick="copyDocRequest(${index})">Copy Document Request Text</button><button class="btn" onclick="generateDocumentRequestEmail(${index})">Generate Document Request Email</button></div></div>
           <div class="full"><div class="field-label">Notes <span id="notes-count">${notesLength} characters</span></div><textarea id="lead-notes" placeholder="Left VM 6/17, signed contract, filed..." onInput="document.getElementById('notes-count').textContent=this.value.length+' characters'" onBlur="saveAllDealFields(${index}, true)">${saved.notes || ""}</textarea></div>
           <div class="card-actions"><button class="btn" onclick="copyClaimNote(${index})">Copy Notes</button><button class="btn primary" onclick="saveAllDealFields(${index})">Save All</button></div>`;
     }
@@ -1285,6 +1383,9 @@
           <div><div class="field-label">Open Liens Total</div><input type="number" value="${saved.openLiens || 0}" onInput="document.getElementById('open-liens').value=this.value;updateDealCalculator(${index})"></div>
           <div><div class="field-label">Your Fee %</div><input id="fee-percent" type="number" value="${saved.feePercent || 30}" onInput="updateDealCalculator(${index})" onBlur="saveAllDealFields(${index}, true)"></div>
           <div><div class="field-label">State/Fed Tax %</div><input id="tax-percent" type="number" value="${saved.taxPercent || 25}" onInput="updateDealCalculator(${index})" onBlur="saveAllDealFields(${index}, true)"></div>
+          <div id="calculator-error" class="validation-error"></div>
+          <div class="calc-card"><div class="field-label">Net Surplus After Liens</div><div id="net-surplus-output" class="field-value green">${fmtMoney2(numbers.net)}</div></div>
+          <div class="calc-card"><div class="field-label">Gross Fee</div><div id="gross-fee-output" class="field-value green">${fmtMoney2(numbers.grossFee)}</div></div>
           <div class="calc-card"><div class="field-label">Attorney Portion</div><div id="attorney-output" class="field-value">${fmtMoney2(numbers.attorney)}</div></div>
           <div class="calc-card"><div class="field-label">Your Pre-tax Income</div><div id="pretax-output" class="field-value green">${fmtMoney2(numbers.preTax)}</div></div>
           <div class="calc-card"><div class="field-label">Estimated Tax</div><div id="tax-output" class="field-value warn">${fmtMoney2(numbers.tax)}</div></div>
@@ -1369,7 +1470,7 @@
 
     function checklistSummary(lead){
       const checklist = lead.document_checklist || {};
-      const keys = ["tax_sale_deed","excess_funds_confirmation","lien_check","property_details","owner_id","signed_contract","attorney_petition"];
+      const keys = checklistKeys(lead);
       const ready = pctReady(lead);
       const missing = keys.filter(key => {
         const item = checklist[key] || {};
@@ -1378,25 +1479,66 @@
       return `${ready}/${keys.length} ready. Missing: ${missing.join(", ") || "none"}`;
     }
 
+    function checklistLineItems(lead){
+      const labels = {
+        probate_status:"Probate Opened & Executor Appointed",
+        tax_sale_deed:"Tax Sale Deed",
+        excess_funds_confirmation:"Excess Funds Confirmation",
+        lien_check:"Lien Check",
+        property_details:"Property Details",
+        owner_id:"Owner ID",
+        signed_contract:"Signed Contract",
+        attorney_petition:"Attorney Petition"
+      };
+      const checklist = lead.document_checklist || {};
+      const saved = leadState(lead);
+      return checklistKeys(lead).map(key => {
+        const item = checklist[key] || {};
+        const done = !!saved.docs?.[key] || ["found","clear"].includes(item.status);
+        const icon = done ? "OK" : item.status === "manual_check_required" || item.status === "has_liens" ? "VERIFY" : "NEEDED";
+        return `${icon} ${labels[key] || key} - ${done ? "found" : item.status || "needed"}${item.note ? " - " + item.note : ""}${saved.docRefs?.[key] ? " | Ref: " + saved.docRefs[key] : ""}`;
+      });
+    }
+
     function emailAttorneyPackage(index){
       const lead = state.filtered[index];
       if(!lead) return;
       saveAllDealFields(index, true);
       const saved = leadState(lead);
       const to = saved.attorneyEmail || "";
+      const numbers = dealNumbers(lead, saved);
+      const estate = isEstateLead(lead);
+      const enrich = enrichment(lead);
       const subject = `Surplus claim - ${lead.owner_name || "Owner"} - ${fmtMoney2(lead.surplus_amount)} - Parcel ${lead.parcel_id || ""} - ${lead.county_name || ""}`;
       const body = [
         `Hi ${saved.attorney || "Attorney"},`,
         "",
-        `Please find the surplus funds claim for ${lead.owner_name || "the owner"}. Details below:`,
-        `Property: ${addressText(lead)} | County: ${lead.county_name || ""}`,
-        `Parcel ID: ${lead.parcel_id || ""} | Surplus: ${fmtMoney2(lead.surplus_amount)}`,
-        `Sale Date: ${lead.sale_date || ""} | Years Unclaimed: ${yearsLabel(lead.years_unclaimed)}`,
-        `Signed contract: ${saved.docs?.signed_contract ? "Collected" : "Pending"}`,
-        `Documents ready: ${checklistSummary(lead)}`,
+        "Please find the surplus funds claim details below:",
         "",
-        "Please file via eFileGA at your earliest convenience.",
+        "PROPERTY",
+        `Address: ${addressText(lead)}`,
+        `County: ${lead.county_name || ""}  |  Parcel ID: ${lead.parcel_id || ""}`,
+        `Sale Date: ${lead.sale_date || ""}  |  Years Unclaimed: ${yearsLabel(lead.years_unclaimed)}`,
         "",
+        "CLAIM",
+        `Surplus Amount (per county): ${fmtMoney2(lead.surplus_amount)}`,
+        `Open Liens (if known): ${fmtMoney2(numbers.liens)}`,
+        `Net Surplus: ${fmtMoney2(numbers.net)}`,
+        "",
+        "OWNER STATUS",
+        `Type: ${estate ? "Estate-Heir" : "Individual"}`,
+        ...(estate ? [`Probate Status: ${enrich.probate_found ? "Probate found - verify executor details" : "No probate found yet - attorney guidance needed"}`, `Executor/Administrator: ${enrich.executor_name || enrich.probate_executor || "TBD"}`] : []),
+        "",
+        "DOCUMENT STATUS",
+        ...checklistLineItems(lead),
+        "",
+        "CONTRACT",
+        `Signed: ${saved.status === "Contract Signed" || saved.docs?.signed_contract ? "Yes" : "No"}`,
+        ...(saved.status === "Contract Signed" || saved.docs?.signed_contract ? ["Signed contract attached/available on request"] : []),
+        "",
+        "Please advise on next steps for filing.",
+        "",
+        "Thank you,",
         "Michael, 229 Holdings LLC"
       ].join("\n");
       window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -1420,6 +1562,44 @@
         .concat(["You can text these photos to this number or email them to michael@229holdings.com.", "This is Michael with 229 Holdings. Thank you."])
         .join("\n");
       copyTextToClipboard(text, "Document request copied");
+    }
+
+    function neededDocumentLabels(lead){
+      const saved = leadState(lead);
+      const items = [
+        ["photo_id", "Government-issued photo ID"],
+        ["proof_ownership", "Proof of ownership if requested by the county"],
+        ["death_certificate", "Death certificate"],
+        ["letters_testamentary", "Letters testamentary / executor paperwork"],
+        ["ssn", "Social Security number if the county requires it"]
+      ];
+      if(isEstateLead(lead)){
+        items.unshift(["probate_status", "Proof probate is open and Executor/Administrator has been appointed"]);
+      }
+      return items.filter(([key]) => !saved.docs?.[key]).map(([, label]) => label);
+    }
+
+    function generateDocumentRequestEmail(index){
+      const lead = state.filtered[index];
+      if(!lead) return;
+      saveAllDealFields(index, true);
+      const saved = leadState(lead);
+      const needed = neededDocumentLabels(lead);
+      const subject = `Documents needed for surplus claim - ${lead.owner_name || "Owner"}`;
+      const first = (lead.owner_name || "there").split(" ")[0];
+      const body = [
+        `Hi ${first},`,
+        "",
+        "To keep the surplus funds claim moving, I need the following documents/information:",
+        ...(needed.length ? needed.map((item, idx) => `${idx + 1}. ${item}`) : ["1. No owner documents are currently marked as missing."]),
+        "",
+        "You can reply to this email with photos or scanned copies. If this is an estate matter, probate authority has to be confirmed before a claim can be filed.",
+        "",
+        "Thank you,",
+        "Michael",
+        "229 Holdings LLC"
+      ].join("\n");
+      window.location.href = `mailto:${encodeURIComponent(saved.email || "")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     function openEmailToOwner(index){
@@ -1494,6 +1674,22 @@
     }
 
     function callScriptText(lead){
+      if(isEstateLead(lead)){
+        const estate = enrichment(lead).estate_call_script || {};
+        if(estate.script) return estate.script;
+        return [
+          `Hi, this is Michael with 229 Holdings LLC. I am calling with respect and condolences about public records connected to ${lead.owner_name || "the estate"}.`,
+          "",
+          "I am not assuming you are automatically entitled to anything. I am trying to find the correct legal person for the estate.",
+          `Are you related to ${lead.owner_name || "the former owner"}, and has probate or an estate case been opened?`,
+          "",
+          "If probate is already open: who is the Executor or Administrator appointed by the court? That person is the legal contact I need to speak with.",
+          "",
+          "If probate is not open yet: before any surplus claim can be filed, the family usually needs probate opened first so the court appoints someone with authority. I can connect you with a Georgia attorney who can review this with no upfront cost.",
+          "",
+          "I do not want to quote or promise any specific amount until probate status, lien status, and county balance are confirmed."
+        ].join("\n");
+      }
       const enrich = enrichment(lead);
       const brief = enrich.precall_brief || {};
       const owner = lead.owner_name || "the owner";
@@ -1519,6 +1715,7 @@
 
     function textScriptText(lead){
       const enrich = enrichment(lead);
+      if(isEstateLead(lead) && enrich.estate_call_script?.sms) return enrich.estate_call_script.sms;
       if(enrich.personalized_sms) return enrich.personalized_sms;
       const owner = (lead.owner_name || "there").split(" ")[0];
       const county = lead.county_name || "the county";
@@ -1540,6 +1737,16 @@
     function scriptPanelHTML(lead, index){
       const callScript = callScriptText(lead).replace(/\n/g, "<br>");
       const sms = textScriptText(lead);
+      if(isEstateLead(lead)){
+        return `
+          <div class="section">Estate Call Script</div>
+          <div class="full"><div class="field-label" style="color:var(--amber)">Estate Call Script</div><div class="field-value">${callScript}</div></div>
+          <div class="full"><div class="field-label">Short Text Script</div><div class="field-value">${sms}</div></div>
+          <div class="card-actions">
+            <button class="btn primary" onclick="copyLeadScript(${index}, 'call')">Copy Estate Script</button>
+            <button class="btn primary" onclick="copyLeadScript(${index}, 'sms')">Copy Text</button>
+          </div>`;
+      }
       return `
           <div class="section">Call / Text Script</div>
           <div class="full"><div class="field-label">Simple Call Script</div><div class="field-value">${callScript}</div></div>
@@ -1617,6 +1824,7 @@
           <div class="full"><div class="field-label">Property Address</div><div class="field-value">${address}</div></div>
           <div><div class="field-label">Parcel ID</div><div class="field-value">${lead.parcel_id || "--"}</div></div>
           <div><div class="field-label">Owner Type</div><div class="field-value">${lead.is_estate_owner ? "Estate / heirs" : lead.is_entity_owner ? "LLC / corporation" : "Individual owner"}</div></div>
+          ${probateStatusHTML(lead)}
           ${skipTracePanelHTML(lead, index)}
           ${documentChecklistHTML(lead, index)}
           ${propertyIntelligenceHTML(lead)}
