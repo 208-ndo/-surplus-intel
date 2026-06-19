@@ -2030,7 +2030,7 @@
       const total = Number(payload.total_surplus_amount || 0);
       document.getElementById("total-surplus").textContent = compactMoney(total);
       document.getElementById("fire-count").textContent = Number(payload.fire_lead_count || 0).toLocaleString();
-      document.getElementById("total-fees").textContent = compactMoney(total * 0.30);
+      document.getElementById("total-fees").textContent = compactMoney(Number(payload.total_potential_fee_30pct || total * 0.30));
       document.getElementById("lead-count").textContent = Number(payload.lead_count || 0).toLocaleString();
       document.getElementById("last-updated").textContent = payload.generated_at ? `Updated ${new Date(payload.generated_at).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"})}` : "Updated --";
       const pulledToday = state.leads.filter(isTodayLead).length;
