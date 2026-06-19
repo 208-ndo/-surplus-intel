@@ -2,3 +2,4 @@ aiohttp
 pdfplumber
 pandas
 requests
+reportlab==4.2.5
