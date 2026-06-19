@@ -33,6 +33,9 @@ jobs:
           SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
         run: python scraper/enrich.py
 
+      - name: Pull court documents + property details
+        run: python scraper/court_docs.py
+
       - name: Push eligible leads to GoHighLevel
         if: ${{ secrets.GHL_API_KEY != '' }}
         env:
@@ -44,11 +47,15 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
+
           payload = json.loads(Path("data/surplus_leads.json").read_text())
           n = payload.get("lead_count", 0)
           total = payload.get("total_surplus_amount", 0)
           timestamp = payload.get("generated_at", "")
-          message = f"🏠 Surplus update: {n} leads | ${total:,.0f} total | {timestamp}"
+          court = payload.get("court_docs_meta", {})
+          clean = court.get("clean_leads", 0)
+          flagged = court.get("flagged_leads", 0)
+          message = f"Surplus update: {n} leads | ${total:,.0f} total | {clean} clean | {flagged} flagged | {timestamp}"
           Path("commit_message.txt").write_text(message, encoding="utf-8")
           PY
           git config user.name "github-actions[bot]"
