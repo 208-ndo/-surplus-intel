@@ -40,7 +40,6 @@ jobs:
         run: python scraper/generate_packet.py
 
       - name: Push eligible leads to GoHighLevel
-        if: ${{ secrets.GHL_API_KEY != '' }}
         env:
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
         run: python -m scraper.ghl_push
