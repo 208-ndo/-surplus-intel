@@ -243,6 +243,7 @@
     <div class="tabs-wrap">
       <div class="tabs">
         <button class="tab active" data-tab="all">All Surplus <span class="count" id="b-all">0</span></button>
+        <button class="tab" data-tab="fl-collier">Florida - Collier <span class="count" id="b-collier">0</span></button>
         <button class="tab" data-tab="today">Today's Leads <span class="count" id="b-today">0</span></button>
         <button class="tab" data-tab="urgent">Urgent <span class="count" id="b-urgent">0</span></button>
         <button class="tab" data-tab="verify">Verify Status <span class="count" id="b-verify">0</span></button>
@@ -264,6 +265,12 @@
         <option value="">All Counties</option>
         <option value="Clayton GA">Clayton GA</option>
         <option value="DeKalb GA">DeKalb GA</option>
+        <option value="Collier FL">Collier FL</option>
+      </select>
+      <select id="state-filter" onchange="applyFilters()">
+        <option value="">All States</option>
+        <option value="GA">GA</option>
+        <option value="FL">FL</option>
       </select>
       <select id="tier-filter" onchange="applyFilters()">
         <option value="">All Tiers</option>
@@ -349,6 +356,20 @@
             </div>
             <div class="script-box">"Hi, I'm calling about excess funds from a tax sale for parcel [number]. Can you confirm the balance is still available and no claim has been filed? The former owner's name is [name]."</div>
             <div class="resource-actions"><a class="btn primary" href="tel:7704773311">Call Now</a><a class="btn" href="https://www.claytoncountyga.gov/government/tax-commissioner/" target="_blank">Website</a></div>
+          </div>
+          <div class="resource-card">
+            <div class="resource-head"><div class="resource-icon">FL</div><div><div class="resource-name">Collier County Clerk - Tax Deeds</div><div class="resource-label">Florida Tax Deed Surplus</div></div></div>
+            <div class="resource-meta">
+              <div class="resource-label">Who</div><div class="resource-value">Collier County Clerk of the Circuit Court - Tax Deeds</div>
+              <div class="resource-label">Why</div><div class="resource-value why">Verify tax deed excess proceeds, claim status, 120-day deadline, and required notarized claim documents.</div>
+              <div class="resource-label">Main Line</div><div class="resource-value"><a href="tel:2392522646">(239) 252-2646</a></div>
+              <div class="resource-label">Email</div><div class="resource-value"><a href="mailto:TaxDeedsHelp@collierclerk.com">TaxDeedsHelp@collierclerk.com</a></div>
+              <div class="resource-label">Address</div><div class="resource-value">3315 Tamiami Trail East, Ste. 102, Naples FL 34112</div>
+              <div class="resource-label">Website</div><div class="resource-value"><a href="https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/" target="_blank">collierclerk.com/tax-deed-surplus</a></div>
+              <div class="resource-label">PDF Source</div><div class="resource-value"><a href="https://www.collierclerk.com/wp-content/uploads/Tax-Deed-Sales-Excess-Proceeds-List-2.pdf" target="_blank">Tax Deed Sales Excess Proceeds List</a></div>
+            </div>
+            <div class="script-box">"Hi, I'm calling to verify a Collier County tax deed excess proceeds balance for parcel [number]. Can you confirm the balance is still available, whether any claim has been filed, and the current 120-day claim deadline?"</div>
+            <div class="resource-actions"><a class="btn primary" href="tel:2392522646">Call Now</a><a class="btn" href="https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/" target="_blank">Website</a></div>
           </div>
         </div>
       </div>
@@ -524,7 +545,7 @@
     }
 
     function isGHLEligible(lead){
-      return Number(lead.surplus_amount || 0) >= 20000 && Number(lead.score || 0) >= 60;
+      return Number(lead.surplus_amount || 0) >= 20000 && Number(lead.score || 0) >= 60 && !lead.is_expired;
     }
 
     function enrichment(lead){
@@ -827,6 +848,7 @@
 
     function tabMatch(lead){
       if(state.tab === "all") return true;
+      if(state.tab === "fl-collier") return lead.state === "FL" || lead.county_name === "Collier FL";
       if(state.tab === "today") return isTodayLead(lead);
       if(state.tab === "urgent") return isUrgentLead(lead);
       if(state.tab === "verify") return hasVerifyFlag(lead);
@@ -840,7 +862,7 @@
     }
 
     function batchSkipUrl(lead){
-      const q = encodeURIComponent([lead.owner_name, lead.property_address, lead.city, "GA"].filter(Boolean).join(" "));
+      const q = encodeURIComponent([lead.owner_name, lead.property_address, lead.city, lead.state || "GA"].filter(Boolean).join(" "));
       return `https://batchskiptracing.com/app/search?query=${q}`;
     }
 
@@ -859,7 +881,7 @@
         { id:"whitepages", icon:"WP", name:"Whitepages", tag:"Freemium", free:false, url:`https://www.whitepages.com/name/${enc(nameDash)}/${enc(cityDash)}` },
         { id:"google", icon:"GO", name:"Google Search", tag:"Free", free:true, url:`https://www.google.com/search?q=${enc(googleQuery)}` },
         { id:"ssdi", icon:"SD", name:"SSDI Death Check", tag:"Free", free:true, url:`https://stevemorse.org/ssdi/ssdi.html?name=${enc(name)}` },
-        { id:"probate", icon:"PR", name:"GA Probate Records", tag:"Free", free:true, url:`https://www.georgiaprobaterecords.com/?search=${enc(name)}` },
+        { id:"probate", icon:"PR", name:stateCode === "FL" ? "Collier Probate" : "GA Probate Records", tag:"Free", free:true, url: stateCode === "FL" ? `https://www.collierclerk.com/court-divisions/probate/?search=${enc(name)}` : `https://www.georgiaprobaterecords.com/?search=${enc(name)}` },
         { id:"batch", icon:"BT", name:"BatchSkipTracing", tag:"Paid", free:false, paid:true, url:"https://batchskiptracing.com" }
       ];
     }
@@ -963,15 +985,24 @@
     }
 
     function qpublicLookupUrl(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL"){
+        return `https://www.collierappraiser.com/main_search/RecordDetail.html?folio=${encodeURIComponent(lead.parcel_id || "")}`;
+      }
       return `https://qpublic.schneidercorp.com/Application.aspx?AppID=1070&LayerID=22624&PageTypeID=4&KeyValue=${encodeURIComponent(lead.parcel_id || "")}`;
     }
 
     function gscccaUrl(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL"){
+        return `https://cor.collierclerk.com/coraccess/Search/NameSearch.aspx?SearchName=${encodeURIComponent(lead.owner_name || "")}`;
+      }
       const docs = lead.gsccca_docs || {};
       return docs.gsccca_search_url || `https://search.gsccca.org/RealEstateIndex/default.aspx?searchTerm=${encodeURIComponent([lead.parcel_id, lead.owner_name].filter(Boolean).join(" "))}`;
     }
 
     function clerkSearchUrl(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL"){
+        return "https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/";
+      }
       const q = encodeURIComponent([lead.parcel_id, lead.owner_name, lead.county_name].filter(Boolean).join(" "));
       return `https://www.google.com/search?q=${q}+clerk+superior+court+records`;
     }
@@ -999,17 +1030,25 @@
     }
 
     function probateSearchUrl(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL"){
+        return `https://www.collierclerk.com/court-divisions/probate/?search=${encodeURIComponent(estateLastName(lead) || lead.owner_name || "")}`;
+      }
       const county = String(lead.county_name || "").replace(" GA", "").toLowerCase();
       return `https://georgiaprobaterecords.com/?county=${encodeURIComponent(county)}&search=${encodeURIComponent(estateLastName(lead))}`;
     }
 
     function probateCourtUrl(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL") return "https://www.collierclerk.com/court-divisions/probate/";
       return String(lead.county_name || "").toLowerCase().includes("clayton")
         ? "https://www.claytoncountyga.gov/government/courts/probate-court/"
         : "https://www.dekalbprobatecourt.com/";
     }
 
     function checklistKeys(lead){
+      if(lead.state === "FL" || lead.county_name === "Collier FL"){
+        const flBase = ["notarized_claim_affidavit","photo_id","w9","power_of_attorney","owner_id","signed_contract"];
+        return isEstateLead(lead) ? ["probate_status","death_certificate","probate_docs", ...flBase] : flBase;
+      }
       const base = ["tax_sale_deed","excess_funds_confirmation","lien_check","property_details","owner_id","signed_contract","attorney_petition"];
       return isEstateLead(lead) ? ["probate_status", ...base] : base;
     }
@@ -1050,6 +1089,12 @@
     function documentChecklistHTML(lead, index){
       const checklist = lead.document_checklist || {};
       const labels = {
+        notarized_claim_affidavit:"Notarized Claim Affidavit",
+        photo_id:"Government Photo ID",
+        w9:"Signed IRS W-9",
+        power_of_attorney:"Power of Attorney",
+        death_certificate:"Death Certificate",
+        probate_docs:"Probate / Heirship Documents",
         probate_status:"Probate Opened & Executor Appointed",
         tax_sale_deed:"Tax Sale Deed",
         excess_funds_confirmation:"Excess Funds Confirmation",
@@ -1169,12 +1214,17 @@
     }
 
     function verificationLinksHTML(lead){
-      const links = [
+      const isFL = lead.state === "FL" || lead.county_name === "Collier FL";
+      const links = isFL ? [
+        ["Collier Official Records", gscccaUrl(lead)],
+        ["Collier Property Appraiser", qpublicLookupUrl(lead)],
+        ["Collier Tax Deed Surplus", clerkSearchUrl(lead)]
+      ] : [
         ["GA Superior Court Records (GSCCCA)", gscccaUrl(lead)],
         ["Property Records (qPublic)", qpublicLookupUrl(lead)],
         [`${lead.county_name || "County"} Clerk of Superior Court`, clerkSearchUrl(lead)]
       ];
-      if(isEstateLead(lead)) links.push(["Georgia Probate Records", probateSearchUrl(lead)]);
+      if(isEstateLead(lead)) links.push([isFL ? "Collier Probate" : "Georgia Probate Records", probateSearchUrl(lead)]);
       return `<details class="verification-links">
         <summary>Verification Links</summary>
         ${links.map(([label,url]) => `<a href="${url}" target="_blank" rel="noopener">${label}: ${url}</a>`).join("")}
@@ -1572,6 +1622,12 @@
 
     function checklistLineItems(lead){
       const labels = {
+        notarized_claim_affidavit:"Notarized Claim Affidavit",
+        photo_id:"Government Photo ID",
+        w9:"Signed IRS W-9",
+        power_of_attorney:"Power of Attorney",
+        death_certificate:"Death Certificate",
+        probate_docs:"Probate / Heirship Documents",
         probate_status:"Probate Opened & Executor Appointed",
         tax_sale_deed:"Tax Sale Deed",
         excess_funds_confirmation:"Excess Funds Confirmation",
@@ -1908,7 +1964,7 @@
           <div><div class="field-label">Estimated 30% Fee</div><div class="field-value green">${fmtMoney(lead.your_cut_30pct)}</div></div>
           <div><div class="field-label">Sale Date</div><div class="field-value">${lead.sale_date || "--"} - ${yearsLabel(lead.years_unclaimed)}</div></div>
           <div><div class="field-label">Claim Deadline</div><div class="field-value">${lead.claim_deadline || "--"} - ${claimCountdownLabel(lead)}</div></div>
-          <div><div class="field-label">Attorney Required</div><div class="field-value red">${lead.attorney_required ? "GA attorney required" : "Review"}</div></div>
+          <div><div class="field-label">Attorney Required</div><div class="field-value ${lead.attorney_required ? "red" : "green"}">${lead.attorney_required ? "GA attorney required" : "No attorney required"}</div></div>
           <div><div class="field-label">Tier</div><div class="field-value">${tagsHTML(lead)}</div></div>
           <div class="section">Owner / Property</div>
           <div class="full"><div class="field-label">Owner Name</div><div class="field-value">${lead.owner_name || "--"}</div></div>
@@ -1952,7 +2008,9 @@
       const tags = [];
       const enrich = enrichment(lead);
       const docs = lead.gsccca_docs || {};
+      tags.push({label:lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA"), cls:lead.state === "FL" ? "blue" : "gray"});
       if(isRemovedLead(lead)) tags.push({label:"Removed Last Run", cls:"gray"});
+      if(lead.is_expired) tags.push({label:"EXPIRED", cls:"gray"});
       if(isUrgentLead(lead)) tags.push({label:"URGENT", cls:"fire"});
       if(enrich.deceased || enrich.obituary_hit) tags.push({label:"Verify Deceased", cls:"hot"});
       if(enrich.assignment_filed || docs.assignment_filed) tags.push({label:"Assignment Found", cls:"fire"});
@@ -1962,7 +2020,8 @@
       if(isStaleLead(lead)) tags.push({label:"Follow up needed", cls:"hot"});
       if(enrich.probate_found) tags.push({label:"Probate Found", cls:"warm"});
       tags.push({label: lead.tier === "FIRE" ? "FIRE" : lead.tier, cls: tierClass(lead.tier)});
-      tags.push({label:"Atty Required", cls:"fire"});
+      tags.push(lead.attorney_required === false ? {label:"No Attorney Required", cls:"warm"} : {label:"Atty Required", cls:"fire"});
+      if(lead.fee_tier) tags.push({label:lead.fee_tier === "HIGH_URGENCY_15PCT" ? "15% Fee Window" : "Negotiable Fee", cls:lead.fee_tier === "HIGH_URGENCY_15PCT" ? "fire" : "blue"});
       if(lead.claim_deadline || lead.days_to_claim !== undefined) tags.push({label:claimCountdownLabel(lead), cls:claimCountdownClass(lead)});
       if(lead.is_estate_owner) tags.push({label:"Estate / Heirs", cls:"hot"});
       if(attorneyPriority(lead)) tags.push({label:"Attorney Priority", cls:"fire"});
@@ -1985,6 +2044,7 @@
       setActivePanel();
       if(state.tab === "resources") return;
       const county = document.getElementById("county-filter").value;
+      const stateCode = document.getElementById("state-filter").value;
       const tier = document.getElementById("tier-filter").value;
       const minAmount = Number(document.getElementById("amount-filter").value || 0);
       const individualOnly = document.getElementById("individual-filter").checked;
@@ -1997,6 +2057,7 @@
         if(!tabMatch(lead)) return false;
         if(!statusMatchesPipelineFilter(lead)) return false;
         if(county && lead.county_name !== county) return false;
+        if(stateCode && (lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA")) !== stateCode) return false;
         if(tier && lead.tier !== tier) return false;
         if(Number(lead.surplus_amount || 0) < minAmount) return false;
         if(individualOnly && !lead.is_individual_owner) return false;
@@ -2027,15 +2088,16 @@
     }
 
     function renderStats(payload){
-      const total = Number(payload.total_surplus_amount || 0);
+      const total = state.leads.reduce((sum, lead) => sum + Number(lead.surplus_amount || 0), 0);
       document.getElementById("total-surplus").textContent = compactMoney(total);
-      document.getElementById("fire-count").textContent = Number(payload.fire_lead_count || 0).toLocaleString();
-      document.getElementById("total-fees").textContent = compactMoney(Number(payload.total_potential_fee_30pct || total * 0.30));
-      document.getElementById("lead-count").textContent = Number(payload.lead_count || 0).toLocaleString();
+      document.getElementById("fire-count").textContent = state.leads.filter(x => x.tier === "FIRE").length.toLocaleString();
+      document.getElementById("total-fees").textContent = compactMoney(total * 0.30);
+      document.getElementById("lead-count").textContent = state.leads.length.toLocaleString();
       document.getElementById("last-updated").textContent = payload.generated_at ? `Updated ${new Date(payload.generated_at).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"})}` : "Updated --";
       const pulledToday = state.leads.filter(isTodayLead).length;
       document.getElementById("today-count").textContent = pulledToday.toLocaleString();
       document.getElementById("b-all").textContent = state.leads.length.toLocaleString();
+      document.getElementById("b-collier").textContent = state.leads.filter(x => x.state === "FL" || x.county_name === "Collier FL").length.toLocaleString();
       document.getElementById("b-today").textContent = pulledToday.toLocaleString();
       document.getElementById("b-urgent").textContent = state.leads.filter(isUrgentLead).length.toLocaleString();
       document.getElementById("b-verify").textContent = state.leads.filter(hasVerifyFlag).length.toLocaleString();
@@ -2215,7 +2277,10 @@
     }
 
     function displayLeads(payload){
-      const active = Array.isArray(payload.leads) ? payload.leads : [];
+      const active = Array.isArray(payload.leads) ? payload.leads.map(lead => ({
+        ...lead,
+        state: lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA")
+      })) : [];
       const removed = Array.isArray(payload.removed_leads) ? payload.removed_leads.map(lead => ({
         ...lead,
         county_name: lead.county_name || lead.county || "",
@@ -2238,9 +2303,19 @@
         const response = await fetch("data/surplus_leads.json?t=" + Date.now(), { cache: "no-store" });
         if(!response.ok) throw new Error("Data file not found");
         const payload = await response.json();
-        state.generatedAt = payload.generated_at || "";
-        state.leads = displayLeads(payload);
-        renderStats(payload);
+        let collierPayload = null;
+        try{
+          const collierResponse = await fetch("data/collier_leads.json?t=" + Date.now(), { cache: "no-store" });
+          if(collierResponse.ok) collierPayload = await collierResponse.json();
+        }catch(error){}
+        const mergedPayload = {
+          ...payload,
+          generated_at: [payload.generated_at, collierPayload && collierPayload.generated_at].filter(Boolean).sort().pop() || payload.generated_at || "",
+          leads: displayLeads(payload).concat(collierPayload ? displayLeads(collierPayload) : [])
+        };
+        state.generatedAt = mergedPayload.generated_at || "";
+        state.leads = mergedPayload.leads;
+        renderStats(mergedPayload);
         applyFilters();
       }catch(error){
         const payload = loadEmbeddedData();

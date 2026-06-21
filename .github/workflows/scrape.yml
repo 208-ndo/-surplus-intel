@@ -39,6 +39,15 @@ jobs:
       - name: Generate attorney intake packets
         run: python scraper/generate_packet.py
 
+      - name: Run Collier FL scraper
+        run: python scraper/collier_main.py
+
+      - name: Enrich Collier FL leads
+        run: python scraper/collier_enrich.py
+
+      - name: Generate Collier FL packets
+        run: python scraper/collier_packet.py
+
       - name: Push eligible leads to GoHighLevel
         env:
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
@@ -51,18 +60,21 @@ jobs:
           from pathlib import Path
 
           payload = json.loads(Path("data/surplus_leads.json").read_text())
-          n = payload.get("lead_count", 0)
-          total = payload.get("total_surplus_amount", 0)
-          timestamp = payload.get("generated_at", "")
+          collier_path = Path("data/collier_leads.json")
+          collier = json.loads(collier_path.read_text()) if collier_path.exists() else {}
+          n = payload.get("lead_count", 0) + collier.get("lead_count", 0)
+          total = payload.get("total_surplus_amount", 0) + collier.get("total_surplus_amount", 0)
+          timestamp = max(payload.get("generated_at", ""), collier.get("generated_at", ""))
           court = payload.get("court_docs_meta", {})
           clean = court.get("clean_leads", 0)
           flagged = court.get("flagged_leads", 0)
-          message = f"Surplus update: {n} leads | ${total:,.0f} total | {clean} clean | {flagged} flagged | {timestamp}"
+          fl_active = collier.get("active_lead_count", 0)
+          message = f"Surplus update: {n} leads | ${total:,.0f} total | {clean} clean | {flagged} flagged | {fl_active} FL active | {timestamp}"
           Path("commit_message.txt").write_text(message, encoding="utf-8")
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/surplus_leads.json data/previous_leads.json data/removed_leads.json data/daily_digest.json index.html packets
+          git add data/surplus_leads.json data/collier_leads.json data/previous_leads.json data/removed_leads.json data/daily_digest.json index.html packets
           if git diff --cached --quiet; then
             echo "No surplus data changes to commit."
           else

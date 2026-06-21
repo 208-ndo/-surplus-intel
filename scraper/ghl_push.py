@@ -11,6 +11,7 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "surplus_leads.json"
+COLLIER_DATA_PATH = ROOT / "data" / "collier_leads.json"
 GHL_URL = "https://rest.gohighlevel.com/v1/contacts/"
 
 
@@ -31,6 +32,13 @@ def load_leads(path: Path = DATA_PATH) -> list[dict[str, Any]]:
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
     return payload.get("leads") or []
+
+
+def load_all_leads(path: Path = DATA_PATH) -> list[dict[str, Any]]:
+    leads = load_leads(path)
+    if path == DATA_PATH and COLLIER_DATA_PATH.exists():
+        leads.extend(load_leads(COLLIER_DATA_PATH))
+    return leads
 
 
 def eligible_leads(leads: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -82,12 +90,14 @@ def attorney_priority(lead: dict[str, Any]) -> bool:
 def build_tags(lead: dict[str, Any]) -> list[str]:
     county = lead.get("county_name", "")
     tier = lead.get("tier", "")
+    state = str(lead.get("state") or ("FL" if "Collier" in str(county) else "GA")).upper()
+    state_slug = slug(state)
     enrichment = lead.get("enrichment") if isinstance(lead.get("enrichment"), dict) else {}
     tags = [
         "Surplus Lead",
-        "Surplus-GA",
-        "surplus-ga",
-        "GA",
+        f"Surplus-{state}",
+        f"surplus-{state_slug}",
+        state,
         county,
         tier,
     ]
@@ -107,6 +117,10 @@ def build_tags(lead: dict[str, Any]) -> list[str]:
         tags.append("llc-corp")
     if bool(enrichment.get("urgent")):
         tags.append("urgent")
+    if lead.get("fee_tier"):
+        tags.append(slug(lead.get("fee_tier")))
+    if lead.get("fl_urgency"):
+        tags.append(slug(lead.get("fl_urgency")))
     if attorney_priority(lead):
         tags.append("attorney-priority")
     return [tag for tag in dict.fromkeys(str(tag) for tag in tags if tag)]
@@ -116,6 +130,7 @@ def build_contact_payload(lead: dict[str, Any]) -> dict[str, Any]:
     first_name, last_name = split_name(lead.get("owner_name", ""))
     county = lead.get("county_name", "")
     tier = lead.get("tier", "")
+    state = str(lead.get("state") or ("FL" if "Collier" in str(county) else "GA")).upper()
     return {
         "firstName": first_name,
         "lastName": last_name,
@@ -125,6 +140,7 @@ def build_contact_payload(lead: dict[str, Any]) -> dict[str, Any]:
             "your_cut_30pct": lead.get("your_cut_30pct"),
             "sale_date": lead.get("sale_date"),
             "county": county,
+            "state": state,
             "property_address": lead.get("property_address", ""),
             "parcel_id": lead.get("parcel_id", ""),
             "lead_score": lead.get("score"),
@@ -133,6 +149,9 @@ def build_contact_payload(lead: dict[str, Any]) -> dict[str, Any]:
             "claim_deadline": lead.get("claim_deadline", ""),
             "days_to_claim": lead.get("days_to_claim"),
             "claim_status": lead.get("claim_status", ""),
+            "fee_tier": lead.get("fee_tier", ""),
+            "fl_urgency": lead.get("fl_urgency", ""),
+            "notice_date": lead.get("notice_date", ""),
             "is_national_creditor": lead.get("is_national_creditor", False),
             "attorney_priority": attorney_priority(lead),
             "ghl_workflow_status": "GHL",
@@ -156,7 +175,7 @@ def push_all(path: Path = DATA_PATH) -> dict[str, int]:
         print("GHL_API_KEY not set; skipping CRM push.")
         return {"eligible": 0, "pushed": 0, "failed": 0}
 
-    leads = eligible_leads(load_leads(path))
+    leads = eligible_leads(load_all_leads(path))
     pushed = 0
     failed = 0
     for lead in leads:
