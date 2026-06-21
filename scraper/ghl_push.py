@@ -45,7 +45,10 @@ def eligible_leads(leads: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [
         lead
         for lead in leads
-        if int(lead.get("score") or 0) >= 60 and float(lead.get("surplus_amount") or 0) >= 20000
+        if int(lead.get("score") or 0) >= 60
+        and float(lead.get("surplus_amount") or 0) >= 20000
+        and not bool(lead.get("is_expired"))
+        and str(lead.get("claim_status") or "").upper() != "EXPIRED"
     ]
 
 
@@ -63,6 +66,8 @@ def phone_for_lead(lead: dict[str, Any]) -> str:
 
 
 def attorney_priority(lead: dict[str, Any]) -> bool:
+    if bool(lead.get("is_expired")) or str(lead.get("claim_status") or "").upper() == "EXPIRED":
+        return False
     enrichment = lead.get("enrichment") if isinstance(lead.get("enrichment"), dict) else {}
     try:
         years_unclaimed = float(lead.get("years_unclaimed") or 0)

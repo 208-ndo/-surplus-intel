@@ -11,7 +11,7 @@
   "total_surplus_amount": 609231.58,
   "total_potential_fee_30pct": 182769.47,
   "total_potential_fee_15pct": 91384.74,
-  "fire_lead_count": 1,
+  "fire_lead_count": 0,
   "critical_count": 0,
   "hot_fee_window_count": 0,
   "expired_count": 50,
@@ -51,36 +51,27 @@
       "lead_id": "waterways_joint_venture_iv_39382480005_10494",
       "your_cut_30pct": 3148.27,
       "your_cut_15pct": 1574.13,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2015-05-26",
       "fee_tier_deadline": "2015-04-26",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -4043,
-      "date_estimated": true,
+      "days_to_claim": -4044,
+      "date_estimated": false,
       "years_unclaimed": 11.4,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
-      "is_entity_owner": false,
-      "is_individual_owner": true,
+      "is_entity_owner": true,
+      "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -104,7 +95,10 @@
         "critical": false,
         "days_remaining": -4043,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -141,36 +135,27 @@
       "lead_id": "waterways_joint_venture_iv_39717200009_2835",
       "your_cut_30pct": 850.5,
       "your_cut_15pct": 425.25,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2015-05-26",
       "fee_tier_deadline": "2015-04-26",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -4043,
-      "date_estimated": true,
+      "days_to_claim": -4044,
+      "date_estimated": false,
       "years_unclaimed": 11.4,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
-      "is_entity_owner": false,
-      "is_individual_owner": true,
+      "is_entity_owner": true,
+      "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -194,7 +179,10 @@
         "critical": false,
         "days_remaining": -4043,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -226,15 +214,15 @@
       "lead_id": "ronnie_ed_delaford_est_65171280008_19448",
       "your_cut_30pct": 5834.66,
       "your_cut_15pct": 2917.33,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2015-06-09",
       "fee_tier_deadline": "2015-05-10",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -4029,
-      "date_estimated": true,
+      "days_to_claim": -4030,
+      "date_estimated": false,
       "years_unclaimed": 11.4,
       "attorney_required": false,
       "is_estate_owner": true,
@@ -243,19 +231,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Estate / Heirs"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Estate/heir lead",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -279,7 +258,10 @@
         "critical": false,
         "days_remaining": -4029,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Estate-Heirs",
+      "owner_type": "Estate-Heirs"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -317,36 +299,27 @@
       "lead_id": "waterways_joint_venture_iv_00460960007_17220",
       "your_cut_30pct": 5166.05,
       "your_cut_15pct": 2583.02,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2016-05-10",
       "fee_tier_deadline": "2016-04-10",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -3693,
-      "date_estimated": true,
+      "days_to_claim": -3694,
+      "date_estimated": false,
       "years_unclaimed": 10.4,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
-      "is_entity_owner": false,
-      "is_individual_owner": true,
+      "is_entity_owner": true,
+      "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -370,7 +343,10 @@
         "critical": false,
         "days_remaining": -3693,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -400,14 +376,14 @@
       "lead_id": "michael_a_terri_a_genovesi_41449280000_18760",
       "your_cut_30pct": 5628.01,
       "your_cut_15pct": 2814.0,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-14",
       "fee_tier_deadline": "2021-07-11",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1649,
+      "days_to_claim": -1650,
       "date_estimated": false,
       "years_unclaimed": 5.2,
       "attorney_required": false,
@@ -417,18 +393,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -452,7 +420,10 @@
         "critical": false,
         "days_remaining": -1649,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -482,14 +453,14 @@
       "lead_id": "victor_baquero_041506440000_25849",
       "your_cut_30pct": 7754.83,
       "your_cut_15pct": 3877.42,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-14",
       "fee_tier_deadline": "2021-07-11",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1649,
+      "days_to_claim": -1650,
       "date_estimated": false,
       "years_unclaimed": 5.2,
       "attorney_required": false,
@@ -499,19 +470,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -535,7 +497,10 @@
         "critical": false,
         "days_remaining": -1649,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -563,14 +528,14 @@
       "lead_id": "edwinna_d_dudley_00812040009_74",
       "your_cut_30pct": 22.34,
       "your_cut_15pct": 11.17,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-14",
       "fee_tier_deadline": "2021-07-11",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1649,
+      "days_to_claim": -1650,
       "date_estimated": false,
       "years_unclaimed": 5.2,
       "attorney_required": false,
@@ -580,18 +545,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -615,7 +572,10 @@
         "critical": false,
         "days_remaining": -1649,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -646,14 +606,14 @@
       "lead_id": "francesco_graziani_angela_ravicini_41102560009_36665",
       "your_cut_30pct": 10999.64,
       "your_cut_15pct": 5499.82,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-14",
       "fee_tier_deadline": "2021-07-11",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1649,
+      "days_to_claim": -1650,
       "date_estimated": false,
       "years_unclaimed": 5.2,
       "attorney_required": false,
@@ -663,19 +623,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -699,7 +650,10 @@
         "critical": false,
         "days_remaining": -1649,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -727,16 +681,16 @@
       "lead_id": "j_s_dickson_00841840005_81",
       "your_cut_30pct": 24.34,
       "your_cut_15pct": 12.17,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-25",
       "fee_tier_deadline": "2021-07-25",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1638,
+      "days_to_claim": -1639,
       "date_estimated": false,
-      "years_unclaimed": 5.1,
+      "years_unclaimed": 5.2,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
@@ -744,18 +698,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -779,7 +725,10 @@
         "critical": false,
         "days_remaining": -1638,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -807,16 +756,16 @@
       "lead_id": "donald_e_wilhelm_et_al_00858120006_73",
       "your_cut_30pct": 22.04,
       "your_cut_15pct": 11.02,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-25",
       "fee_tier_deadline": "2021-07-25",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1638,
+      "days_to_claim": -1639,
       "date_estimated": false,
-      "years_unclaimed": 5.1,
+      "years_unclaimed": 5.2,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
@@ -824,18 +773,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -859,7 +800,10 @@
         "critical": false,
         "days_remaining": -1638,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -887,16 +831,16 @@
       "lead_id": "adolphus_m_herald_00865760006_953",
       "your_cut_30pct": 286.14,
       "your_cut_15pct": 143.07,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-25",
       "fee_tier_deadline": "2021-07-25",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1638,
+      "days_to_claim": -1639,
       "date_estimated": false,
-      "years_unclaimed": 5.1,
+      "years_unclaimed": 5.2,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
@@ -904,18 +848,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -939,7 +875,10 @@
         "critical": false,
         "days_remaining": -1638,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -967,16 +906,16 @@
       "lead_id": "daryl_a_stredwick_00962200003_30",
       "your_cut_30pct": 9.12,
       "your_cut_15pct": 4.56,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-25",
       "fee_tier_deadline": "2021-07-25",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1638,
+      "days_to_claim": -1639,
       "date_estimated": false,
-      "years_unclaimed": 5.1,
+      "years_unclaimed": 5.2,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
@@ -984,18 +923,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1019,7 +950,10 @@
         "critical": false,
         "days_remaining": -1638,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1047,16 +981,16 @@
       "lead_id": "dimitri_n_s_louise_staikos_01097440009_68",
       "your_cut_30pct": 20.53,
       "your_cut_15pct": 10.26,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2021-12-25",
       "fee_tier_deadline": "2021-07-25",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1638,
+      "days_to_claim": -1639,
       "date_estimated": false,
-      "years_unclaimed": 5.1,
+      "years_unclaimed": 5.2,
       "attorney_required": false,
       "is_estate_owner": false,
       "is_estate": false,
@@ -1064,18 +998,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1099,7 +1025,10 @@
         "critical": false,
         "days_remaining": -1638,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1127,14 +1056,14 @@
       "lead_id": "ajay_harkanwal_kaur_malhotra_38909120008_5842",
       "your_cut_30pct": 1752.81,
       "your_cut_15pct": 876.4,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-02-04",
       "fee_tier_deadline": "2021-09-05",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1597,
+      "days_to_claim": -1598,
       "date_estimated": false,
       "years_unclaimed": 5.0,
       "attorney_required": false,
@@ -1144,18 +1073,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1179,7 +1100,10 @@
         "critical": false,
         "days_remaining": -1597,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1207,14 +1131,14 @@
       "lead_id": "john_w_lipps_et_al_37390200004_28144",
       "your_cut_30pct": 8443.28,
       "your_cut_15pct": 4221.64,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-09-11",
       "fee_tier_deadline": "2021-12-12",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1378,
+      "days_to_claim": -1379,
       "date_estimated": false,
       "years_unclaimed": 4.8,
       "attorney_required": false,
@@ -1224,19 +1148,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1260,7 +1175,10 @@
         "critical": false,
         "days_remaining": -1378,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1288,14 +1206,14 @@
       "lead_id": "myrlande_felix_marc_a_elestin_00921770008_502",
       "your_cut_30pct": 150.73,
       "your_cut_15pct": 75.37,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-09",
       "fee_tier_deadline": "2022-01-09",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1472,
+      "days_to_claim": -1473,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1305,18 +1223,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1340,7 +1250,10 @@
         "critical": false,
         "days_remaining": -1472,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1368,14 +1281,14 @@
       "lead_id": "martin_june_feldman_00913640007_694",
       "your_cut_30pct": 208.34,
       "your_cut_15pct": 104.17,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-09",
       "fee_tier_deadline": "2022-01-09",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1472,
+      "days_to_claim": -1473,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1385,18 +1298,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1420,7 +1325,10 @@
         "critical": false,
         "days_remaining": -1472,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1448,14 +1356,14 @@
       "lead_id": "stephen_p_king_01115520005_54",
       "your_cut_30pct": 16.41,
       "your_cut_15pct": 8.2,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-09",
       "fee_tier_deadline": "2022-01-09",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1472,
+      "days_to_claim": -1473,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1465,18 +1373,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1500,7 +1400,10 @@
         "critical": false,
         "days_remaining": -1472,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1528,14 +1431,14 @@
       "lead_id": "lucille_h_kennedy_37542240003_65",
       "your_cut_30pct": 19.69,
       "your_cut_15pct": 9.84,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-09",
       "fee_tier_deadline": "2022-01-09",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1472,
+      "days_to_claim": -1473,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1545,18 +1448,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1580,7 +1475,10 @@
         "critical": false,
         "days_remaining": -1472,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1608,14 +1506,14 @@
       "lead_id": "marie_stapp_phyllis_fariello_41505920000_21401",
       "your_cut_30pct": 6420.32,
       "your_cut_15pct": 3210.16,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1625,19 +1523,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1661,7 +1550,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1689,14 +1581,14 @@
       "lead_id": "john_w_lessie_m_tate_00923400004_78",
       "your_cut_30pct": 23.66,
       "your_cut_15pct": 11.83,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1706,18 +1598,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1741,7 +1625,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1769,14 +1656,14 @@
       "lead_id": "norman_rose_petersen_00958000000_149",
       "your_cut_30pct": 44.86,
       "your_cut_15pct": 22.43,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1786,18 +1673,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1821,7 +1700,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1849,14 +1731,14 @@
       "lead_id": "michael_g_diana_c_borg_00975840007_16",
       "your_cut_30pct": 4.83,
       "your_cut_15pct": 2.42,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1866,18 +1748,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1901,7 +1775,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -1929,14 +1806,14 @@
       "lead_id": "antonio_g_maria_a_lonza_01108720003_68",
       "your_cut_30pct": 20.56,
       "your_cut_15pct": 10.28,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -1946,18 +1823,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -1981,7 +1850,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2009,14 +1881,14 @@
       "lead_id": "florence_a_smith_rev_trust_atg_trust_co_00347440006_8288",
       "your_cut_30pct": 2486.44,
       "your_cut_15pct": 1243.22,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -2026,18 +1898,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "LLC / Corp"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Entity owner penalty"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2061,7 +1925,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2091,14 +1958,14 @@
       "lead_id": "antti_kangas_00889840009_3726",
       "your_cut_30pct": 1117.9,
       "your_cut_15pct": 558.95,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-06-25",
       "fee_tier_deadline": "2022-01-23",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1456,
+      "days_to_claim": -1457,
       "date_estimated": false,
       "years_unclaimed": 4.7,
       "attorney_required": false,
@@ -2108,18 +1975,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2143,7 +2002,10 @@
         "critical": false,
         "days_remaining": -1456,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2171,15 +2033,15 @@
       "lead_id": "eric_steckler_et_al_39081480005_14623",
       "your_cut_30pct": 4386.96,
       "your_cut_15pct": 2193.48,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-07-26",
       "fee_tier_deadline": "2022-06-26",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1425,
-      "date_estimated": true,
+      "days_to_claim": -1426,
+      "date_estimated": false,
       "years_unclaimed": 4.2,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -2188,19 +2050,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2224,7 +2077,10 @@
         "critical": false,
         "days_remaining": -1425,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2252,14 +2108,14 @@
       "lead_id": "alice_pearl_akins_sidney_trust_00443040009_20621",
       "your_cut_30pct": 6186.38,
       "your_cut_15pct": 3093.19,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-01-07",
       "fee_tier_deadline": "2022-08-07",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1260,
+      "days_to_claim": -1261,
       "date_estimated": false,
       "years_unclaimed": 4.1,
       "attorney_required": false,
@@ -2269,19 +2125,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "LLC / Corp"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Entity owner penalty"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2305,7 +2152,10 @@
         "critical": false,
         "days_remaining": -1260,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2333,14 +2183,14 @@
       "lead_id": "bank_of_america_n_a_38606360006_23555",
       "your_cut_30pct": 7066.71,
       "your_cut_15pct": 3533.35,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-01-07",
       "fee_tier_deadline": "2022-08-07",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1260,
+      "days_to_claim": -1261,
       "date_estimated": false,
       "years_unclaimed": 4.1,
       "attorney_required": false,
@@ -2350,19 +2200,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "LLC / Corp"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Entity owner penalty"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2386,7 +2227,10 @@
         "critical": false,
         "days_remaining": -1260,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2414,14 +2258,14 @@
       "lead_id": "mary_l_appel_catherine_allen_theresa_p_crawford_37864560005_23653",
       "your_cut_30pct": 7096.01,
       "your_cut_15pct": 3548.0,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-01-07",
       "fee_tier_deadline": "2022-08-07",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1260,
+      "days_to_claim": -1261,
       "date_estimated": false,
       "years_unclaimed": 4.1,
       "attorney_required": false,
@@ -2431,19 +2275,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2467,7 +2302,10 @@
         "critical": false,
         "days_remaining": -1260,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2495,15 +2333,15 @@
       "lead_id": "howard_p_smith_et_al_38784960001_15421",
       "your_cut_30pct": 4626.35,
       "your_cut_15pct": 2313.17,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2022-11-29",
       "fee_tier_deadline": "2022-10-30",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1299,
-      "date_estimated": true,
+      "days_to_claim": -1300,
+      "date_estimated": false,
       "years_unclaimed": 3.9,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -2512,19 +2350,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2548,7 +2377,10 @@
         "critical": false,
         "days_remaining": -1299,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2579,14 +2411,14 @@
       "lead_id": "bedrock_family_trust_62155680009_43877",
       "your_cut_30pct": 13163.17,
       "your_cut_15pct": 6581.59,
-      "tier": "WARM",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-04-15",
       "fee_tier_deadline": "2022-11-13",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1162,
+      "days_to_claim": -1163,
       "date_estimated": false,
       "years_unclaimed": 3.8,
       "attorney_required": false,
@@ -2596,19 +2428,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "WARM",
-        "LLC / Corp"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "WARM surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Entity owner penalty"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2632,7 +2455,10 @@
         "critical": false,
         "days_remaining": -1162,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "WARM",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2662,15 +2488,15 @@
       "lead_id": "south_bay_plantation_condo_assn_inc_c_o_de_sol_proper_74029003629_85130",
       "your_cut_30pct": 25539.22,
       "your_cut_15pct": 12769.61,
-      "tier": "HOT",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-01-17",
       "fee_tier_deadline": "2022-12-18",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1250,
-      "date_estimated": true,
+      "days_to_claim": -1251,
+      "date_estimated": false,
       "years_unclaimed": 3.8,
       "attorney_required": false,
       "is_estate_owner": true,
@@ -2679,20 +2505,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "HOT",
-        "Estate / Heirs"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "HOT surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Estate/heir lead",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2716,7 +2532,10 @@
         "critical": false,
         "days_remaining": -1250,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "HOT",
+      "entity_type": "Estate-Heirs",
+      "owner_type": "Estate-Heirs"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2746,15 +2565,15 @@
       "lead_id": "alverta_l_burgess_est_71730000189_145411",
       "your_cut_30pct": 43623.37,
       "your_cut_15pct": 21811.69,
-      "tier": "FIRE",
-      "score": 10,
+      "tier": "EXPIRED",
+      "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": true,
@@ -2763,20 +2582,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "FIRE",
-        "Estate / Heirs"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "FIRE surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Estate/heir lead",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2800,7 +2609,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "FIRE",
+      "entity_type": "Estate-Heirs",
+      "owner_type": "Estate-Heirs"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2830,15 +2642,15 @@
       "lead_id": "glenn_koral_00228082004_10625",
       "your_cut_30pct": 3187.67,
       "your_cut_15pct": 1593.84,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -2847,19 +2659,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2883,7 +2686,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2913,15 +2719,15 @@
       "lead_id": "evelyne_llorente_luc_havan_00228680008_6167",
       "your_cut_30pct": 1850.22,
       "your_cut_15pct": 925.11,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -2930,19 +2736,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -2966,7 +2763,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -2994,15 +2794,15 @@
       "lead_id": "louis_marjorie_de_marco_joseph_hazel_giglo_00497600000_47",
       "your_cut_30pct": 14.16,
       "your_cut_15pct": 7.08,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3011,19 +2811,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3047,7 +2838,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3075,15 +2869,15 @@
       "lead_id": "daniel_s_hewins_jr_00497840006_8067",
       "your_cut_30pct": 2420.3,
       "your_cut_15pct": 1210.15,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3092,19 +2886,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3128,7 +2913,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3156,15 +2944,15 @@
       "lead_id": "allene_b_brown_00503600004_206",
       "your_cut_30pct": 61.86,
       "your_cut_15pct": 30.93,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3173,19 +2961,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3209,7 +2988,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3237,15 +3019,15 @@
       "lead_id": "philip_s_olga_m_coriaty_00519160004_503",
       "your_cut_30pct": 151.08,
       "your_cut_15pct": 75.54,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3254,19 +3036,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3290,7 +3063,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3318,15 +3094,15 @@
       "lead_id": "lincoln_h_evans_est_c_o_louise_j_evans_00866600000_79",
       "your_cut_30pct": 23.91,
       "your_cut_15pct": 11.96,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": true,
@@ -3335,19 +3111,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Estate / Heirs"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Estate/heir lead",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3371,7 +3138,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Estate-Heirs",
+      "owner_type": "Estate-Heirs"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3399,15 +3169,15 @@
       "lead_id": "irma_l_elliott_00925280002_469",
       "your_cut_30pct": 140.89,
       "your_cut_15pct": 70.45,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3416,19 +3186,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3452,7 +3213,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3480,15 +3244,15 @@
       "lead_id": "henry_s_elias_beverly_kay_renaud_00964520008_28",
       "your_cut_30pct": 8.59,
       "your_cut_15pct": 4.3,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3497,19 +3261,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3533,7 +3288,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3561,15 +3319,15 @@
       "lead_id": "leonard_mildred_case_trust_00966720000_1727",
       "your_cut_30pct": 518.12,
       "your_cut_15pct": 259.06,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3578,19 +3336,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "LLC / Corp"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Entity owner penalty",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3614,7 +3363,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "LLC-Corp",
+      "owner_type": "LLC-Corp"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3642,15 +3394,15 @@
       "lead_id": "ione_m_goode_00981800002_81",
       "your_cut_30pct": 24.31,
       "your_cut_15pct": 12.16,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3659,19 +3411,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3695,7 +3438,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3723,15 +3469,15 @@
       "lead_id": "hilda_v_gilliam_julius_c_gilliam_iii_00981960007_383",
       "your_cut_30pct": 114.92,
       "your_cut_15pct": 57.46,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3740,19 +3486,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3776,7 +3513,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3804,15 +3544,15 @@
       "lead_id": "rachel_l_mann_viola_l_sigmon_01070440000_2053",
       "your_cut_30pct": 616.04,
       "your_cut_15pct": 308.02,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3821,19 +3561,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3857,7 +3588,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3885,15 +3619,15 @@
       "lead_id": "andy_rose_sugar_01130280003_1059",
       "your_cut_30pct": 317.94,
       "your_cut_15pct": 158.97,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3902,19 +3636,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -3938,7 +3663,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -3966,15 +3694,15 @@
       "lead_id": "willie_grier_et_ux_01163240007_268",
       "your_cut_30pct": 80.44,
       "your_cut_15pct": 40.22,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": false,
@@ -3983,19 +3711,10 @@
       "is_individual_owner": true,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Individual"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Individual owner",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -4019,7 +3738,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Individual",
+      "owner_type": "Individual"
     },
     {
       "source": "collier_tax_deed_excess_proceeds_pdf",
@@ -4047,15 +3769,15 @@
       "lead_id": "florinda_b_orona_est_00118080006_3581",
       "your_cut_30pct": 1074.57,
       "your_cut_15pct": 537.28,
-      "tier": "LOW",
+      "tier": "EXPIRED",
       "score": 0,
       "claim_deadline": "2023-02-14",
       "fee_tier_deadline": "2023-01-15",
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -1222,
-      "date_estimated": true,
+      "days_to_claim": -1223,
+      "date_estimated": false,
       "years_unclaimed": 3.7,
       "attorney_required": false,
       "is_estate_owner": true,
@@ -4064,19 +3786,10 @@
       "is_individual_owner": false,
       "is_expired": true,
       "tags": [
-        "FL",
-        "Collier",
-        "No Attorney Required",
-        "Fee Tier: NEGOTIABLE",
-        "EXPIRED",
-        "Estate / Heirs"
+        "EXPIRED"
       ],
       "score_reasons": [
-        "LOW surplus tier",
-        "Florida urgency: EXPIRED",
-        "Fee tier: NEGOTIABLE",
-        "Estate/heir lead",
-        "Notice date estimated from sale date"
+        "Expired - not actionable"
       ],
       "enrichment": {
         "enriched_at": "2026-06-20T21:38:10+00:00",
@@ -4100,7 +3813,10 @@
         "critical": false,
         "days_remaining": -1222,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
-      }
+      },
+      "amount_tier": "LOW",
+      "entity_type": "Estate-Heirs",
+      "owner_type": "Estate-Heirs"
     }
   ],
   "enrichment_meta": {
@@ -4113,5 +3829,14 @@
     "generated": 0,
     "failed": 0,
     "skipped": 50
+  },
+  "migration_meta": {
+    "migrated_at": "2026-06-21T19:22:45+00:00",
+    "processed": 50,
+    "failed": 0,
+    "fixes": [
+      "expired_leads_dead",
+      "fl_entity_classification"
+    ]
   }
 }

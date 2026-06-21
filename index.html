@@ -236,6 +236,7 @@
         <div class="stat"><div class="stat-value blue" id="today-count">0</div><div class="stat-label">Pulled Today</div></div>
         <div class="stat"><div class="stat-value" id="lead-count">0</div><div class="stat-label">Total Leads</div></div>
         <div class="stat"><div class="stat-value green" id="earnings-count">$0</div><div class="stat-label">Your Earnings</div></div>
+        <div class="stat"><div class="stat-value amber" id="address-lookup-count">0</div><div class="stat-label">Need Address Lookup</div></div>
         <div class="action-tile">Surplus Leads</div>
       </div>
     </header>
@@ -289,6 +290,8 @@
       </div>
       <label class="toggle"><input id="individual-filter" type="checkbox" onchange="applyFilters()"> Individual only</label>
       <label class="toggle"><input id="ghl-filter" type="checkbox" onchange="applyFilters()"> GHL eligible</label>
+      <label class="toggle"><input id="hide-expired-filter" type="checkbox" checked onchange="applyFilters()"> Hide expired</label>
+      <label class="toggle"><input id="address-filter" type="checkbox" onchange="applyFilters()"> Needs address lookup</label>
       <select id="sort-filter" onchange="applyFilters()">
         <option value="score">Highest Score</option>
         <option value="amount_desc">Highest Amount</option>
@@ -505,7 +508,7 @@
   <script>
     const state = { leads: [], filtered: [], generatedAt: "", tab: "all", selected: new Set(), pipeline: {}, pipelineFilter: "" };
     const PIPELINE_KEY = "surplusIntelPipelineV1";
-    const STATUS_OPTIONS = ["New", "Researching", "Skip Traced", "Traced", "GHL", "Contacted", "Left Voicemail", "Sent Follow-up", "Interested", "Agreement Sent", "Contract Sent", "Contract Signed", "Signed", "Docs Collecting", "Filed with County", "Filed", "Pending Disbursement", "Closed / Paid", "Closed", "Dead", "On Hold"];
+    const STATUS_OPTIONS = ["New", "Researching", "Skip Traced", "Traced", "GHL", "Contacted", "Left Voicemail", "Sent Follow-up", "Interested", "Agreement Sent", "Contract Sent", "Contract Signed", "Signed", "Docs Collecting", "Filed with County", "Filed", "Pending Disbursement", "Closed / Paid", "Closed", "Dead", "Expired - Not Actionable", "On Hold"];
     const fmtMoney = value => "$" + Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 });
     const fmtMoney2 = value => "$" + Number(value || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const truncate = (value, limit = 45) => {
@@ -552,7 +555,7 @@
     }
 
     function isGHLEligible(lead){
-      return Number(lead.surplus_amount || 0) >= 20000 && Number(lead.score || 0) >= 60 && !lead.is_expired;
+      return Number(lead.surplus_amount || 0) >= 20000 && Number(lead.score || 0) >= 60 && !isExpiredLead(lead);
     }
 
     function enrichment(lead){
@@ -560,9 +563,17 @@
     }
 
     function isUrgentLead(lead){
+      if(isExpiredLead(lead)) return false;
       const enrich = enrichment(lead);
       const days = Number(enrich.days_remaining ?? lead.days_to_claim);
       return !!enrich.urgent || (Number.isFinite(days) && days < 90);
+    }
+
+    function isExpiredLead(lead){
+      if(!lead) return false;
+      if(lead.is_expired || lead.tier === "EXPIRED" || String(lead.claim_status || "").toUpperCase().includes("EXPIRED")) return true;
+      const days = Number(lead.days_to_claim);
+      return Number.isFinite(days) && days < 0;
     }
 
     function hasVerifyFlag(lead){
@@ -605,6 +616,9 @@
     function leadState(lead){
       const key = leadKey(lead);
       state.pipeline[key] = state.pipeline[key] || { status: "New", notes: "", phone: "", email: "", attorney: "", attorneyEmail: "", attorneyPhone: "", priority: false, contactLog: [], ghlPushedAt: "", ghlTags: [], docs: {}, docRefs: {}, dates: {}, actualSurplus: "", openLiens: "", attorneySplit: "50", feePercent: "30", taxPercent: "25", bestTime: "Unknown", preferredContact: "All", caseNumber: "", takeHomeAmount: "", updatedAt: "" };
+      if(isExpiredLead(lead) && (!state.pipeline[key].status || state.pipeline[key].status === "New")){
+        state.pipeline[key].status = "Expired - Not Actionable";
+      }
       state.pipeline[key].contactLog = Array.isArray(state.pipeline[key].contactLog) ? state.pipeline[key].contactLog : [];
       state.pipeline[key].ghlTags = Array.isArray(state.pipeline[key].ghlTags) ? state.pipeline[key].ghlTags : [];
       state.pipeline[key].docs = typeof state.pipeline[key].docs === "object" && state.pipeline[key].docs ? state.pipeline[key].docs : {};
@@ -631,7 +645,7 @@
 
     function isDeadlineAlert(lead){
       const days = Number(enrichment(lead).days_remaining ?? lead.days_to_claim);
-      return !isRemovedLead(lead) && (isUrgentLead(lead) || (Number.isFinite(days) && days <= 90));
+      return !isExpiredLead(lead) && !isRemovedLead(lead) && (isUrgentLead(lead) || (Number.isFinite(days) && days <= 90));
     }
 
     function parseLogDate(entry){
@@ -752,6 +766,7 @@
     }
 
     function attorneyPriority(lead){
+      if(isExpiredLead(lead)) return false;
       const years = Number(lead.years_unclaimed || 0);
       const days = Number(enrichment(lead).days_remaining ?? lead.days_to_claim);
       return !!lead.is_estate_owner || years >= 4 || Number(lead.surplus_amount || 0) >= 50000 || (Number.isFinite(days) && days <= 180) || hasVerifyFlag(lead);
@@ -844,6 +859,13 @@
       return "Address pending";
     }
 
+    function needsAddressLookup(lead){
+      if(!lead) return false;
+      const address = String(lead.property_address || "").trim();
+      if(!address) return true;
+      return /address pending|not in public pdf|look up parcel/i.test(address);
+    }
+
     function addressHTML(lead){
       const address = [lead.property_address, lead.city, lead.zip].filter(Boolean).join(", ");
       if(address) return address;
@@ -860,7 +882,7 @@
       if(state.tab === "urgent") return isUrgentLead(lead);
       if(state.tab === "verify") return hasVerifyFlag(lead);
       if(state.tab === "mypipeline") return leadHasPipelineStatus(lead);
-      if(["FIRE","HOT","WARM"].includes(state.tab)) return lead.tier === state.tab;
+      if(["FIRE","HOT","WARM"].includes(state.tab)) return !isExpiredLead(lead) && lead.tier === state.tab;
       if(state.tab === "ghl") return isGHLEligible(lead);
       if(state.tab === "individual") return !!lead.is_individual_owner;
       if(state.tab === "estate") return !!lead.is_estate_owner;
@@ -875,7 +897,11 @@
       const minAmount = Number(document.getElementById("amount-filter")?.value || 0);
       const individualOnly = !!document.getElementById("individual-filter")?.checked;
       const ghlOnly = !!document.getElementById("ghl-filter")?.checked;
+      const hideExpired = !!document.getElementById("hide-expired-filter")?.checked;
+      const addressOnly = !!document.getElementById("address-filter")?.checked;
       const query = (document.getElementById("search")?.value || "").toLowerCase().trim();
+      if(hideExpired && isExpiredLead(lead)) return false;
+      if(addressOnly && !needsAddressLookup(lead)) return false;
       if(county && lead.county_name !== county) return false;
       if(city && String(lead.city || "").toLowerCase() !== city.toLowerCase()) return false;
       if(stateCode && leadStateCode(lead) !== stateCode) return false;
@@ -1366,6 +1392,7 @@
 
     function statusGroup(status){
       const normalized = normalizeStatus(status);
+      if(normalized === "Expired - Not Actionable") return "Expired - Not Actionable";
       if(normalized === "GHL") return "Skip Traced";
       if(normalized === "Left Voicemail" || normalized === "Sent Follow-up") return "Contacted";
       if(normalized === "Closed / Paid") return "Closed / Paid";
@@ -1414,7 +1441,7 @@
     function renderPipelineSummary(leads = state.leads){
       const el = document.getElementById("pipeline-summary");
       if(!el) return;
-      const stages = ["New","Skip Traced","Contacted","Interested","Contract Sent","Contract Signed","Filed","Closed / Paid","Dead"];
+      const stages = ["New","Skip Traced","Contacted","Interested","Contract Sent","Contract Signed","Filed","Closed / Paid","Dead","Expired - Not Actionable"];
       const counts = Object.fromEntries(stages.map(stage => [stage, 0]));
       leads.forEach(lead => {
         const group = statusGroup(leadState(lead).status);
@@ -2076,6 +2103,9 @@
       const tags = [];
       const enrich = enrichment(lead);
       const docs = lead.gsccca_docs || {};
+      if(isExpiredLead(lead)){
+        return `<span class="tag gray">EXPIRED</span>`;
+      }
       tags.push({label:lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA"), cls:lead.state === "FL" ? "blue" : "gray"});
       if(isRemovedLead(lead)) tags.push({label:"Removed Last Run", cls:"gray"});
       if(lead.is_expired) tags.push({label:"EXPIRED", cls:"gray"});
@@ -2146,23 +2176,26 @@
 
     function renderStats(payload, leads = state.leads){
       const total = leads.reduce((sum, lead) => sum + Number(lead.surplus_amount || 0), 0);
+      const activeLeads = leads.filter(lead => !isExpiredLead(lead));
+      const activeTotal = activeLeads.reduce((sum, lead) => sum + Number(lead.surplus_amount || 0), 0);
       document.getElementById("total-surplus").textContent = compactMoney(total);
-      document.getElementById("fire-count").textContent = leads.filter(x => x.tier === "FIRE").length.toLocaleString();
-      document.getElementById("total-fees").textContent = compactMoney(total * 0.30);
+      document.getElementById("fire-count").textContent = activeLeads.filter(x => x.tier === "FIRE").length.toLocaleString();
+      document.getElementById("total-fees").textContent = compactMoney(activeTotal * 0.30);
       document.getElementById("lead-count").textContent = leads.length.toLocaleString();
+      document.getElementById("address-lookup-count").textContent = leads.filter(needsAddressLookup).length.toLocaleString();
       document.getElementById("last-updated").textContent = payload.generated_at ? `Updated ${new Date(payload.generated_at).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"})}` : "Updated --";
       const pulledToday = leads.filter(isTodayLead).length;
       document.getElementById("today-count").textContent = pulledToday.toLocaleString();
       document.getElementById("b-all").textContent = leads.length.toLocaleString();
       document.getElementById("b-collier").textContent = leads.filter(x => x.state === "FL" || x.county_name === "Collier FL").length.toLocaleString();
       document.getElementById("b-today").textContent = pulledToday.toLocaleString();
-      document.getElementById("b-urgent").textContent = leads.filter(isUrgentLead).length.toLocaleString();
+      document.getElementById("b-urgent").textContent = activeLeads.filter(isUrgentLead).length.toLocaleString();
       document.getElementById("b-verify").textContent = leads.filter(hasVerifyFlag).length.toLocaleString();
       document.getElementById("b-mypipeline").textContent = leads.filter(leadHasPipelineStatus).length.toLocaleString();
-      document.getElementById("b-fire").textContent = leads.filter(x => x.tier === "FIRE").length.toLocaleString();
-      document.getElementById("b-hot").textContent = leads.filter(x => x.tier === "HOT").length.toLocaleString();
-      document.getElementById("b-warm").textContent = leads.filter(x => x.tier === "WARM").length.toLocaleString();
-      document.getElementById("b-ghl").textContent = leads.filter(isGHLEligible).length.toLocaleString();
+      document.getElementById("b-fire").textContent = activeLeads.filter(x => x.tier === "FIRE").length.toLocaleString();
+      document.getElementById("b-hot").textContent = activeLeads.filter(x => x.tier === "HOT").length.toLocaleString();
+      document.getElementById("b-warm").textContent = activeLeads.filter(x => x.tier === "WARM").length.toLocaleString();
+      document.getElementById("b-ghl").textContent = activeLeads.filter(isGHLEligible).length.toLocaleString();
       document.getElementById("b-individual").textContent = leads.filter(x => x.is_individual_owner).length.toLocaleString();
       document.getElementById("b-estate").textContent = leads.filter(x => x.is_estate_owner).length.toLocaleString();
       document.getElementById("b-entity").textContent = leads.filter(x => x.is_entity_owner).length.toLocaleString();
@@ -2298,16 +2331,20 @@
       document.getElementById("empty-state").style.display = state.filtered.length ? "none" : "block";
       body.innerHTML = state.filtered.map((lead, index) => {
         const tier = lead.tier || "LOW";
-        const cls = tierClass(tier);
+        const expired = isExpiredLead(lead);
+        const cls = expired ? "low" : tierClass(tier);
         const address = addressHTML(lead);
         const saved = leadState(lead);
         const key = leadKey(lead);
         const phone = phoneForLead(lead);
-        const callButton = phone ? `<a class="btn primary" href="tel:${phone.replace(/[^0-9+]/g, "")}" onclick="event.stopPropagation()">Call</a>` : `<button class="btn disabled" disabled onclick="event.stopPropagation()">Call</button>`;
+        const callButton = !expired && phone ? `<a class="btn primary" href="tel:${phone.replace(/[^0-9+]/g, "")}" onclick="event.stopPropagation()">Call</a>` : `<button class="btn disabled" disabled onclick="event.stopPropagation()">Call</button>`;
+        const actionButtons = expired
+          ? `<button class="btn disabled" disabled onclick="event.stopPropagation()">Trace</button><button class="btn disabled" disabled onclick="event.stopPropagation()">Call</button><button class="btn disabled" disabled onclick="event.stopPropagation()">GHL</button>`
+          : `<a class="btn" href="${batchSkipUrl(lead)}" target="_blank" onclick="event.stopPropagation()">Trace</a>${callButton}<button class="btn primary" onclick="event.stopPropagation();pushToGHL(${index})">GHL</button>`;
         const statusOptions = STATUS_OPTIONS.map(status => `<option value="${status}" ${saved.status === status ? "selected" : ""}>${status}</option>`).join("");
         const priorityMark = saved.priority ? `<span class="tag hot">Starred</span>` : "";
         const pipelineMark = leadHasPipelineStatus(lead) ? `<span class="tag warm">${statusGroup(saved.status)}</span>` : "";
-        const rowClass = [isDeadlineAlert(lead) ? "deadline-alert" : "", isRemovedLead(lead) ? "removed-row" : "", isStaleLead(lead) ? "deadline-alert" : ""].filter(Boolean).join(" ");
+        const rowClass = [isDeadlineAlert(lead) ? "deadline-alert" : "", (isRemovedLead(lead) || expired) ? "removed-row" : "", isStaleLead(lead) ? "deadline-alert" : ""].filter(Boolean).join(" ");
         return `<tr class="${rowClass}" onclick="openLead(${index})">
           <td><input class="row-check" type="checkbox" ${state.selected.has(key) ? "checked" : ""} onclick="event.stopPropagation();toggleSelected(${index}, this.checked)"></td>
           <td><div class="score ${cls}">${lead.score || 0}</div></td>
@@ -2315,10 +2352,10 @@
           <td class="date-cell">${lead.county_name || "--"}</td>
           <td class="date-cell">${lead.sale_date || "--"}<div class="owner-sub">${yearsLabel(lead.years_unclaimed)}</div><div class="owner-sub">${claimCountdownLabel(lead)}</div></td>
           <td><div class="amount ${cls}">${fmtMoney(lead.surplus_amount)}</div></td>
-          <td><div class="cut">${fmtMoney(lead.your_cut_30pct)}</div></td>
+          <td><div class="cut">${expired ? "N/A - Expired" : fmtMoney(lead.your_cut_30pct)}</div></td>
           <td><select class="status-select" onclick="event.stopPropagation()" onchange="updateLeadStatus(${index}, this.value)">${statusOptions}</select></td>
           <td><div class="tags">${tagsHTML(lead)}</div></td>
-          <td><div class="actions"><a class="btn" href="${batchSkipUrl(lead)}" target="_blank" onclick="event.stopPropagation()">Trace</a>${callButton}<button class="btn primary" onclick="event.stopPropagation();pushToGHL(${index})">GHL</button></div></td>
+          <td><div class="actions">${actionButtons}</div></td>
         </tr>`;
       }).join("");
     }
@@ -2337,7 +2374,7 @@
       const active = Array.isArray(payload.leads) ? payload.leads.map(lead => ({
         ...lead,
         state: lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA")
-      })) : [];
+      })).map(normalizeLeadForDisplay) : [];
       const removed = Array.isArray(payload.removed_leads) ? payload.removed_leads.map(lead => ({
         ...lead,
         county_name: lead.county_name || lead.county || "",
@@ -2352,6 +2389,20 @@
         }
       })) : [];
       return active.concat(removed);
+    }
+
+    function normalizeLeadForDisplay(lead){
+      if(!isExpiredLead(lead)) return lead;
+      return {
+        ...lead,
+        tier: "EXPIRED",
+        score: 0,
+        is_expired: true,
+        tags: ["EXPIRED"],
+        claim_status: lead.claim_status || "EXPIRED",
+        is_ghl_eligible: false,
+        attorney_priority: false,
+      };
     }
 
     async function loadData(){

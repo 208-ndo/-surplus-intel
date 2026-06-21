@@ -5,13 +5,17 @@ from datetime import date, datetime, timedelta
 from typing import Any
 
 try:
+    from .score import ENTITY_TERMS as GA_ENTITY_TERMS
     from .score import tier_for_amount
 except ImportError:  # pragma: no cover
+    from score import ENTITY_TERMS as GA_ENTITY_TERMS
     from score import tier_for_amount
 
 
 ENTITY_TERMS = (
+    *GA_ENTITY_TERMS,
     " LLC",
+    " L L C",
     " INC",
     " CORP",
     " CORPORATION",
@@ -23,6 +27,20 @@ ENTITY_TERMS = (
     " LP",
     " LLP",
     " LTD",
+    " JOINT VENTURE",
+    " VENTURE",
+    " PARTNERSHIP",
+    " PARTNERS",
+    " HOLDINGS",
+    " PROPERTY",
+    " PROPERTIES",
+    " REALTY",
+    " DEVELOPMENT",
+    " MINISTRIES",
+    " CHURCH",
+    " FOUNDATION",
+    " UNIVERSITY",
+    " ESTATES",
 )
 
 
@@ -61,6 +79,14 @@ def is_entity_owner(owner_name: str) -> bool:
     return any(term in upper for term in ENTITY_TERMS)
 
 
+def owner_category(owner_name: str) -> str:
+    if is_estate_owner(owner_name):
+        return "Estate-Heirs"
+    if is_entity_owner(owner_name):
+        return "LLC-Corp"
+    return "Individual"
+
+
 def years_between(start: date | None, end: date | None = None) -> float:
     if not start:
         return 0.0
@@ -94,25 +120,25 @@ def score_collier_lead(lead: dict[str, Any], current: date | None = None) -> dic
     urgency = florida_urgency(days_remaining, sale_dt, today)
     fee_tier = "HIGH_URGENCY_15PCT" if sale_dt and today <= sale_dt + timedelta(days=90) else "NEGOTIABLE"
     amount_tier = tier_for_amount(amount)
+    expired = urgency == "EXPIRED"
 
     score = 0
-    if amount >= 100000:
-        score += 40
-    elif amount >= 50000:
-        score += 30
-    elif amount >= 20000:
-        score += 20
-    else:
-        score += 5
+    if not expired:
+        if amount >= 100000:
+            score += 40
+        elif amount >= 50000:
+            score += 30
+        elif amount >= 20000:
+            score += 20
+        else:
+            score += 5
 
-    if urgency == "CRITICAL":
-        score += 35
-    elif urgency == "URGENT":
-        score += 25
-    elif urgency == "HOT":
-        score += 15
-    elif urgency == "EXPIRED":
-        score -= 45
+        if urgency == "CRITICAL":
+            score += 35
+        elif urgency == "URGENT":
+            score += 25
+        elif urgency == "HOT":
+            score += 15
 
     if is_estate_owner(owner):
         score += 10
@@ -121,24 +147,27 @@ def score_collier_lead(lead: dict[str, Any], current: date | None = None) -> dic
     else:
         score += 15
 
-    if sale_dt and years_between(sale_dt, today) >= 1:
+    if sale_dt and years_between(sale_dt, today) >= 1 and not expired:
         score += 5
 
-    score = max(0, min(100, int(score)))
+    score = 0 if expired else max(0, min(100, int(score)))
 
-    tags = list(dict.fromkeys([*(lead.get("tags") or [])]))
-    tags.extend(["FL", "Collier", "No Attorney Required", f"Fee Tier: {fee_tier.replace('_', ' ')}"])
-    if urgency in {"CRITICAL", "URGENT", "HOT", "WARM", "EXPIRED"}:
-        tags.append(urgency)
-    if amount_tier in {"FIRE", "HOT", "WARM"}:
-        tags.append(amount_tier)
-    if is_estate_owner(owner):
-        tags.append("Estate / Heirs")
-    elif is_entity_owner(owner):
-        tags.append("LLC / Corp")
+    if expired:
+        tags = ["EXPIRED"]
     else:
+        tags = list(dict.fromkeys([*(lead.get("tags") or [])]))
+        tags.extend(["FL", "Collier", "No Attorney Required", f"Fee Tier: {fee_tier.replace('_', ' ')}"])
+        if urgency in {"CRITICAL", "URGENT", "HOT", "WARM"}:
+            tags.append(urgency)
+        if amount_tier in {"FIRE", "HOT", "WARM"}:
+            tags.append(amount_tier)
+    if is_estate_owner(owner) and not expired:
+        tags.append("Estate / Heirs")
+    elif is_entity_owner(owner) and not expired:
+        tags.append("LLC / Corp")
+    elif not expired:
         tags.append("Individual")
-    if amount >= 20000 and score >= 60 and urgency != "EXPIRED":
+    if amount >= 20000 and score >= 60 and not expired:
         tags.append("GHL Eligible")
 
     lead.update(
@@ -149,7 +178,8 @@ def score_collier_lead(lead: dict[str, Any], current: date | None = None) -> dic
             "surplus_amount": amount,
             "your_cut_30pct": round(amount * 0.30, 2),
             "your_cut_15pct": round(amount * 0.15, 2),
-            "tier": amount_tier,
+            "amount_tier": amount_tier,
+            "tier": "EXPIRED" if expired else amount_tier,
             "score": score,
             "sale_date": iso(sale_dt),
             "notice_date": iso(notice_dt),
@@ -166,9 +196,11 @@ def score_collier_lead(lead: dict[str, Any], current: date | None = None) -> dic
             "is_estate": is_estate_owner(owner),
             "is_entity_owner": is_entity_owner(owner),
             "is_individual_owner": not is_estate_owner(owner) and not is_entity_owner(owner),
-            "is_expired": urgency == "EXPIRED",
+            "entity_type": owner_category(owner),
+            "owner_type": owner_category(owner),
+            "is_expired": expired,
             "tags": list(dict.fromkeys(tag for tag in tags if tag)),
-            "score_reasons": build_score_reasons(amount_tier, urgency, fee_tier, owner, date_estimated),
+            "score_reasons": ["Expired - not actionable"] if expired else build_score_reasons(amount_tier, urgency, fee_tier, owner, date_estimated),
         }
     )
     return lead
