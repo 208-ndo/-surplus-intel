@@ -261,13 +261,16 @@
 
     <section class="toolbar">
       <div class="search-wrap"><span>&#128269;</span><input id="search" type="text" placeholder="Search owner, parcel, address..." oninput="applyFilters()"></div>
-      <select id="county-filter" onchange="applyFilters()">
+      <select id="county-filter" onchange="syncStateFromCounty();applyFilters()">
         <option value="">All Counties</option>
         <option value="Clayton GA">Clayton GA</option>
         <option value="DeKalb GA">DeKalb GA</option>
         <option value="Collier FL">Collier FL</option>
       </select>
-      <select id="state-filter" onchange="applyFilters()">
+      <select id="city-filter" onchange="applyFilters()">
+        <option value="">All Cities</option>
+      </select>
+      <select id="state-filter" onchange="syncCountyFromState();applyFilters()">
         <option value="">All States</option>
         <option value="GA">GA</option>
         <option value="FL">FL</option>
@@ -521,6 +524,10 @@
     function isTodayLead(lead){
       const firstSeen = String(lead.first_seen_date || "").slice(0, 10);
       return !!firstSeen && firstSeen === todayISO();
+    }
+
+    function leadStateCode(lead){
+      return lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA");
     }
 
     function setActivePanel(){
@@ -859,6 +866,67 @@
       if(state.tab === "estate") return !!lead.is_estate_owner;
       if(state.tab === "entity") return !!lead.is_entity_owner;
       return true;
+    }
+
+    function baseScopeMatch(lead){
+      const county = document.getElementById("county-filter")?.value || "";
+      const city = document.getElementById("city-filter")?.value || "";
+      const stateCode = document.getElementById("state-filter")?.value || "";
+      const minAmount = Number(document.getElementById("amount-filter")?.value || 0);
+      const individualOnly = !!document.getElementById("individual-filter")?.checked;
+      const ghlOnly = !!document.getElementById("ghl-filter")?.checked;
+      const query = (document.getElementById("search")?.value || "").toLowerCase().trim();
+      if(county && lead.county_name !== county) return false;
+      if(city && String(lead.city || "").toLowerCase() !== city.toLowerCase()) return false;
+      if(stateCode && leadStateCode(lead) !== stateCode) return false;
+      if(Number(lead.surplus_amount || 0) < minAmount) return false;
+      if(individualOnly && !lead.is_individual_owner) return false;
+      if(ghlOnly && !isGHLEligible(lead)) return false;
+      if(query){
+        const hay = [lead.owner_name, lead.parcel_id, lead.property_address, lead.city, lead.county_name, lead.tier, lead.claim_status].join(" ").toLowerCase();
+        if(!hay.includes(query)) return false;
+      }
+      return true;
+    }
+
+    function currentScopeLeads(){
+      return state.leads.filter(baseScopeMatch);
+    }
+
+    function updateCityFilter(){
+      const select = document.getElementById("city-filter");
+      if(!select) return;
+      const current = select.value;
+      const cities = [...new Set(state.leads.filter(lead => {
+        const county = document.getElementById("county-filter")?.value || "";
+        const stateCode = document.getElementById("state-filter")?.value || "";
+        if(county && lead.county_name !== county) return false;
+        if(stateCode && leadStateCode(lead) !== stateCode) return false;
+        return !!lead.city;
+      }).map(lead => String(lead.city || "").trim()).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+      select.innerHTML = `<option value="">All Cities</option>` + cities.map(city => `<option value="${city}">${city}</option>`).join("");
+      select.value = cities.includes(current) ? current : "";
+    }
+
+    function syncStateFromCounty(){
+      const county = document.getElementById("county-filter")?.value || "";
+      const stateSelect = document.getElementById("state-filter");
+      const citySelect = document.getElementById("city-filter");
+      if(citySelect) citySelect.value = "";
+      if(!stateSelect || !county) return;
+      stateSelect.value = county.includes("FL") ? "FL" : "GA";
+    }
+
+    function syncCountyFromState(){
+      const stateSelect = document.getElementById("state-filter");
+      const countySelect = document.getElementById("county-filter");
+      const citySelect = document.getElementById("city-filter");
+      if(citySelect) citySelect.value = "";
+      if(!stateSelect || !countySelect || !stateSelect.value) return;
+      const county = countySelect.value || "";
+      if(county && (county.includes("FL") ? "FL" : "GA") !== stateSelect.value){
+        countySelect.value = "";
+      }
     }
 
     function batchSkipUrl(lead){
@@ -1319,8 +1387,8 @@
       return statusGroup(leadState(lead).status) === state.pipelineFilter;
     }
 
-    function closedEarningsTotal(){
-      return state.leads.reduce((sum, lead) => {
+    function closedEarningsTotal(leads = state.leads){
+      return leads.reduce((sum, lead) => {
         const saved = leadState(lead);
         if(statusGroup(saved.status) !== "Closed / Paid") return sum;
         return sum + Number(saved.takeHomeAmount || dealNumbers(lead, saved).takeHome || 0);
@@ -1343,22 +1411,22 @@
       return (Date.now() - last) / 86400000 > 5;
     }
 
-    function renderPipelineSummary(){
+    function renderPipelineSummary(leads = state.leads){
       const el = document.getElementById("pipeline-summary");
       if(!el) return;
       const stages = ["New","Skip Traced","Contacted","Interested","Contract Sent","Contract Signed","Filed","Closed / Paid","Dead"];
       const counts = Object.fromEntries(stages.map(stage => [stage, 0]));
-      state.leads.forEach(lead => {
+      leads.forEach(lead => {
         const group = statusGroup(leadState(lead).status);
         if(counts[group] !== undefined) counts[group] += 1;
       });
-      const closedLabel = `Closed (${compactMoney(closedEarningsTotal())})`;
+      const closedLabel = `Closed (${compactMoney(closedEarningsTotal(leads))})`;
       el.innerHTML = stages.map(stage => {
         const label = stage === "Closed / Paid" ? closedLabel : `${stage} ${Number(counts[stage] || 0).toLocaleString()}`;
         return `<button class="pipeline-pill ${state.pipelineFilter === stage ? "active" : ""}" onclick="setPipelineFilter('${stage}')">${label}</button>`;
       }).join("");
       const earnings = document.getElementById("earnings-count");
-      if(earnings) earnings.textContent = compactMoney(closedEarningsTotal());
+      if(earnings) earnings.textContent = compactMoney(closedEarningsTotal(leads));
     }
 
     function setPipelineFilter(stage){
@@ -1421,7 +1489,7 @@
       saved.notes = document.getElementById("lead-notes")?.value || saved.notes || "";
       saved.docs = saved.docs || {};
       saved.docRefs = saved.docRefs || {};
-      ["photo_id","proof_ownership","death_certificate","letters_testamentary","ssn","owner_id","signed_contract","attorney_petition","probate_status","tax_sale_deed","excess_funds_confirmation","lien_check","property_details"].forEach(key => {
+      ["photo_id","proof_ownership","death_certificate","letters_testamentary","ssn","owner_id","signed_contract","attorney_petition","probate_status","tax_sale_deed","excess_funds_confirmation","lien_check","property_details","notarized_claim_affidavit","w9","power_of_attorney","probate_docs"].forEach(key => {
         const el = document.getElementById(`doc-${key}`);
         if(el) saved.docs[key] = checked(`doc-${key}`);
         const ref = document.getElementById(`doc-ref-${key}`);
@@ -2043,29 +2111,18 @@
     function applyFilters(){
       setActivePanel();
       if(state.tab === "resources") return;
-      const county = document.getElementById("county-filter").value;
-      const stateCode = document.getElementById("state-filter").value;
       const tier = document.getElementById("tier-filter").value;
-      const minAmount = Number(document.getElementById("amount-filter").value || 0);
-      const individualOnly = document.getElementById("individual-filter").checked;
-      const ghlOnly = document.getElementById("ghl-filter").checked;
       const sort = document.getElementById("sort-filter").value;
-      const query = document.getElementById("search").value.toLowerCase().trim();
+      const minAmount = Number(document.getElementById("amount-filter").value || 0);
       document.getElementById("amount-label").textContent = compactMoney(minAmount);
+      updateCityFilter();
+      const scope = currentScopeLeads();
+      renderStats({ generated_at: state.generatedAt }, scope);
 
-      state.filtered = state.leads.filter(lead => {
+      state.filtered = scope.filter(lead => {
         if(!tabMatch(lead)) return false;
         if(!statusMatchesPipelineFilter(lead)) return false;
-        if(county && lead.county_name !== county) return false;
-        if(stateCode && (lead.state || (String(lead.county_name || "").includes("FL") ? "FL" : "GA")) !== stateCode) return false;
         if(tier && lead.tier !== tier) return false;
-        if(Number(lead.surplus_amount || 0) < minAmount) return false;
-        if(individualOnly && !lead.is_individual_owner) return false;
-        if(ghlOnly && !isGHLEligible(lead)) return false;
-        if(query){
-          const hay = [lead.owner_name, lead.parcel_id, lead.property_address, lead.city, lead.county_name, lead.tier, lead.claim_status].join(" ").toLowerCase();
-          if(!hay.includes(query)) return false;
-        }
         return true;
       });
 
@@ -2087,29 +2144,29 @@
       renderTable();
     }
 
-    function renderStats(payload){
-      const total = state.leads.reduce((sum, lead) => sum + Number(lead.surplus_amount || 0), 0);
+    function renderStats(payload, leads = state.leads){
+      const total = leads.reduce((sum, lead) => sum + Number(lead.surplus_amount || 0), 0);
       document.getElementById("total-surplus").textContent = compactMoney(total);
-      document.getElementById("fire-count").textContent = state.leads.filter(x => x.tier === "FIRE").length.toLocaleString();
+      document.getElementById("fire-count").textContent = leads.filter(x => x.tier === "FIRE").length.toLocaleString();
       document.getElementById("total-fees").textContent = compactMoney(total * 0.30);
-      document.getElementById("lead-count").textContent = state.leads.length.toLocaleString();
+      document.getElementById("lead-count").textContent = leads.length.toLocaleString();
       document.getElementById("last-updated").textContent = payload.generated_at ? `Updated ${new Date(payload.generated_at).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"})}` : "Updated --";
-      const pulledToday = state.leads.filter(isTodayLead).length;
+      const pulledToday = leads.filter(isTodayLead).length;
       document.getElementById("today-count").textContent = pulledToday.toLocaleString();
-      document.getElementById("b-all").textContent = state.leads.length.toLocaleString();
-      document.getElementById("b-collier").textContent = state.leads.filter(x => x.state === "FL" || x.county_name === "Collier FL").length.toLocaleString();
+      document.getElementById("b-all").textContent = leads.length.toLocaleString();
+      document.getElementById("b-collier").textContent = leads.filter(x => x.state === "FL" || x.county_name === "Collier FL").length.toLocaleString();
       document.getElementById("b-today").textContent = pulledToday.toLocaleString();
-      document.getElementById("b-urgent").textContent = state.leads.filter(isUrgentLead).length.toLocaleString();
-      document.getElementById("b-verify").textContent = state.leads.filter(hasVerifyFlag).length.toLocaleString();
-      document.getElementById("b-mypipeline").textContent = state.leads.filter(leadHasPipelineStatus).length.toLocaleString();
-      document.getElementById("b-fire").textContent = state.leads.filter(x => x.tier === "FIRE").length.toLocaleString();
-      document.getElementById("b-hot").textContent = state.leads.filter(x => x.tier === "HOT").length.toLocaleString();
-      document.getElementById("b-warm").textContent = state.leads.filter(x => x.tier === "WARM").length.toLocaleString();
-      document.getElementById("b-ghl").textContent = state.leads.filter(isGHLEligible).length.toLocaleString();
-      document.getElementById("b-individual").textContent = state.leads.filter(x => x.is_individual_owner).length.toLocaleString();
-      document.getElementById("b-estate").textContent = state.leads.filter(x => x.is_estate_owner).length.toLocaleString();
-      document.getElementById("b-entity").textContent = state.leads.filter(x => x.is_entity_owner).length.toLocaleString();
-      renderPipelineSummary();
+      document.getElementById("b-urgent").textContent = leads.filter(isUrgentLead).length.toLocaleString();
+      document.getElementById("b-verify").textContent = leads.filter(hasVerifyFlag).length.toLocaleString();
+      document.getElementById("b-mypipeline").textContent = leads.filter(leadHasPipelineStatus).length.toLocaleString();
+      document.getElementById("b-fire").textContent = leads.filter(x => x.tier === "FIRE").length.toLocaleString();
+      document.getElementById("b-hot").textContent = leads.filter(x => x.tier === "HOT").length.toLocaleString();
+      document.getElementById("b-warm").textContent = leads.filter(x => x.tier === "WARM").length.toLocaleString();
+      document.getElementById("b-ghl").textContent = leads.filter(isGHLEligible).length.toLocaleString();
+      document.getElementById("b-individual").textContent = leads.filter(x => x.is_individual_owner).length.toLocaleString();
+      document.getElementById("b-estate").textContent = leads.filter(x => x.is_estate_owner).length.toLocaleString();
+      document.getElementById("b-entity").textContent = leads.filter(x => x.is_entity_owner).length.toLocaleString();
+      renderPipelineSummary(leads);
     }
 
     function toggleSelected(index, checked){
@@ -2337,6 +2394,14 @@
         document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
         button.classList.add("active");
         state.tab = button.dataset.tab || "all";
+        if(state.tab === "fl-collier"){
+          const stateSelect = document.getElementById("state-filter");
+          const countySelect = document.getElementById("county-filter");
+          const citySelect = document.getElementById("city-filter");
+          if(stateSelect) stateSelect.value = "FL";
+          if(countySelect) countySelect.value = "Collier FL";
+          if(citySelect) citySelect.value = "";
+        }
         applyFilters();
       });
     });
