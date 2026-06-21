@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import json
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -20,7 +20,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 OUTPUT_PATH = DATA_DIR / "collier_leads.json"
 SOURCE_PAGE = "https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/"
-PDF_URL = "https://www.collierclerk.com/wp-content/uploads/Tax-Deed-Sales-Excess-Proceeds-List-2.pdf"
+PDF_URL = (
+    "https://app.collierclerk.com/LFOfficialRecords/edoc/6476/"
+    "Tax%20Deed%20Sales%20Excess%20Proceeds%20List.pdf?dbid=0&repo=OFFICIALRECORDSPROD"
+)
 
 
 def now_iso() -> str:
@@ -51,6 +54,61 @@ def parse_date(value: Any) -> str:
         except ValueError:
             continue
     return ""
+
+
+def parse_date_obj(value: Any) -> date | None:
+    parsed = parse_date(value)
+    if not parsed:
+        return None
+    try:
+        return datetime.strptime(parsed, "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
+def parse_as_of_date(text: str) -> date | None:
+    match = re.search(r"\bAs\s+of\s*:?\s*([0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4})", text or "", re.I)
+    if not match:
+        return None
+    return parse_date_obj(match.group(1))
+
+
+def extract_source_metadata(pdf_path: Path, generated_at: str) -> dict[str, Any]:
+    metadata: dict[str, Any] = {
+        "pdf_as_of_date": "",
+        "pdf_as_of_age_days": None,
+        "pdf_freshness_warning": "",
+    }
+    try:
+        with pdfplumber.open(str(pdf_path)) as pdf:
+            first_page = pdf.pages[0] if pdf.pages else None
+            first_page_text = first_page.extract_text() if first_page else ""
+    except Exception as exc:
+        warning = f"WARNING: Unable to read Collier PDF first page for As of date: {exc}"
+        metadata["pdf_freshness_warning"] = warning
+        print(warning)
+        return metadata
+
+    as_of = parse_as_of_date(first_page_text or "")
+    if not as_of:
+        warning = "WARNING: Collier PDF As of date was not found on the first page; verify source URL."
+        metadata["pdf_freshness_warning"] = warning
+        print(warning)
+        return metadata
+
+    run_date = datetime.fromisoformat(generated_at).date()
+    age_days = (run_date - as_of).days
+    metadata["pdf_as_of_date"] = as_of.isoformat()
+    metadata["pdf_as_of_age_days"] = age_days
+    print(f"Collier PDF As of: {as_of.isoformat()} ({age_days} days old)")
+    if age_days > 30:
+        warning = (
+            f"WARNING: Collier PDF As of date is {age_days} days old; "
+            "verify the source URL has not become a frozen snapshot."
+        )
+        metadata["pdf_freshness_warning"] = warning
+        print(warning)
+    return metadata
 
 
 def record_id(record: dict[str, Any]) -> str:
@@ -154,11 +212,11 @@ async def fetch_pdf(session: aiohttp.ClientSession, output_path: Path) -> None:
         output_path.write_bytes(await response.read())
 
 
-def build_payload(leads: list[dict[str, Any]], generated_at: str) -> dict[str, Any]:
+def build_payload(leads: list[dict[str, Any]], generated_at: str, source_metadata: dict[str, Any]) -> dict[str, Any]:
     scored = score_collier_leads(leads)
     total = sum(float(lead.get("surplus_amount") or 0) for lead in scored)
     active = [lead for lead in scored if not lead.get("is_expired")]
-    return {
+    payload = {
         "generated_at": generated_at,
         "source": PDF_URL,
         "source_page": SOURCE_PAGE,
@@ -175,6 +233,8 @@ def build_payload(leads: list[dict[str, Any]], generated_at: str) -> dict[str, A
         "expired_count": sum(1 for lead in scored if lead.get("is_expired")),
         "leads": scored,
     }
+    payload.update(source_metadata)
+    return payload
 
 
 async def run() -> dict[str, Any]:
@@ -185,12 +245,13 @@ async def run() -> dict[str, Any]:
     pdf_path = tmp_dir / "collier_excess_proceeds.pdf"
     async with aiohttp.ClientSession() as session:
         await fetch_pdf(session, pdf_path)
+    source_metadata = extract_source_metadata(pdf_path, generated_at)
     leads = extract_pdf(pdf_path)
     try:
         pdf_path.unlink()
     except OSError:
         pass
-    payload = build_payload(leads, generated_at)
+    payload = build_payload(leads, generated_at, source_metadata)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(
         f"Collier scrape complete: {payload['lead_count']} leads | "
