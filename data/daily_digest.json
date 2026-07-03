@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T13:24:56+00:00",
+  "generated_at": "2026-07-03T13:28:41+00:00",
   "lead_count": 335,
   "urgent_count": 49,
   "critical_count": 38,
@@ -14,7 +14,7 @@
       "surplus_amount": 266868.21,
       "your_cut_30pct": 80060.46,
       "score": 100,
-      "days_remaining": -59,
+      "days_remaining": -60,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -23,7 +23,16 @@
       "surplus_amount": 214722.28,
       "your_cut_30pct": 64416.68,
       "score": 100,
-      "days_remaining": 340,
+      "days_remaining": 339,
+      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
+    },
+    {
+      "owner_name": "Estate Of Ben William Sherman",
+      "county": "DeKalb GA",
+      "surplus_amount": 181206.77,
+      "your_cut_30pct": 54362.03,
+      "score": 100,
+      "days_remaining": 1095,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -32,7 +41,7 @@
       "surplus_amount": 157583.17,
       "your_cut_30pct": 47274.95,
       "score": 100,
-      "days_remaining": 522,
+      "days_remaining": 521,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -41,7 +50,7 @@
       "surplus_amount": 117602.94,
       "your_cut_30pct": 35280.88,
       "score": 100,
-      "days_remaining": -241,
+      "days_remaining": -242,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -50,7 +59,7 @@
       "surplus_amount": 103475.65,
       "your_cut_30pct": 31042.69,
       "score": 100,
-      "days_remaining": 67,
+      "days_remaining": 66,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -59,7 +68,7 @@
       "surplus_amount": 96624.92,
       "your_cut_30pct": 28987.48,
       "score": 100,
-      "days_remaining": -31,
+      "days_remaining": -32,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -68,7 +77,7 @@
       "surplus_amount": 71482.13,
       "your_cut_30pct": 21444.64,
       "score": 100,
-      "days_remaining": 67,
+      "days_remaining": 66,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -77,7 +86,7 @@
       "surplus_amount": 58120.83,
       "your_cut_30pct": 17436.25,
       "score": 100,
-      "days_remaining": -241,
+      "days_remaining": -242,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -86,16 +95,7 @@
       "surplus_amount": 48510.37,
       "your_cut_30pct": 14553.11,
       "score": 100,
-      "days_remaining": 67,
-      "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
-    },
-    {
-      "owner_name": "Dyson Propertiez",
-      "county": "Clayton GA",
-      "surplus_amount": 40901.68,
-      "your_cut_30pct": 12270.5,
-      "score": 100,
-      "days_remaining": -269,
+      "days_remaining": 66,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     }
   ]
