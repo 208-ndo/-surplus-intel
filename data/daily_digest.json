@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T13:00:28+00:00",
+  "generated_at": "2026-07-15T13:03:39+00:00",
   "lead_count": 335,
   "urgent_count": 58,
   "critical_count": 38,
@@ -14,7 +14,7 @@
       "surplus_amount": 266868.21,
       "your_cut_30pct": 80060.46,
       "score": 100,
-      "days_remaining": -71,
+      "days_remaining": -72,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -23,7 +23,7 @@
       "surplus_amount": 214722.28,
       "your_cut_30pct": 64416.68,
       "score": 100,
-      "days_remaining": 328,
+      "days_remaining": 327,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -32,7 +32,7 @@
       "surplus_amount": 181206.77,
       "your_cut_30pct": 54362.03,
       "score": 100,
-      "days_remaining": 1084,
+      "days_remaining": 1083,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -41,7 +41,7 @@
       "surplus_amount": 157583.17,
       "your_cut_30pct": 47274.95,
       "score": 100,
-      "days_remaining": 510,
+      "days_remaining": 509,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -50,7 +50,7 @@
       "surplus_amount": 117602.94,
       "your_cut_30pct": 35280.88,
       "score": 100,
-      "days_remaining": -253,
+      "days_remaining": -254,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -59,7 +59,7 @@
       "surplus_amount": 103475.65,
       "your_cut_30pct": 31042.69,
       "score": 100,
-      "days_remaining": 55,
+      "days_remaining": 54,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -68,7 +68,7 @@
       "surplus_amount": 96624.92,
       "your_cut_30pct": 28987.48,
       "score": 100,
-      "days_remaining": -43,
+      "days_remaining": -44,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -77,7 +77,7 @@
       "surplus_amount": 71482.13,
       "your_cut_30pct": 21444.64,
       "score": 100,
-      "days_remaining": 55,
+      "days_remaining": 54,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -86,7 +86,7 @@
       "surplus_amount": 58120.83,
       "your_cut_30pct": 17436.25,
       "score": 100,
-      "days_remaining": -253,
+      "days_remaining": -254,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     },
     {
@@ -95,7 +95,7 @@
       "surplus_amount": 48510.37,
       "your_cut_30pct": 14553.11,
       "score": 100,
-      "days_remaining": 55,
+      "days_remaining": 54,
       "recommended_next_step": "Call county to verify balance, deadline, and whether a claim has been filed."
     }
   ]
