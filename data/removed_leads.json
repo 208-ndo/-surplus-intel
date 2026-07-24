@@ -1,5 +1,37 @@
 {
-  "generated_at": "2026-07-23T13:18:42+00:00",
-  "removed_count": 0,
-  "leads": []
+  "generated_at": "2026-07-24T13:12:04+00:00",
+  "removed_count": 1,
+  "leads": [
+    {
+      "owner_name": "Isley Dante Hooks",
+      "surplus_amount": 108855.61,
+      "county": "DeKalb GA",
+      "parcel_id": "15 174 06 007",
+      "last_seen": "2026-07-23T13:18:42+00:00",
+      "removal_date": "2026-07-24T13:12:04+00:00",
+      "note": "Removed from county PDF - may have been claimed, paid, or transferred to state. Call county to verify.",
+      "enrichment": {
+        "deceased": false,
+        "deceased_note": "",
+        "redemption_filed": false,
+        "assignment_filed": false,
+        "satisfaction_filed": false,
+        "status_flag": "",
+        "obituary_hit": false,
+        "obituary_note": "",
+        "probate_found": false,
+        "probate_note": "",
+        "urgent": false,
+        "urgent_note": "",
+        "days_remaining": null,
+        "removed_last_run": true,
+        "removed_note": "Removed from county PDF - may have been claimed, paid, or transferred to state. Call county to verify.",
+        "enriched_at": "2026-07-24T13:12:04+00:00",
+        "checks_run": [
+          "diff"
+        ],
+        "tags": []
+      }
+    }
+  ]
 }
