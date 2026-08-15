@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T13:02:44+00:00",
+  "generated_at": "2026-08-15T12:40:43+00:00",
   "source": "https://app.collierclerk.com/LFOfficialRecords/edoc/6476/Tax%20Deed%20Sales%20Excess%20Proceeds%20List.pdf?dbid=0&repo=OFFICIALRECORDSPROD",
   "source_page": "https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/",
   "state": "FL",
@@ -8,9 +8,9 @@
   ],
   "lead_count": 14,
   "active_lead_count": 1,
-  "total_surplus_amount": 433047.96,
-  "total_potential_fee_30pct": 129914.39,
-  "total_potential_fee_15pct": 64957.19,
+  "total_surplus_amount": 431794.46,
+  "total_potential_fee_30pct": 129538.34,
+  "total_potential_fee_15pct": 64769.17,
   "fire_lead_count": 0,
   "critical_count": 0,
   "hot_fee_window_count": 1,
@@ -35,12 +35,10 @@
       "sale_date": "2024-09-23",
       "notice_date": "2025-01-26",
       "surplus_amount": 18838.46,
-      "claims_filed": [
-        "1st claim Carlton Marshall"
-      ],
-      "claim_pending": true,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "claims_filed": [],
+      "claim_pending": false,
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "kemp_associates_inc_gilbert_tharps_golda_tharps_00445520006_18838",
       "your_cut_30pct": 5651.54,
       "your_cut_15pct": 2825.77,
@@ -52,7 +50,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -445,
+      "days_to_claim": -446,
       "date_estimated": false,
       "years_unclaimed": 1.9,
       "attorney_required": false,
@@ -70,7 +68,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -89,7 +87,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $18,838 tied to KEMP&ASSOCIATES INC/GILBERT THARPS/GOLDA THARPS. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -445,
+        "days_remaining": -446,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -116,8 +114,8 @@
         "1st claim William Jackson"
       ],
       "claim_pending": true,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "william_jackson_41614200006_43165",
       "your_cut_30pct": 12949.79,
       "your_cut_15pct": 6474.9,
@@ -129,7 +127,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -445,
+      "days_to_claim": -446,
       "date_estimated": false,
       "years_unclaimed": 1.9,
       "attorney_required": false,
@@ -147,7 +145,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -166,7 +164,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $43,166 tied to WILLIAM JACKSON. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -445,
+        "days_remaining": -446,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -191,8 +189,8 @@
       "surplus_amount": 19474.38,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "robert_j_zdanis_00450200007_19474",
       "your_cut_30pct": 5842.31,
       "your_cut_15pct": 2921.16,
@@ -204,7 +202,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -293,
+      "days_to_claim": -294,
       "date_estimated": false,
       "years_unclaimed": 1.5,
       "attorney_required": false,
@@ -222,7 +220,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -241,7 +239,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $19,474 tied to ROBERT J ZDANIS. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -293,
+        "days_remaining": -294,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -266,8 +264,8 @@
       "surplus_amount": 12183.96,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "daniel_brunet_337870600108_12183",
       "your_cut_30pct": 3655.19,
       "your_cut_15pct": 1827.59,
@@ -279,7 +277,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -272,
+      "days_to_claim": -273,
       "date_estimated": false,
       "years_unclaimed": 1.4,
       "attorney_required": false,
@@ -297,7 +295,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -316,7 +314,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $12,184 tied to DANIEL BRUNET. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -272,
+        "days_remaining": -273,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -338,16 +336,14 @@
       "tda_number": "25012",
       "sale_date": "2025-08-11",
       "notice_date": "2025-12-12",
-      "surplus_amount": 212019.93,
-      "claims_filed": [
-        "1st claim Joanne Ondre"
-      ],
-      "claim_pending": true,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
-      "lead_id": "robert_l_ondre_22623600001_212019",
-      "your_cut_30pct": 63605.98,
-      "your_cut_15pct": 31802.99,
+      "surplus_amount": 210766.43,
+      "claims_filed": [],
+      "claim_pending": false,
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
+      "lead_id": "robert_l_ondre_22623600001_210766",
+      "your_cut_30pct": 63229.93,
+      "your_cut_15pct": 31614.96,
       "amount_tier": "FIRE",
       "tier": "EXPIRED",
       "score": 0,
@@ -356,7 +352,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -125,
+      "days_to_claim": -126,
       "date_estimated": false,
       "years_unclaimed": 1.0,
       "attorney_required": false,
@@ -374,7 +370,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -389,11 +385,11 @@
           "collier_probate": "https://collierclerk.com/court-divisions/probate/?search=ROBERT+L+ONDRE",
           "batchskiptracing": "https://batchskiptracing.com"
         },
-        "simple_call_script": "Hi, I am calling about Collier County tax deed excess proceeds connected to ROBERT L ONDRE and parcel 22623600001. County records show possible surplus funds of about $212,020. I wanted to verify you received the Clerk's notice and see if you need help preparing the notarized claim packet before the claim deadline, currently tracked as 2026-04-11.",
-        "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $212,020 tied to ROBERT L ONDRE. I can help you verify and prepare the claim paperwork. Is this the right number?",
+        "simple_call_script": "Hi, I am calling about Collier County tax deed excess proceeds connected to ROBERT L ONDRE and parcel 22623600001. County records show possible surplus funds of about $210,766. I wanted to verify you received the Clerk's notice and see if you need help preparing the notarized claim packet before the claim deadline, currently tracked as 2026-04-11.",
+        "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $210,766 tied to ROBERT L ONDRE. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -125,
+        "days_remaining": -126,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -418,8 +414,8 @@
       "surplus_amount": 3708.94,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "harold_w_fisher_tr_00229480003_3708",
       "your_cut_30pct": 1112.68,
       "your_cut_15pct": 556.34,
@@ -431,7 +427,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -55,
+      "days_to_claim": -56,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -449,7 +445,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -468,7 +464,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $3,709 tied to HAROLD W FISHER TR. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -55,
+        "days_remaining": -56,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -493,8 +489,8 @@
       "surplus_amount": 3219.44,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "harold_w_fisher_tr_00230640007_3219",
       "your_cut_30pct": 965.83,
       "your_cut_15pct": 482.92,
@@ -506,7 +502,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -55,
+      "days_to_claim": -56,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -524,7 +520,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -543,7 +539,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $3,219 tied to HAROLD W FISHER TR. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -55,
+        "days_remaining": -56,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -568,8 +564,8 @@
       "surplus_amount": 14.47,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "amanda_s_kenney_est_00520040003_14",
       "your_cut_30pct": 4.34,
       "your_cut_15pct": 2.17,
@@ -581,7 +577,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -55,
+      "days_to_claim": -56,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -599,7 +595,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -618,7 +614,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $14 tied to AMANDA S KENNEY EST. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -55,
+        "days_remaining": -56,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -643,8 +639,8 @@
       "surplus_amount": 74.91,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "marjorie_k_garrelts_00871640000_74",
       "your_cut_30pct": 22.47,
       "your_cut_15pct": 11.24,
@@ -656,7 +652,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -55,
+      "days_to_claim": -56,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -674,7 +670,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -693,7 +689,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $75 tied to MARJORIE K GARRELTS. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -55,
+        "days_remaining": -56,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -718,8 +714,8 @@
       "surplus_amount": 11459.05,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "gateway_shoppes_ii_llc_00522922307_11459",
       "your_cut_30pct": 3437.71,
       "your_cut_15pct": 1718.86,
@@ -731,7 +727,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -413,
+      "days_to_claim": -414,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -749,7 +745,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -768,7 +764,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $11,459 tied to GATEWAY SHOPPES II LLC. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -413,
+        "days_remaining": -414,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -793,8 +789,8 @@
       "surplus_amount": 7.0,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "floyd_l_lucille_r_spears_00803240009_7",
       "your_cut_30pct": 2.1,
       "your_cut_15pct": 1.05,
@@ -806,7 +802,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -413,
+      "days_to_claim": -414,
       "date_estimated": false,
       "years_unclaimed": 0.8,
       "attorney_required": false,
@@ -824,7 +820,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -843,7 +839,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $7 tied to FLOYD L & LUCILLE R SPEARS. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -413,
+        "days_remaining": -414,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -868,8 +864,8 @@
       "surplus_amount": 1.47,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "anthony_j_alice_livich_00825440007_1",
       "your_cut_30pct": 0.44,
       "your_cut_15pct": 0.22,
@@ -881,7 +877,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -17,
+      "days_to_claim": -18,
       "date_estimated": false,
       "years_unclaimed": 0.7,
       "attorney_required": false,
@@ -899,7 +895,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -918,7 +914,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $1 tied to ANTHONY J & ALICE LIVICH. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -17,
+        "days_remaining": -18,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -943,8 +939,8 @@
       "surplus_amount": 66102.29,
       "claims_filed": [],
       "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "julius_g_adeline_m_sarna_39952920005_66102",
       "your_cut_30pct": 19830.69,
       "your_cut_15pct": 9915.34,
@@ -956,7 +952,7 @@
       "fee_tier": "NEGOTIABLE",
       "fl_urgency": "EXPIRED",
       "claim_status": "EXPIRED",
-      "days_to_claim": -17,
+      "days_to_claim": -18,
       "date_estimated": false,
       "years_unclaimed": 0.7,
       "attorney_required": false,
@@ -974,7 +970,7 @@
         "Expired - not actionable"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -993,7 +989,7 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $66,102 tied to JULIUS G & ADELINE M SARNA. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": -17,
+        "days_remaining": -18,
         "urgent_note": "Collier claim deadline appears expired or requires manual review."
       }
     },
@@ -1016,10 +1012,12 @@
       "sale_date": "2026-07-13",
       "notice_date": "2026-11-13",
       "surplus_amount": 42777.68,
-      "claims_filed": [],
-      "claim_pending": false,
-      "first_seen_date": "2026-08-14",
-      "last_seen_date": "2026-08-14",
+      "claims_filed": [
+        "1st claim Kathy Y. Jones"
+      ],
+      "claim_pending": true,
+      "first_seen_date": "2026-08-15",
+      "last_seen_date": "2026-08-15",
       "lead_id": "immokalee_lodge_af_am_henry_jones_jr_est_56404880003_42777",
       "your_cut_30pct": 12833.3,
       "your_cut_15pct": 6416.65,
@@ -1031,7 +1029,7 @@
       "fee_tier": "HIGH_URGENCY_15PCT",
       "fl_urgency": "HOT",
       "claim_status": "HOT",
-      "days_to_claim": 211,
+      "days_to_claim": 210,
       "date_estimated": false,
       "years_unclaimed": 0.1,
       "attorney_required": false,
@@ -1058,7 +1056,7 @@
         "Estate/heir lead"
       ],
       "enrichment": {
-        "enriched_at": "2026-08-14T13:02:45+00:00",
+        "enriched_at": "2026-08-15T12:40:44+00:00",
         "checks_run": [
           "collier_deadline",
           "collier_skip_trace_links",
@@ -1077,16 +1075,16 @@
         "short_text_script": "Hi, this is Michael with 229 Holdings. Collier County records show possible tax deed surplus funds of about $42,778 tied to IMMOKALEE LODGE AF & AM, HENRY JONES JR EST. I can help you verify and prepare the claim paperwork. Is this the right number?",
         "urgent": false,
         "critical": false,
-        "days_remaining": 211,
-        "urgent_note": "211 days until Collier 120-day deadline."
+        "days_remaining": 210,
+        "urgent_note": "210 days until Collier 120-day deadline."
       }
     }
   ],
-  "pdf_as_of_date": "2026-07-15",
-  "pdf_as_of_age_days": 30,
+  "pdf_as_of_date": "2026-08-14",
+  "pdf_as_of_age_days": 1,
   "pdf_freshness_warning": "",
   "migration_meta": {
-    "migrated_at": "2026-08-14T13:02:45+00:00",
+    "migrated_at": "2026-08-15T12:40:43+00:00",
     "processed": 14,
     "failed": 0,
     "fixes": [
@@ -1095,11 +1093,11 @@
     ]
   },
   "enrichment_meta": {
-    "generated_at": "2026-08-14T13:02:45+00:00",
+    "generated_at": "2026-08-15T12:40:44+00:00",
     "enriched": 14
   },
   "packet_meta": {
-    "generated_at": "2026-08-14T13:02:45+00:00",
+    "generated_at": "2026-08-15T12:40:44+00:00",
     "min_score": 50,
     "generated": 0,
     "failed": 0,
