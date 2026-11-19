@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T20:04:02+00:00",
+  "generated_at": "2026-11-19T20:04:17+00:00",
   "source": "https://app.collierclerk.com/LFOfficialRecords/edoc/6476/Tax%20Deed%20Sales%20Excess%20Proceeds%20List.pdf?dbid=0&repo=OFFICIALRECORDSPROD",
   "source_page": "https://www.collierclerk.com/tax-deed-sales/tax-deed-surplus/",
   "state": "FL",
@@ -17,10 +17,10 @@
   "expired_count": 0,
   "leads": [],
   "pdf_as_of_date": "2026-11-18",
-  "pdf_as_of_age_days": 0,
+  "pdf_as_of_age_days": 1,
   "pdf_freshness_warning": "",
   "migration_meta": {
-    "migrated_at": "2026-11-18T20:04:03+00:00",
+    "migrated_at": "2026-11-19T20:04:18+00:00",
     "processed": 0,
     "failed": 0,
     "fixes": [
@@ -29,11 +29,11 @@
     ]
   },
   "enrichment_meta": {
-    "generated_at": "2026-11-18T20:04:03+00:00",
+    "generated_at": "2026-11-19T20:04:18+00:00",
     "enriched": 0
   },
   "packet_meta": {
-    "generated_at": "2026-11-18T20:04:03+00:00",
+    "generated_at": "2026-11-19T20:04:18+00:00",
     "min_score": 50,
     "generated": 0,
     "failed": 0,
